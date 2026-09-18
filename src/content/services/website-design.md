@@ -33,7 +33,7 @@ faq:
   - question: "Will my new website work well on mobile?"
     answer: "Yes. Every build is designed mobile-first, since the majority of local searches happen on a phone, then adapted up to tablet and desktop."
   - question: "What happens after the site launches?"
-    answer: "Hosting, security updates and technical maintenance are included in your monthly plan, so the site stays fast and safe without you having to think about it."
+    answer: "The site is yours — we hand over everything you need once it's live. We don't sell ongoing hosting or maintenance plans, so if you'd like continued local SEO work afterwards, that's available separately as its own monthly plan."
 ---
 
 A website that looks fine but doesn't load fast, doesn't rank, and doesn't convert is expensive in

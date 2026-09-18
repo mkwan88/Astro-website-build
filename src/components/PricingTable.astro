@@ -3,54 +3,55 @@ import { Icon } from 'astro-icon/components';
 
 const tiers = [
   {
-    name: 'Launch',
-    blurb: 'A strong, professional start',
-    price: '$147',
+    name: 'Foundation',
+    blurb: 'Get the fundamentals working',
+    price: '$1,000',
     period: '/month',
-    setup: '+ $390 one-off setup',
-    term: '12-month term · live in 7 days',
+    note: 'No lock-in contract',
     featured: false,
     features: [
-      'A high-converting one-page website',
-      'Local SEO research for your suburb & service',
-      'All copywriting included',
-      'Fast, mobile-optimised, locally discoverable',
-      'Hosting, updates & security included',
-      'Contact or booking form',
+      'Google Business Profile setup & optimisation',
+      'On-page SEO for up to 5 core pages',
+      'Up to 10 keywords tracked',
+      'Local citation building',
+      'Basic technical health check',
+      'Monthly report, plain-English, email support',
     ],
   },
   {
-    name: 'Growth',
-    blurb: 'For real, compounding results',
-    price: '$247',
+    name: 'Momentum',
+    blurb: 'Where most businesses see real traction',
+    price: '$1,590',
     period: '/month',
-    setup: '+ $1,190 one-off setup',
-    term: '12-month term · live in 14 days',
+    note: 'No lock-in contract',
     featured: true,
     features: [
-      'Everything in Launch',
-      'Multiple pages & custom design',
-      'A dedicated page per service & suburb',
-      'Keyword plan, not guesswork',
-      'Google Business Profile set up',
-      'Monthly local SEO maintenance',
-      'Blog included, fully expandable',
+      'Everything in Foundation',
+      'Up to 15 keywords tracked',
+      'Monthly Google Business Profile posting',
+      '2 blog articles per month',
+      'Active local link building & outreach',
+      'Quarterly technical SEO audit',
+      'AI search (GEO) foundations: schema & FAQ',
+      'Phone support',
     ],
   },
   {
-    name: 'Market Leader',
-    blurb: 'Become the #1 in your region',
-    price: 'Custom',
-    period: 'quoted after a short call',
-    setup: 'Subscription or one-off purchase',
-    term: 'Scoped to your goals',
+    name: 'Authority',
+    blurb: 'Become the obvious choice in your market',
+    price: 'From $2,950',
+    period: '/month',
+    note: 'Scoped after a short call',
     featured: false,
     features: [
-      'Everything in Growth',
-      'Full brand identity & design system',
-      'Large-scale, multi-location build',
-      'AI-search (GEO) optimisation',
-      'A dedicated point of contact, not a ticket queue',
+      'Everything in Momentum',
+      '22+ keywords tracked',
+      'Full local pack strategy',
+      '4 articles/month + digital PR & guest posts',
+      'Advanced link acquisition campaign',
+      'Ongoing (not quarterly) technical SEO',
+      'Full-site AI search (GEO) optimisation',
+      'Monthly strategy call, dedicated contact',
     ],
   },
 ];
@@ -58,14 +59,14 @@ const tiers = [
 
 <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-2xl text-center">
-    <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">Pricing</p>
+    <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">SEO Pricing</p>
     <h2 class="mt-2 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
-      Website + support. Fair and fixed.
+      Local SEO & AI search visibility, priced to compete
     </h2>
     <p class="mt-4 text-sm text-slate-500">
-      Your site runs on a simple subscription: pay once to build, then a fixed monthly fee that
-      includes hosting, updates and support. Prefer to own it outright? Every plan has a one-off
-      purchase price too.
+      A straight monthly retainer for ongoing SEO work — no setup fee, no 12-month lock-in.
+      Website design is priced separately as its own project; see{' '}
+      <a href="/pricing/#website-design" class="font-semibold text-brand-600 hover:underline">website design pricing below</a>.
     </p>
     <p class="mt-2 text-xs font-medium uppercase tracking-wide text-slate-400">
       Illustrative pricing — placeholder figures, to be confirmed
@@ -99,8 +100,7 @@ const tiers = [
             </span>
             <span class:list={['text-sm', tier.featured ? 'text-brand-200' : 'text-slate-400']}>{tier.period}</span>
           </div>
-          <p class:list={['mt-1 text-xs', tier.featured ? 'text-brand-200' : 'text-slate-400']}>{tier.setup}</p>
-          <p class:list={['text-xs', tier.featured ? 'text-brand-300' : 'text-slate-400']}>{tier.term}</p>
+          <p class:list={['mt-1 text-xs', tier.featured ? 'text-brand-200' : 'text-slate-400']}>{tier.note}</p>
 
           <ul class="mt-6 flex-1 space-y-3">
             {tier.features.map((f) => (
