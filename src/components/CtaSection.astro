@@ -1,0 +1,28 @@
+---
+interface Props {
+  heading?: string;
+  body?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const {
+  heading = 'Ready for a website that actually brings in customers?',
+  body = 'Get a free, no-obligation visibility audit: what’s working, what’s costing you leads, and exactly what to fix.',
+  ctaLabel = 'Get My Free Audit',
+  ctaHref = '/contact/',
+} = Astro.props;
+---
+
+<section class="bg-brand-900">
+  <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
+    <h2 class="font-display text-2xl font-bold text-white sm:text-3xl">{heading}</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-brand-100">{body}</p>
+    <a
+      href={ctaHref}
+      class="mt-8 inline-flex items-center justify-center gap-2 rounded-full bg-accent-400 px-7 py-3.5 text-sm font-semibold text-brand-950 shadow-lg shadow-accent-400/20 transition-transform hover:scale-[1.02] hover:bg-accent-300"
+    >
+      {ctaLabel}
+    </a>
+  </div>
+</section>

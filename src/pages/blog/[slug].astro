@@ -1,0 +1,85 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { SITE } from '../../lib/site';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const relatedService = entry.data.relatedService ? await getEntry('services', entry.data.relatedService) : null;
+const relatedArea = entry.data.relatedArea ? await getEntry('areas', entry.data.relatedArea) : null;
+
+const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const crumbs = [
+  { name: 'Blog', href: '/blog/' },
+  { name: entry.data.title, href: `/blog/${entry.id}/` },
+];
+const pageUrl = `${SITE.url}/blog/${entry.id}/`;
+---
+
+<BaseLayout
+  title={entry.data.metaTitle}
+  description={entry.data.metaDescription}
+  schema={[
+    articleSchema({
+      title: entry.data.title,
+      description: entry.data.metaDescription,
+      url: pageUrl,
+      image: new URL(entry.data.heroImage.src, SITE.url).toString(),
+      publishDate: entry.data.publishDate,
+      author: entry.data.author,
+    }),
+    breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` }))),
+  ]}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap gap-2">
+      {entry.data.tags.map((tag) => (
+        <span class="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">{tag}</span>
+      ))}
+    </div>
+    <h1 class="mt-4 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">{entry.data.title}</h1>
+    <p class="mt-4 text-sm text-slate-400">
+      {dateFormatter.format(entry.data.publishDate)} &middot; {entry.data.author}
+    </p>
+
+    <Image src={entry.data.heroImage} alt={entry.data.heroImageAlt} width={900} height={506} class="mt-8 w-full rounded-2xl" />
+
+    <div class="prose prose-slate prose-p:leading-relaxed prose-headings:font-display mt-10 max-w-none">
+      <Content />
+    </div>
+
+    {
+      (relatedService || relatedArea) && (
+        <div class="mt-12 flex flex-wrap gap-3 border-t border-slate-100 pt-8">
+          {relatedService && (
+            <a href={`/services/${relatedService.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+              Explore {relatedService.data.title}
+            </a>
+          )}
+          {relatedArea && (
+            <a href={`/areas/${relatedArea.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+              Our work in {relatedArea.data.cityName}
+            </a>
+          )}
+        </div>
+      )
+    }
+  </article>
+
+  <CtaSection />
+</BaseLayout>

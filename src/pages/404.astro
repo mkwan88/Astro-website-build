@@ -1,0 +1,27 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | Kwantum"
+  description="The page you're looking for doesn't exist."
+  noindex={true}
+>
+  <section class="mx-auto flex max-w-2xl flex-col items-center px-4 py-32 text-center sm:px-6 lg:px-8">
+    <span class="font-display text-7xl font-extrabold text-brand-100">404</span>
+    <h1 class="mt-4 font-display text-3xl font-bold text-slate-900">We couldn't find that page</h1>
+    <p class="mt-4 text-slate-500">
+      It might have moved, or the link might be out of date. Let's get you back on track.
+    </p>
+    <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <a href="/" class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">
+        Back to homepage
+      </a>
+      <a href="/contact/" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+        Contact us
+        <Icon name="lucide:arrow-right" class="h-4 w-4" />
+      </a>
+    </div>
+  </section>
+</BaseLayout>

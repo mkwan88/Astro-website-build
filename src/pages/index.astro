@@ -1,0 +1,168 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ServicesGrid from '../components/ServicesGrid.astro';
+import ProcessSteps from '../components/ProcessSteps.astro';
+import Testimonials from '../components/Testimonials.astro';
+import PricingTable from '../components/PricingTable.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { SITE } from '../lib/site';
+import { organizationSchema } from '../lib/schema';
+import heroImage from '../assets/generated/home-hero-visibility.png';
+
+const painPoints = [
+  "My website is fine, but it isn't bringing in any new customers.",
+  "I searched for my own business on Google and couldn't find it — my competitor was right at the top.",
+  "Whoever built my site years ago isn't answering their phone anymore.",
+  "I just want someone who handles it properly and picks up when I call.",
+];
+---
+
+<BaseLayout
+  title="Kwantum — Local SEO & Websites That Get You Found"
+  description={SITE.description}
+  schema={[organizationSchema()]}
+>
+  <!-- Hero -->
+  <section class="overflow-hidden bg-gradient-to-b from-brand-50/60 to-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">
+          Website Design &middot; Local SEO &middot; AI Search Visibility
+        </p>
+        <h1 class="mt-3 font-display text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl">
+          Get found <span class="text-brand-600">on Google</span>, and recommended{' '}
+          <span class="text-brand-600">by AI</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
+          We build fast, modern websites and make sure your customers actually find you — in
+          local search, Google Maps, and increasingly, in AI-generated answers. Based in Melbourne,
+          working with businesses across Australia.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href="/contact/"
+            class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition-transform hover:scale-[1.02] hover:bg-brand-700"
+          >
+            Get My Free Audit
+            <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          </a>
+          <a href="/case-studies/" class="text-sm font-semibold text-slate-600 hover:text-brand-600">
+            See real results &rarr;
+          </a>
+        </div>
+        <p class="mt-4 text-xs text-slate-400">Free & no-obligation — a straight, honest read on what's working and what isn't.</p>
+
+        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-slate-100 pt-8">
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-slate-400">Based in</dt>
+            <dd class="mt-1 font-display font-bold text-slate-900">Melbourne</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-slate-400">Serving</dt>
+            <dd class="mt-1 font-display font-bold text-slate-900">All of Australia</dd>
+          </div>
+          <div>
+            <dt class="text-xs font-medium uppercase tracking-wide text-slate-400">Audit</dt>
+            <dd class="mt-1 font-display font-bold text-slate-900">Free, no strings</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="rounded-3xl border border-slate-100 bg-white p-4 shadow-xl">
+        <Image src={heroImage} alt="Illustration of a map pin rising above a city skyline with an upward growth chart, representing local visibility and search rankings" width={900} height={675} class="w-full rounded-2xl" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Pain points -->
+  <section class="bg-white py-20">
+    <div class="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+      <h2 class="font-display text-3xl font-bold text-slate-900 sm:text-4xl">Does this sound familiar?</h2>
+      <p class="mt-4 text-slate-500">The site is live. It just isn't working for you.</p>
+
+      <div class="mt-10 grid gap-5 sm:grid-cols-2">
+        {
+          painPoints.map((point) => (
+            <blockquote class="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-left text-sm leading-relaxed text-slate-600">
+              <Icon name="lucide:quote" class="mb-2 h-5 w-5 text-brand-300" />
+              {point}
+            </blockquote>
+          ))
+        }
+      </div>
+
+      <p class="mt-10 text-slate-600">
+        That's exactly why Kwantum exists: we build a site that gets found, and we stay around
+        after launch to keep it that way.
+      </p>
+      <a
+        href="/contact/"
+        class="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
+      >
+        Get My Free Audit
+      </a>
+    </div>
+  </section>
+
+  <ServicesGrid />
+
+  <CtaSection />
+
+  <ProcessSteps />
+
+  <!-- About teaser -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="grid gap-10 rounded-3xl bg-slate-50 p-10 lg:grid-cols-2 lg:items-center lg:p-14">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">Who's behind Kwantum</p>
+        <h2 class="mt-2 font-display text-3xl font-bold text-slate-900">
+          A small, hands-on team — not a call centre
+        </h2>
+        <p class="mt-4 text-sm leading-relaxed text-slate-600">
+          Kwantum is built to be the opposite of the agency experience most small businesses
+          dread: no ticket queues, no account manager who's never heard of you. You get a website
+          and search strategy built properly, and a team that's still there after launch.
+        </p>
+        <a href="/about/" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:gap-2 transition-all">
+          More about Kwantum
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
+      </div>
+      <div class="flex items-center justify-center">
+        <Icon name="lucide:users" class="h-32 w-32 text-brand-200" />
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+
+  <PricingTable />
+
+  <!-- Areas teaser -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">Areas we serve</p>
+      <h2 class="mt-2 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+        Local everywhere we work
+      </h2>
+      <p class="mt-4 text-sm text-slate-500">
+        Based in Melbourne, expanding city by city — with a genuinely local approach for each one.
+      </p>
+    </div>
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a href="/areas/melbourne/" class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+        Melbourne
+      </a>
+      <a href="/areas/" class="rounded-full bg-brand-50 px-5 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-100">
+        View all areas &rarr;
+      </a>
+    </div>
+  </section>
+
+  <CtaSection
+    heading="Bring us your current site — or your idea"
+    body="You'll get an honest, no-obligation read on what's working, what's costing you enquiries, and exactly what to do next."
+  />
+</BaseLayout>

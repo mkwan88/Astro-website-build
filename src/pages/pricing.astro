@@ -1,0 +1,136 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import PricingTable from '../components/PricingTable.astro';
+import Faq from '../components/Faq.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { SITE } from '../lib/site';
+import { breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const addOns = [
+  {
+    title: 'Visibility Package: a year-long head start',
+    description:
+      '12 blog articles — one per month, researched and written — so your new site keeps growing in visibility across its entire first year, not just at launch.',
+    features: [
+      '800–1,000 words per article, internally linked',
+      'Includes an FAQ section AI tools and Google can quote directly',
+      'Targeted at the exact searches your customers use',
+    ],
+    price: '$1,290',
+    priceNote: 'one-off, add-on to a website project',
+  },
+  {
+    title: 'Found on Google Maps',
+    description:
+      'Full setup and ongoing care of your Google Business Profile — the listing that shows up in the map and beside search results.',
+    features: [
+      'New profile setup, or takeover of an existing one',
+      'Categories, services, service area, hours & photos, done properly',
+      'A review-request link you can send after every job',
+    ],
+    price: '$390',
+    priceNote: 'one-off, included free in the Growth plan',
+  },
+];
+
+const maintenanceTiers = [
+  { name: 'Basic', price: '$59/month', description: 'Weekly updates, backups & security — reply within 48h' },
+  { name: 'Smart', price: '$119/month', description: 'Everything in Basic, plus monthly local SEO maintenance' },
+  { name: 'Advanced', price: '$229/month', description: 'Everything in Smart, plus one blog article every month' },
+];
+
+const faq = [
+  {
+    question: 'Do I have to sign up for a subscription?',
+    answer: 'No — every plan can be purchased outright instead. The one-off purchase price is quoted alongside the monthly option for exactly this reason.',
+  },
+  {
+    question: 'What happens after the 12-month term?',
+    answer: 'Your plan continues month-to-month at the same rate, or you can move to a one-off ownership arrangement at any point — whichever suits you.',
+  },
+  {
+    question: 'I already have a website — can I just get ongoing support?',
+    answer: 'Yes — the maintenance-only plans below cover updates, backups, security and (on higher tiers) ongoing SEO, without a full rebuild.',
+  },
+  {
+    question: 'Are these prices final?',
+    answer: 'These are illustrative figures while Kwantum finalises its published pricing. Get in touch for a firm, current quote for your project.',
+  },
+];
+
+const crumbs = [{ name: 'Pricing', href: '/pricing/' }];
+---
+
+<BaseLayout
+  title="Pricing | Kwantum"
+  description="Kwantum's website and local SEO pricing — subscription or one-off purchase, hosting and support included. Illustrative pricing, confirmed on enquiry."
+  schema={[
+    breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` }))),
+    faqSchema(faq),
+  ]}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <section class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
+    <h1 class="font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">Pricing</h1>
+    <p class="mt-5 text-lg text-slate-600">
+      Straightforward plans that cover the build and everything after — no surprise invoices.
+    </p>
+  </section>
+
+  <PricingTable />
+
+  <!-- Add-ons -->
+  <section class="bg-slate-50 py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Add-ons</h2>
+      <div class="mt-8 grid gap-8 md:grid-cols-2">
+        {
+          addOns.map((addOn) => (
+            <div class="rounded-2xl border border-slate-100 bg-white p-7 shadow-sm">
+              <h3 class="font-display text-lg font-semibold text-slate-900">{addOn.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-500">{addOn.description}</p>
+              <ul class="mt-4 space-y-2">
+                {addOn.features.map((f) => (
+                  <li class="flex items-start gap-2 text-sm text-slate-600">
+                    <Icon name="lucide:check" class="mt-0.5 h-4 w-4 shrink-0 text-accent-600" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <p class="mt-5 font-display text-xl font-bold text-brand-600">{addOn.price}</p>
+              <p class="text-xs text-slate-400">{addOn.priceNote}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Maintenance only -->
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Already have a website? Just get support</h2>
+    <p class="mt-3 max-w-2xl text-sm text-slate-500">
+      If you don't need a new site — just someone to look after updates, backups, security and
+      SEO on the one you have. This is already included in every website plan above.
+    </p>
+    <div class="mt-8 grid gap-6 sm:grid-cols-3">
+      {
+        maintenanceTiers.map((tier) => (
+          <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+            <h3 class="font-display font-semibold text-slate-900">{tier.name}</h3>
+            <p class="mt-1 font-display text-2xl font-bold text-brand-600">{tier.price}</p>
+            <p class="mt-2 text-sm text-slate-500">{tier.description}</p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-4 text-xs text-slate-400">12-month term — visibility takes time to build.</p>
+  </section>
+
+  <Faq items={faq} />
+
+  <CtaSection />
+</BaseLayout>

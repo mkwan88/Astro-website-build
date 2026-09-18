@@ -1,0 +1,83 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../lib/site';
+import { breadcrumbSchema } from '../lib/schema';
+
+const crumbs = [{ name: 'Contact', href: '/contact/' }];
+---
+
+<BaseLayout
+  title="Contact Kwantum | Free Visibility Audit"
+  description="Get in touch with Kwantum for a free, no-obligation website and local SEO audit. Based in Melbourne, working with businesses across Australia."
+  schema={[breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` })))]}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-12 lg:grid-cols-5">
+      <div class="lg:col-span-2">
+        <h1 class="font-display text-4xl font-extrabold text-slate-900">Let's get you found</h1>
+        <p class="mt-5 text-slate-600">
+          Send your current website (or just your idea) and you'll get a free, honest read on
+          what's working, what's costing you enquiries, and what to do next. No obligation.
+        </p>
+
+        <div class="mt-10 space-y-5">
+          <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-sm text-slate-600 hover:text-brand-600">
+            <Icon name="lucide:mail" class="h-5 w-5 text-brand-600" />
+            {SITE.email}
+          </a>
+          <a href={`tel:${SITE.phone}`} class="flex items-center gap-3 text-sm text-slate-600 hover:text-brand-600">
+            <Icon name="lucide:phone" class="h-5 w-5 text-brand-600" />
+            {SITE.phoneDisplay}
+          </a>
+          <p class="flex items-center gap-3 text-sm text-slate-600">
+            <Icon name="lucide:map-pin" class="h-5 w-5 text-brand-600" />
+            {SITE.address.addressLocality}, {SITE.address.addressRegion}, Australia
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3">
+        <!--
+          Static form: no backend is wired up yet. Before launch, connect this form
+          to a form handler (e.g. Netlify Forms if hosted on Netlify, or Formspree)
+          and update the `action` attribute accordingly. See SEO-NOTES.md.
+        -->
+        <form class="grid gap-5 rounded-3xl border border-slate-100 bg-white p-8 shadow-sm sm:grid-cols-2" method="POST">
+          <div class="sm:col-span-1">
+            <label for="name" class="text-sm font-medium text-slate-700">Name</label>
+            <input id="name" name="name" type="text" required class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          </div>
+          <div class="sm:col-span-1">
+            <label for="business" class="text-sm font-medium text-slate-700">Business name</label>
+            <input id="business" name="business" type="text" class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          </div>
+          <div class="sm:col-span-1">
+            <label for="email" class="text-sm font-medium text-slate-700">Email</label>
+            <input id="email" name="email" type="email" required class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          </div>
+          <div class="sm:col-span-1">
+            <label for="website" class="text-sm font-medium text-slate-700">Current website (if any)</label>
+            <input id="website" name="website" type="url" placeholder="https://" class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          </div>
+          <div class="sm:col-span-2">
+            <label for="message" class="text-sm font-medium text-slate-700">What's going on?</label>
+            <textarea id="message" name="message" rows="5" required class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"></textarea>
+          </div>
+          <div class="sm:col-span-2">
+            <button
+              type="submit"
+              class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition-colors hover:bg-brand-700 sm:w-auto"
+            >
+              Get My Free Audit
+              <Icon name="lucide:arrow-right" class="h-4 w-4" />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

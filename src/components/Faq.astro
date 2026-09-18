@@ -1,0 +1,40 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  title?: string;
+}
+
+const { items, title = 'Frequently asked questions' } = Astro.props;
+---
+
+{
+  items.length > 0 && (
+    <section class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+      <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">{title}</h2>
+      <div class="mt-8 divide-y divide-slate-200 border-t border-slate-200">
+        {items.map((item) => (
+          <details class="group py-5">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display font-semibold text-slate-900">
+              {item.question}
+              <svg
+                class="h-5 w-5 shrink-0 text-slate-400 transition-transform group-open:rotate-45"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+              </svg>
+            </summary>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+  )
+}

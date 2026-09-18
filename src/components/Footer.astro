@@ -1,0 +1,83 @@
+---
+import { getCollection } from 'astro:content';
+import Logo from './Logo.astro';
+import { SITE } from '../lib/site';
+
+const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
+const areas = await getCollection('areas');
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-100 bg-slate-50">
+  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 gap-10 md:grid-cols-5">
+      <div class="col-span-2">
+        <Logo />
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
+          {SITE.description}
+        </p>
+        <p class="mt-4 text-sm text-slate-500">
+          {SITE.address.addressLocality}, {SITE.address.addressRegion} · Australia
+        </p>
+        <a href={`mailto:${SITE.email}`} class="mt-1 block text-sm text-slate-500 hover:text-brand-600">
+          {SITE.email}
+        </a>
+        <a href={`tel:${SITE.phone}`} class="text-sm text-slate-500 hover:text-brand-600">
+          {SITE.phoneDisplay}
+        </a>
+      </div>
+
+      <div>
+        <h3 class="font-display text-sm font-semibold text-slate-900">Services</h3>
+        <ul class="mt-4 space-y-2.5">
+          {
+            services.map((s) => (
+              <li>
+                <a href={`/services/${s.id}/`} class="text-sm text-slate-500 hover:text-brand-600">
+                  {s.data.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-display text-sm font-semibold text-slate-900">Areas We Serve</h3>
+        <ul class="mt-4 space-y-2.5">
+          {
+            areas.map((a) => (
+              <li>
+                <a href={`/areas/${a.id}/`} class="text-sm text-slate-500 hover:text-brand-600">
+                  {a.data.cityName}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a href="/areas/" class="text-sm text-slate-500 hover:text-brand-600">View all areas</a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-display text-sm font-semibold text-slate-900">Company</h3>
+        <ul class="mt-4 space-y-2.5">
+          <li><a href="/about/" class="text-sm text-slate-500 hover:text-brand-600">About</a></li>
+          <li><a href="/case-studies/" class="text-sm text-slate-500 hover:text-brand-600">Case Studies</a></li>
+          <li><a href="/pricing/" class="text-sm text-slate-500 hover:text-brand-600">Pricing</a></li>
+          <li><a href="/blog/" class="text-sm text-slate-500 hover:text-brand-600">Blog</a></li>
+          <li><a href="/contact/" class="text-sm text-slate-500 hover:text-brand-600">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 sm:flex-row">
+      <p class="text-xs text-slate-400">&copy; {year} {SITE.legalName}. All rights reserved.</p>
+      <div class="flex gap-6 text-xs text-slate-400">
+        <a href="/privacy-policy/" class="hover:text-brand-600">Privacy Policy</a>
+        <a href="/terms/" class="hover:text-brand-600">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>

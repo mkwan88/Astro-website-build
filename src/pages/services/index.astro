@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ServicesGrid from '../../components/ServicesGrid.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { SITE } from '../../lib/site';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const crumbs = [{ name: 'Services', href: '/services/' }];
+---
+
+<BaseLayout
+  title="Our Services | Kwantum"
+  description="Website design, local SEO, and AI search visibility — everything a business needs to be found online, from Kwantum."
+  schema={[breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` })))]}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <section class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
+    <h1 class="font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">Our Services</h1>
+    <p class="mt-5 text-lg text-slate-600">
+      Three things, done properly, that add up to being found: a website worth finding, local SEO
+      that gets you seen, and visibility with the AI tools your customers are starting to use instead
+      of a search bar.
+    </p>
+  </section>
+
+  <ServicesGrid heading="Choose where to start" subheading="Services" />
+
+  <CtaSection />
+</BaseLayout>

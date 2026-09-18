@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../lib/site';
+
+const crumbs = [{ name: 'Terms', href: '/terms/' }];
+---
+
+<BaseLayout
+  title="Terms of Service | Kwantum"
+  description="Terms of service for Kwantum's website design and local SEO services."
+  noindex={true}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <article class="prose prose-slate prose-p:leading-relaxed prose-headings:font-display mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1>Terms of Service</h1>
+    <p class="not-prose rounded-lg bg-amber-50 p-4 text-sm text-amber-800">
+      <strong>Placeholder:</strong> this page is boilerplate structure only and has not been
+      reviewed by a lawyer. Replace with terms drafted for your actual engagement model,
+      subscription billing, and consumer-guarantee obligations under the Australian Consumer Law
+      before publishing live.
+    </p>
+
+    <h2>Services</h2>
+    <p>
+      Kwantum provides website design and build, local SEO, and AI search visibility services as
+      described on this website and agreed with each client individually.
+    </p>
+
+    <h2>Engagement & payment</h2>
+    <p>
+      [Placeholder: describe subscription terms, minimum term length, one-off purchase option,
+      invoicing and payment terms.]
+    </p>
+
+    <h2>Cancellation</h2>
+    <p>[Placeholder: describe cancellation terms and any applicable notice period.]</p>
+
+    <h2>Liability</h2>
+    <p>
+      [Placeholder: liability clause. Nothing in these terms is intended to exclude rights you
+      have under the Australian Consumer Law that cannot lawfully be excluded.]
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      {SITE.legalName}, {SITE.address.addressLocality}, {SITE.address.addressRegion}, Australia.
+      <br />
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </p>
+  </article>
+</BaseLayout>

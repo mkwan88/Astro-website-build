@@ -1,0 +1,70 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import { SITE } from '../../lib/site';
+import { breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const caseStudies = await getCollection('caseStudies');
+  return caseStudies.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const service = await getEntry('services', entry.data.service);
+const area = entry.data.area ? await getEntry('areas', entry.data.area) : null;
+
+const crumbs = [
+  { name: 'Case Studies', href: '/case-studies/' },
+  { name: entry.data.clientName, href: `/case-studies/${entry.id}/` },
+];
+---
+
+<BaseLayout
+  title={entry.data.metaTitle}
+  description={entry.data.metaDescription}
+  schema={[breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` })))]}
+>
+  <Breadcrumbs items={crumbs} />
+
+  {
+    entry.data.isPlaceholder && (
+      <div class="bg-amber-50 px-4 py-3 text-center text-sm font-medium text-amber-800">
+        This is an illustrative, placeholder case study — not a documented real client result.
+      </div>
+    )
+  }
+
+  <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <p class="text-xs font-medium uppercase tracking-wide text-slate-400">{entry.data.industry}</p>
+    <h1 class="mt-2 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">{entry.data.clientName}</h1>
+    <p class="mt-4 font-display text-2xl font-bold text-accent-600">{entry.data.headlineResult}</p>
+
+    <Image src={entry.data.heroImage} alt={entry.data.heroImageAlt} width={800} height={450} class="mt-8 w-full rounded-2xl" />
+
+    <div class="prose prose-slate prose-p:leading-relaxed mt-10 max-w-none">
+      <Content />
+    </div>
+
+    <div class="mt-12 flex flex-wrap gap-3 border-t border-slate-100 pt-8">
+      {service && (
+        <a href={`/services/${service.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+          More about {service.data.title}
+        </a>
+      )}
+      {area && (
+        <a href={`/areas/${area.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+          Our work in {area.data.cityName}
+        </a>
+      )}
+    </div>
+  </article>
+
+  <CtaSection />
+</BaseLayout>

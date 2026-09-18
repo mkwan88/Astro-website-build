@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { SITE } from '../lib/site';
+
+const crumbs = [{ name: 'Privacy Policy', href: '/privacy-policy/' }];
+---
+
+<BaseLayout
+  title="Privacy Policy | Kwantum"
+  description="How Kwantum collects, uses, and protects your personal information."
+  noindex={true}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <article class="prose prose-slate prose-p:leading-relaxed prose-headings:font-display mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+    <h1>Privacy Policy</h1>
+    <p class="not-prose rounded-lg bg-amber-50 p-4 text-sm text-amber-800">
+      <strong>Placeholder:</strong> this page is boilerplate structure only and has not been
+      reviewed by a lawyer. Replace with a policy that reflects your actual data practices and
+      complies with the Australian Privacy Principles (APPs) under the Privacy Act 1988 before
+      publishing live.
+    </p>
+
+    <h2>What we collect</h2>
+    <p>
+      When you contact us through this website, we collect the information you provide directly —
+      such as your name, email address, phone number, and any details you share about your
+      business or project.
+    </p>
+
+    <h2>How we use it</h2>
+    <p>
+      We use the information you provide solely to respond to your enquiry and, where relevant, to
+      deliver the services you engage us for. We do not sell your personal information to third
+      parties.
+    </p>
+
+    <h2>Data storage & security</h2>
+    <p>
+      [Placeholder: describe where enquiry data is stored, e.g. your form handler / CRM / email
+      provider, and the security measures in place.]
+    </p>
+
+    <h2>Your rights</h2>
+    <p>
+      Under the Australian Privacy Principles, you can request access to, or correction of, any
+      personal information we hold about you. Contact us at
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a> to make a request.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      {SITE.legalName}, {SITE.address.addressLocality}, {SITE.address.addressRegion}, Australia.
+      <br />
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </p>
+  </article>
+</BaseLayout>

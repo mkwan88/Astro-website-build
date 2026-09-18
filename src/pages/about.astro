@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CtaSection from '../components/CtaSection.astro';
+import { SITE } from '../lib/site';
+import { organizationSchema, breadcrumbSchema } from '../lib/schema';
+import teamImage from '../assets/generated/about-team-illustration.png';
+
+const values = [
+  {
+    icon: 'lucide:message-circle',
+    title: 'Plain English, always',
+    description: "We translate what we do into language you'd actually use — no jargon to hide behind.",
+  },
+  {
+    icon: 'lucide:gauge',
+    title: 'Built to perform, not just look nice',
+    description: 'Every site is judged on speed and search visibility, not just how it looks in a mockup.',
+  },
+  {
+    icon: 'lucide:phone',
+    title: 'A real person, not a ticket queue',
+    description: "When you need something, you reach an actual person who already knows your business.",
+  },
+];
+
+const crumbs = [{ name: 'About', href: '/about/' }];
+---
+
+<BaseLayout
+  title="About Kwantum | Local SEO & Website Agency, Melbourne"
+  description="Kwantum is a Melbourne-based agency building fast websites and local SEO strategies for businesses across Australia. Here's how we work and why."
+  schema={[organizationSchema(), breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` })))]}
+>
+  <Breadcrumbs items={crumbs} />
+
+  <section class="overflow-hidden bg-gradient-to-b from-brand-50/60 to-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">About Kwantum</p>
+        <h1 class="mt-2 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">
+          Built for businesses tired of being invisible online
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-slate-600">
+          Kwantum exists because too many good businesses lose customers to worse competitors with
+          better search visibility. We're based in Melbourne and work with businesses across
+          Australia, combining fast, modern website builds with the local SEO and AI-search work
+          that actually gets you found.
+        </p>
+        <p class="mt-4 text-sm leading-relaxed text-slate-500">
+          We keep things deliberately small and hands-on: one point of contact, plain-English
+          explanations, and no disappearing after launch.
+        </p>
+      </div>
+      <div class="flex items-center justify-center rounded-3xl border border-slate-100 bg-white p-4 shadow-xl">
+        <Image src={teamImage} alt="Abstract illustration of a small team collaborating around a table with a laptop and map pin icon" width={900} height={675} class="w-full rounded-2xl" />
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">How we work</h2>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {
+        values.map((v) => (
+          <div class="rounded-2xl border border-slate-100 bg-white p-7 shadow-sm">
+            <Icon name={v.icon} class="h-8 w-8 text-brand-600" />
+            <h3 class="mt-4 font-display font-semibold text-slate-900">{v.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-500">{v.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-3xl px-4 pb-20 text-center sm:px-6 lg:px-8">
+    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Based in Melbourne, working nationally</h2>
+    <p class="mt-4 text-sm leading-relaxed text-slate-500">
+      Our home base is Melbourne, but the local-SEO and website approach we've built works anywhere
+      in Australia — we bring the same suburb-level, no-generic-templates thinking to every city
+      we work in.
+    </p>
+    <a href="/areas/" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:gap-2 transition-all">
+      See areas we serve
+      <Icon name="lucide:arrow-right" class="h-4 w-4" />
+    </a>
+  </section>
+
+  <CtaSection />
+</BaseLayout>

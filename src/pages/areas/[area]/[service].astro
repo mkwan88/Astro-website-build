@@ -1,0 +1,127 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import Faq from '../../../components/Faq.astro';
+import CtaSection from '../../../components/CtaSection.astro';
+import { SITE } from '../../../lib/site';
+import { localBusinessSchema, serviceSchema, breadcrumbSchema, faqSchema } from '../../../lib/schema';
+
+export async function getStaticPaths() {
+  const areas = await getCollection('areas');
+  const services = await getCollection('services');
+  const locationServices = await getCollection('locationServices');
+
+  const paths = [];
+  for (const area of areas) {
+    for (const service of services) {
+      const ls = locationServices.find((l) => l.data.area === area.id && l.data.service === service.id);
+      if (!ls) continue;
+      paths.push({
+        params: { area: area.id, service: service.id },
+        props: { area, service, ls },
+      });
+    }
+  }
+  return paths;
+}
+
+const { area, service, ls } = Astro.props;
+const { Content: ServiceContent } = await render(service);
+const isHomeBase = !!area.data.addressLocality;
+
+const combinedFaq = [...ls.data.faq, ...service.data.faq];
+
+const crumbs = [
+  { name: 'Areas We Serve', href: '/areas/' },
+  { name: area.data.cityName, href: `/areas/${area.id}/` },
+  { name: service.data.title, href: `/areas/${area.id}/${service.id}/` },
+];
+const pageUrl = `${SITE.url}/areas/${area.id}/${service.id}/`;
+---
+
+<BaseLayout
+  title={ls.data.metaTitle}
+  description={ls.data.metaDescription}
+  schema={[
+    localBusinessSchema({ areaName: area.data.cityName, suburbs: area.data.suburbs, url: pageUrl, isHomeBase }),
+    serviceSchema({ name: service.data.title, description: ls.data.metaDescription, url: pageUrl }),
+    breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` }))),
+    faqSchema(combinedFaq),
+  ]}
+>
+  <Breadcrumbs items={crumbs} />
+
+  {
+    area.data.isPlaceholder && (
+      <div class="bg-amber-50 px-4 py-3 text-center text-sm font-medium text-amber-800">
+        This is a template page demonstrating our location-service pattern — not a live location yet.
+      </div>
+    )
+  }
+
+  <section class="overflow-hidden bg-gradient-to-b from-brand-50/60 to-white">
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
+      <div>
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">{area.data.cityName}</p>
+        <h1 class="mt-2 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">
+          {service.data.title} in {area.data.cityName}
+        </h1>
+        <p class="mt-5 text-lg leading-relaxed text-slate-600">{ls.data.localAngle}</p>
+        <a
+          href="/contact/"
+          class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 hover:bg-brand-700"
+        >
+          Get My Free Audit
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
+
+        <div class="mt-10 flex items-center gap-4 border-t border-slate-100 pt-8">
+          <span class="font-display text-3xl font-extrabold text-brand-600">{ls.data.localProofStat.value}</span>
+          <span class="text-sm text-slate-500">{ls.data.localProofStat.label}</span>
+        </div>
+      </div>
+      <div class="rounded-3xl border border-slate-100 bg-white p-4 shadow-xl">
+        <Image src={service.data.heroImage} alt={service.data.heroImageAlt} width={900} height={675} class="w-full rounded-2xl" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Generic service explanation, reused, with a note it's a shared foundation -->
+  <section class="mx-auto max-w-3xl px-4 py-14 text-slate-600 sm:px-6 lg:px-8 prose prose-slate prose-p:leading-relaxed">
+    <ServiceContent />
+  </section>
+
+  <!-- Benefits -->
+  <section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Why it works</h2>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2">
+      {
+        service.data.benefits.map((b) => (
+          <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+            <Icon name="lucide:check-circle-2" class="h-6 w-6 text-accent-600" />
+            <h3 class="mt-3 font-display font-semibold text-slate-900">{b.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-500">{b.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-7xl px-4 pb-14 sm:px-6 lg:px-8">
+    <div class="flex flex-wrap gap-3">
+      <a href={`/areas/${area.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+        &larr; All services in {area.data.cityName}
+      </a>
+      <a href={`/services/${service.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+        More about {service.data.title}
+      </a>
+    </div>
+  </section>
+
+  <Faq items={combinedFaq} title={`${service.data.title} in ${area.data.cityName}: FAQs`} />
+
+  <CtaSection />
+</BaseLayout>

@@ -1,0 +1,136 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const tiers = [
+  {
+    name: 'Launch',
+    blurb: 'A strong, professional start',
+    price: '$147',
+    period: '/month',
+    setup: '+ $390 one-off setup',
+    term: '12-month term · live in 7 days',
+    featured: false,
+    features: [
+      'A high-converting one-page website',
+      'Local SEO research for your suburb & service',
+      'All copywriting included',
+      'Fast, mobile-optimised, locally discoverable',
+      'Hosting, updates & security included',
+      'Contact or booking form',
+    ],
+  },
+  {
+    name: 'Growth',
+    blurb: 'For real, compounding results',
+    price: '$247',
+    period: '/month',
+    setup: '+ $1,190 one-off setup',
+    term: '12-month term · live in 14 days',
+    featured: true,
+    features: [
+      'Everything in Launch',
+      'Multiple pages & custom design',
+      'A dedicated page per service & suburb',
+      'Keyword plan, not guesswork',
+      'Google Business Profile set up',
+      'Monthly local SEO maintenance',
+      'Blog included, fully expandable',
+    ],
+  },
+  {
+    name: 'Market Leader',
+    blurb: 'Become the #1 in your region',
+    price: 'Custom',
+    period: 'quoted after a short call',
+    setup: 'Subscription or one-off purchase',
+    term: 'Scoped to your goals',
+    featured: false,
+    features: [
+      'Everything in Growth',
+      'Full brand identity & design system',
+      'Large-scale, multi-location build',
+      'AI-search (GEO) optimisation',
+      'A dedicated point of contact, not a ticket queue',
+    ],
+  },
+];
+---
+
+<section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+  <div class="mx-auto max-w-2xl text-center">
+    <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">Pricing</p>
+    <h2 class="mt-2 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+      Website + support. Fair and fixed.
+    </h2>
+    <p class="mt-4 text-sm text-slate-500">
+      Your site runs on a simple subscription: pay once to build, then a fixed monthly fee that
+      includes hosting, updates and support. Prefer to own it outright? Every plan has a one-off
+      purchase price too.
+    </p>
+    <p class="mt-2 text-xs font-medium uppercase tracking-wide text-slate-400">
+      Illustrative pricing — placeholder figures, to be confirmed
+    </p>
+  </div>
+
+  <div class="mt-14 grid gap-8 lg:grid-cols-3">
+    {
+      tiers.map((tier) => (
+        <div
+          class:list={[
+            'flex flex-col rounded-3xl border p-8',
+            tier.featured
+              ? 'border-brand-600 bg-brand-900 text-white shadow-xl'
+              : 'border-slate-100 bg-white shadow-sm',
+          ]}
+        >
+          {tier.featured && (
+            <span class="mb-4 inline-flex w-fit items-center rounded-full bg-accent-400 px-3 py-1 text-xs font-semibold text-brand-950">
+              Most popular
+            </span>
+          )}
+          <h3 class:list={['font-display text-xl font-bold', tier.featured ? 'text-white' : 'text-slate-900']}>
+            {tier.name}
+          </h3>
+          <p class:list={['mt-1 text-sm', tier.featured ? 'text-brand-100' : 'text-slate-500']}>{tier.blurb}</p>
+
+          <div class="mt-6 flex items-baseline gap-1">
+            <span class:list={['font-display text-4xl font-extrabold', tier.featured ? 'text-white' : 'text-slate-900']}>
+              {tier.price}
+            </span>
+            <span class:list={['text-sm', tier.featured ? 'text-brand-200' : 'text-slate-400']}>{tier.period}</span>
+          </div>
+          <p class:list={['mt-1 text-xs', tier.featured ? 'text-brand-200' : 'text-slate-400']}>{tier.setup}</p>
+          <p class:list={['text-xs', tier.featured ? 'text-brand-300' : 'text-slate-400']}>{tier.term}</p>
+
+          <ul class="mt-6 flex-1 space-y-3">
+            {tier.features.map((f) => (
+              <li class="flex items-start gap-2.5 text-sm">
+                <Icon
+                  name="lucide:check"
+                  class:list={['mt-0.5 h-4 w-4 shrink-0', tier.featured ? 'text-accent-300' : 'text-accent-600']}
+                />
+                <span class={tier.featured ? 'text-brand-50' : 'text-slate-600'}>{f}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="/contact/"
+            class:list={[
+              'mt-8 inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-semibold transition-colors',
+              tier.featured
+                ? 'bg-accent-400 text-brand-950 hover:bg-accent-300'
+                : 'bg-brand-600 text-white hover:bg-brand-700',
+            ]}
+          >
+            Get My Free Audit
+          </a>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="mt-8 text-center text-xs text-slate-400">
+    All prices exclude GST. Offers are intended for businesses (B2B) engaging Kwantum's services.
+  </p>
+</section>
