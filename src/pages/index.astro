@@ -3,8 +3,7 @@ import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
-import ProcessSteps from '../components/ProcessSteps.astro';
-import Testimonials from '../components/Testimonials.astro';
+import VisibilityChannels from '../components/VisibilityChannels.astro';
 import PricingTable from '../components/PricingTable.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { SITE } from '../lib/site';
@@ -94,8 +93,10 @@ const painPoints = [
       </div>
 
       <p class="mt-10 text-slate-600">
-        That's exactly why Kwantum exists: we build a site that gets found, and we stay around
-        after launch to keep it that way.
+        That's exactly why Kwantum exists: to put your business in the spotlight — found on
+        Google, AI and by customers already looking for you. A website is one way we help you get
+        there, but not the whole point. We work hand in hand with you the entire way, not just to
+        launch day.
       </p>
       <a
         href="/contact/"
@@ -108,9 +109,9 @@ const painPoints = [
 
   <ServicesGrid />
 
-  <CtaSection />
+  <VisibilityChannels />
 
-  <ProcessSteps />
+  <CtaSection />
 
   <!-- About teaser -->
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
@@ -135,8 +136,6 @@ const painPoints = [
       </div>
     </div>
   </section>
-
-  <Testimonials />
 
   <PricingTable />
 

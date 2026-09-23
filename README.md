@@ -38,11 +38,17 @@ See [Kwantum Brand Guidelines.md](Kwantum%20Brand%20Guidelines.md) for the brand
 
 ## Adding a New City
 
-1. Copy `src/content/areas/example-area.md`, rename it to the new city's slug, and replace every
-   bracketed placeholder with genuine, specific local knowledge.
-2. Copy the three `example-area-*.md` files in `src/content/location-services/`, renamed to
-   `{new-city}-{service}.md`, again replacing every placeholder with real local detail.
-3. Set `isPlaceholder: false` on the new area entry.
+Currently only Melbourne is live. To add another city:
+
+1. Copy `src/content/areas/melbourne.md`, rename it to the new city's slug, and rewrite every
+   field with genuine, specific local knowledge for that city (suburbs, local narrative, proof
+   stat, FAQs) — don't just swap the city name into Melbourne's copy, or the page will read as
+   duplicate content.
+2. Copy the three `melbourne-*.md` files in `src/content/location-services/`, renamed to
+   `{new-city}-{service}.md`, again rewriting the local angle and FAQs for that city specifically.
+3. If the new city isn't Kwantum's registered business address, omit the `addressLocality` /
+   `addressRegion` / `postalCode` / `latitude` / `longitude` fields (these are what mark an area as
+   the real home base for `LocalBusiness` schema and the Google Maps embed).
 4. Optionally generate a hero image for the new city by adding an entry to
    `scripts/generate-images.mjs` and running it with `--only=your-new-slug`.
 

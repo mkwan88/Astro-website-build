@@ -19,10 +19,6 @@ Reference doc for the site's SEO architecture, schema, and a pre-launch checklis
 /areas/melbourne/local-seo/              Location-service page
 /areas/melbourne/website-design/         Location-service page
 /areas/melbourne/ai-search-visibility/   Location-service page
-/areas/example-area/                     TEMPLATE area hub
-/areas/example-area/local-seo/           TEMPLATE location-service page
-/areas/example-area/website-design/      TEMPLATE location-service page
-/areas/example-area/ai-search-visibility/ TEMPLATE location-service page
 /case-studies/                           Index
 /case-studies/[slug]/                    2 placeholder case studies
 /blog/                                   Index (+ /rss.xml)
@@ -64,9 +60,9 @@ Builders live in [src/lib/schema.ts](src/lib/schema.ts). Applied per page type:
   (placeholder — see checklist) and `areaServed: Australia`.
 - **Core service pages:** `serviceSchema()` — `Service`, national `areaServed`.
 - **Area hubs & location-service pages:** `localBusinessSchema()` — `ProfessionalService` with
-  `areaServed` set to that area's suburb list. Only the home-base area (Melbourne) includes a full
-  postal address + geo coordinates; the placeholder template area intentionally omits them, since
-  it has no real physical presence.
+  `areaServed` set to that area's suburb list. Only an area with real `addressLocality` etc. in its
+  frontmatter (currently just Melbourne, the home base) gets a full postal address + geo
+  coordinates — a future city added without a physical presence there should omit those fields.
 - **Every page:** `breadcrumbSchema()` — `BreadcrumbList` matching the visible breadcrumb trail.
 - **Anywhere an FAQ accordion renders:** `faqSchema()` — `FAQPage`.
 - **Blog posts:** `articleSchema()` — `Article`.
@@ -128,7 +124,9 @@ goes live:
 - [ ] **Legal entity name:** confirm `SITE.legalName` in `src/lib/site.ts`.
 - [ ] **Address:** replace the placeholder street address / postcode in `src/lib/site.ts` and
       `src/content/areas/melbourne.md` with Kwantum's real registered address.
-- [ ] **Phone & email:** replace placeholders in `src/lib/site.ts`.
+- [x] **Phone & email:** set to `mark@kwantum.net` / `0423 952 441` in `src/lib/site.ts`. Note:
+      the email domain (`kwantum.net`) doesn't match the site's configured domain
+      (`kwantum.com.au`) — confirm which is the real one and align them.
 - [ ] **Social links:** replace placeholder LinkedIn/Instagram URLs in `src/lib/site.ts`, or remove
       if not applicable.
 - [ ] **Contact form backend:** the form on `/contact/` is static HTML with no submission handler
@@ -140,9 +138,10 @@ goes live:
 - [ ] **Testimonials, case studies, pricing:** all currently placeholder/illustrative (flagged in
       UI with visible badges). Replace with real client content as it becomes available, and only
       add `Review`/`AggregateRating` schema once testimonials are genuine and attributable.
-- [ ] **New area pages:** duplicate `src/content/areas/example-area.md` and its three
-      `location-services` entries per new city, replacing every bracketed placeholder with real,
-      specific local knowledge (see the template file's own instructions).
+- [ ] **New area pages:** currently only Melbourne is live. To add another city, duplicate
+      `src/content/areas/melbourne.md` and its three `location-services` entries, rewriting every
+      field with genuine, city-specific knowledge rather than swapping the city name — see the
+      README's "Adding a New City" section.
 - [ ] **Google Business Profile / Maps embed:** the Melbourne area page embeds a basic Maps iframe
       keyed to the city name; once a real GBP listing exists, consider swapping to a
       place-ID‑based embed for precision.

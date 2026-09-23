@@ -8,9 +8,9 @@ export const SITE = {
   tagline: 'Local SEO and websites that get your business found',
   description:
     'Kwantum builds fast, modern websites and drives local SEO and AI-search visibility for businesses across Australia — based in Melbourne, working nationally.',
-  email: 'hello@kwantum.com.au', // PLACEHOLDER
-  phone: '+61 3 0000 0000', // PLACEHOLDER
-  phoneDisplay: '(03) 0000 0000', // PLACEHOLDER
+  email: 'mark@kwantum.net',
+  phone: '+61 423 952 441',
+  phoneDisplay: '0423 952 441',
   address: {
     streetAddress: 'Level 2, 123 Example Street', // PLACEHOLDER
     addressLocality: 'Melbourne',

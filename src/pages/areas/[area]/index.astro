@@ -5,7 +5,6 @@ import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
 import ServicesGrid from '../../../components/ServicesGrid.astro';
-import Testimonials from '../../../components/Testimonials.astro';
 import Faq from '../../../components/Faq.astro';
 import CtaSection from '../../../components/CtaSection.astro';
 import { SITE } from '../../../lib/site';
@@ -137,8 +136,6 @@ const pageUrl = `${SITE.url}/areas/${entry.id}/`;
       </section>
     )
   }
-
-  <Testimonials areaFilter={entry.id} />
 
   <Faq items={entry.data.faq} title={`${entry.data.cityName} FAQs`} />
 

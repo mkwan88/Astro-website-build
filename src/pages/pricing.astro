@@ -77,8 +77,8 @@ const faq = [
     answer: 'Get in touch and ask about bundling — there’s a discount for taking a website project and an SEO plan together.',
   },
   {
-    question: 'Are these prices final?',
-    answer: 'These are illustrative figures while Kwantum finalises its published pricing. Get in touch for a firm, current quote for your project.',
+    question: 'How much is the one-off setup fee?',
+    answer: 'It depends on your current website and search presence, so we scope it during your free audit rather than quoting a blanket figure — you’ll know the exact number before you commit to anything.',
   },
 ];
 
@@ -87,7 +87,7 @@ const crumbs = [{ name: 'Pricing', href: '/pricing/' }];
 
 <BaseLayout
   title="Pricing | Kwantum"
-  description="Kwantum's pricing: monthly SEO plans with no lock-in, and website design priced separately as a one-off project. Illustrative pricing, confirmed on enquiry."
+  description="Kwantum's pricing: monthly SEO plans with no lock-in, and website design priced separately as a one-off project."
   schema={[
     breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` }))),
     faqSchema(faq),
