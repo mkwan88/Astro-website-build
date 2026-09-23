@@ -79,7 +79,7 @@ Example (Service schema, simplified):
   "@type": "Service",
   "serviceType": "Local SEO & Google Business Profile",
   "name": "Local SEO & Google Business Profile",
-  "provider": { "@id": "https://www.kwantum.com.au/#organization" },
+  "provider": { "@id": "https://kwantum.net/#organization" },
   "areaServed": { "@type": "Country", "name": "Australia" }
 }
 ```
@@ -119,14 +119,15 @@ describe the image *and* reinforce page intent — not keyword-stuffed.
 Everything below is a placeholder that must be replaced with real information before this site
 goes live:
 
-- [ ] **Domain:** confirm/register `kwantum.com.au` (or chosen domain) and update `site` in
-      [astro.config.mjs](astro.config.mjs) and `SITE.url` in [src/lib/site.ts](src/lib/site.ts).
+- [x] **Domain:** live at `kwantum.net` (apex is the primary domain; `www.kwantum.net` 301s to
+      it), deployed via Netlify with a Let's Encrypt certificate. `site` in
+      [astro.config.mjs](astro.config.mjs) and `SITE.url` in [src/lib/site.ts](src/lib/site.ts)
+      both updated to match.
 - [ ] **Legal entity name:** confirm `SITE.legalName` in `src/lib/site.ts`.
 - [ ] **Address:** replace the placeholder street address / postcode in `src/lib/site.ts` and
       `src/content/areas/melbourne.md` with Kwantum's real registered address.
-- [x] **Phone & email:** set to `mark@kwantum.net` / `0423 952 441` in `src/lib/site.ts`. Note:
-      the email domain (`kwantum.net`) doesn't match the site's configured domain
-      (`kwantum.com.au`) — confirm which is the real one and align them.
+- [x] **Phone & email:** set to `mark@kwantum.net` / `0423 952 441` in `src/lib/site.ts` —
+      matches the live domain.
 - [ ] **Social links:** replace placeholder LinkedIn/Instagram URLs in `src/lib/site.ts`, or remove
       if not applicable.
 - [ ] **Contact form backend:** the form on `/contact/` is static HTML with no submission handler

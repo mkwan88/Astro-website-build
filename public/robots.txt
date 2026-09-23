@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.kwantum.com.au/sitemap-index.xml
+Sitemap: https://kwantum.net/sitemap-index.xml

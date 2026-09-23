@@ -4,7 +4,7 @@
 export const SITE = {
   name: 'Kwantum',
   legalName: 'Kwantum Digital Pty Ltd', // PLACEHOLDER — confirm registered entity name
-  url: 'https://www.kwantum.com.au', // PLACEHOLDER domain — confirm/register before launch
+  url: 'https://kwantum.net',
   tagline: 'Local SEO and websites that get your business found',
   description:
     'Kwantum builds fast, modern websites and drives local SEO and AI-search visibility for businesses across Australia — based in Melbourne, working nationally.',
