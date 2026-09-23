@@ -87,6 +87,13 @@ stay consistent as the site grows:
 - Always run new prompts through the shared `STYLE` constant in `generate-images.mjs` rather than
   writing one-off styling per image.
 
+**Exception — homepage hero:** the flat-vector illustration style tested poorly with the client
+("read as generic AI clip-art") and was replaced with a premium, photoreal 3D-render treatment — a
+single glowing indigo/teal glass beacon object, shot like a high-end product render (Apple/Stripe
+marketing style) rather than an icon-based illustration. This is a deliberate, isolated exception
+(`home-hero-beacon` in `generate-images.mjs`); don't extend the 3D-render style to other pages
+without the same client sign-off, and don't use it for anything implying a real photo of a person.
+
 ## Applying This System Elsewhere
 
 If Kwantum produces slide decks, social graphics, or printed materials later, reuse:

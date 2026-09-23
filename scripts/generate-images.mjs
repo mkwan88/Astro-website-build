@@ -30,13 +30,21 @@ stylised only.`;
 /** @type {{ slug: string, model: 'gemini-2.5-flash-image' | 'gemini-3-pro-image-preview', prompt: string }[]} */
 const IMAGES = [
   {
-    slug: 'home-hero-visibility',
+    // Deliberate exception to the shared flat-vector STYLE below: the homepage hero uses a
+    // premium photoreal 3D-render style instead (client feedback: flat icon illustration read
+    // as generic/cheap "AI clip-art"). See "Kwantum Brand Guidelines.md" > Imagery Style.
+    slug: 'home-hero-beacon',
     model: 'gemini-3-pro-image-preview',
-    prompt: `${STYLE}\nA hero illustration for a local-SEO and website agency's homepage: an abstract
-composition showing a stylised map pin rising above a skyline of simple geometric buildings, with
-a subtle upward-trending line graph and small search/ranking icons (magnifying glass, chat bubble,
-star) orbiting it, suggesting visibility, growth, and being found online. Wide 16:9 composition
-with generous negative space on the left third for text overlay.`,
+    prompt: `A premium, minimalist 3D render in the style of a high-end Apple or Stripe marketing
+visual: a single glowing glass-and-metal location-pin / beacon object floating above a dark,
+softly reflective surface, composed in a wide 4:3 landscape frame with the object slightly
+left-of-centre and clean empty space to the right. The object's inner glass core glows primarily
+deep indigo (#4F46E5) with a secondary teal (#14B8A6) rim-light accent along one edge, so the
+brand's primary colour reads first and teal is a supporting highlight, not the dominant hue.
+Background is a rich, soft dark navy (not pure black), subtle ambient light from the upper right.
+Sharp focus on the object, soft shallow depth of field falloff into the background. No icons, no
+text, no charts, no clutter. Photorealistic 3D render quality, elegant and precise, conveying
+trust and technical credibility.`,
   },
   {
     slug: 'service-local-seo-hero',
@@ -71,14 +79,6 @@ with negative space on the right third.`,
 (recognisable silhouettes reminiscent of Eureka Tower and the general CBD skyline shape, rendered
 abstractly, not photorealistic) at dusk, with a soft gradient sky, and a subtle glowing map pin
 in front of the skyline. Wide 16:9 composition with negative space at the top for text overlay.`,
-  },
-  {
-    slug: 'area-example-template-hero',
-    model: 'gemini-2.5-flash-image',
-    prompt: `${STYLE}\nA deliberately generic, simplified illustration of a small city skyline made
-of plain geometric building shapes (no recognisable real landmarks), with a soft gradient sky and
-a glowing map pin in front, representing a placeholder/template city. Wide 16:9 composition with
-negative space at the top for text overlay.`,
   },
   {
     slug: 'case-study-growth-chart',
