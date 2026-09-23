@@ -81,20 +81,6 @@ abstractly, not photorealistic) at dusk, with a soft gradient sky, and a subtle 
 in front of the skyline. Wide 16:9 composition with negative space at the top for text overlay.`,
   },
   {
-    slug: 'case-study-growth-chart',
-    model: 'gemini-2.5-flash-image',
-    prompt: `${STYLE}\nAn abstract data-visualisation illustration: a clean upward bar chart or line
-graph combined with a small map-pin icon and a star icon, conveying measurable business growth
-from local search. Square 1:1 composition.`,
-  },
-  {
-    slug: 'case-study-local-rankings',
-    model: 'gemini-2.5-flash-image',
-    prompt: `${STYLE}\nAn abstract illustration of a search results list represented as simple
-stacked rounded rectangle bars, with the top bar highlighted in teal and a small trophy or number-1
-badge icon beside it, conveying reaching the top of local search rankings. Square 1:1 composition.`,
-  },
-  {
     slug: 'blog-local-seo-guide-hero',
     model: 'gemini-2.5-flash-image',
     prompt: `${STYLE}\nAn illustration for an educational article about local SEO: a stylised

@@ -32,7 +32,6 @@ export const SITE = {
 export const NAV_LINKS = [
   { label: 'Services', href: '/services/' },
   { label: 'Areas We Serve', href: '/areas/' },
-  { label: 'Case Studies', href: '/case-studies/' },
   { label: 'Pricing', href: '/pricing/' },
   { label: 'Blog', href: '/blog/' },
   { label: 'About', href: '/about/' },

@@ -19,8 +19,6 @@ Reference doc for the site's SEO architecture, schema, and a pre-launch checklis
 /areas/melbourne/local-seo/              Location-service page
 /areas/melbourne/website-design/         Location-service page
 /areas/melbourne/ai-search-visibility/   Location-service page
-/case-studies/                           Index
-/case-studies/[slug]/                    2 placeholder case studies
 /blog/                                   Index (+ /rss.xml)
 /blog/[slug]/                            2 sample posts
 /privacy-policy/  /terms/                Boilerplate (noindex until reviewed)
@@ -41,8 +39,8 @@ template/page code changes needed — `getStaticPaths` cross-joins automatically
 | Core service | `{Service} \| Kwantum` | From `metaTitle` field |
 | Area hub | `{Service Category} in {City} \| Kwantum` | From `metaTitle` field |
 | Location-service | `{Service} in {City} \| Kwantum` | From `metaTitle` field |
-| Case study | `Case Study: {Angle} \| Kwantum` | From `metaTitle` field |
 | Blog post | `{Title} \| Kwantum Blog` | From `metaTitle` field |
+| Case study *(not currently live)* | `Case Study: {Angle} \| Kwantum` | From `metaTitle` field — pages removed until real case studies exist, see below |
 
 All meta descriptions are authored per-entry in frontmatter (`metaDescription`) — never
 auto-truncated from body copy, so every one is deliberately written for CTR.
@@ -93,7 +91,7 @@ Example (Service schema, simplified):
 - **Footer** carries a full site map: all services, all areas, company pages, legal.
 - **Blog posts** cross-link to the one most relevant service and/or area page via `relatedService`
   / `relatedArea` frontmatter — anchor text is specific ("Explore Local SEO"), never "click here."
-- **Case studies** link to the service and area involved in that engagement.
+- **Case studies** (when reinstated) link to the service and area involved in that engagement.
 
 ## 5. Image Naming & Generation
 
@@ -136,9 +134,15 @@ goes live:
 - [ ] **Legal pages:** `/privacy-policy/` and `/terms/` are boilerplate structure only (currently
       `noindex`) — have them reviewed/drafted properly for the Privacy Act 1988 (APPs) and
       Australian Consumer Law, then remove the `noindex` flag.
-- [ ] **Testimonials, case studies, pricing:** all currently placeholder/illustrative (flagged in
-      UI with visible badges). Replace with real client content as it becomes available, and only
-      add `Review`/`AggregateRating` schema once testimonials are genuine and attributable.
+- [ ] **Testimonials & case studies:** both removed from the live site (fabricated placeholder
+      content) until real client results/quotes exist. The `testimonials` and `caseStudies`
+      collection schemas (in `src/content.config.ts`) and the `Testimonials.astro` component are
+      kept intact and unused — to reinstate: add real entries to `src/content/testimonials/` and
+      `src/content/case-studies/`, drop `<Testimonials />` back into the pages that want it, and
+      recreate `src/pages/case-studies/index.astro` + `[slug].astro` (see git history for the
+      previous versions) plus the nav/footer links removed alongside them. Only add
+      `Review`/`AggregateRating` schema once testimonials are genuine and attributable.
+- [ ] **Pricing:** figures are illustrative — confirm before relying on them commercially.
 - [ ] **New area pages:** currently only Melbourne is live. To add another city, duplicate
       `src/content/areas/melbourne.md` and its three `location-services` entries, rewriting every
       field with genuine, city-specific knowledge rather than swapping the city name — see the
