@@ -1,0 +1,29 @@
+---
+import { Icon } from 'astro-icon/components';
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thanks — We've Got Your Message | Kwantum"
+  description="Thanks for reaching out to Kwantum. We'll be in touch shortly."
+  noindex={true}
+>
+  <section class="mx-auto flex max-w-2xl flex-col items-center px-4 py-32 text-center sm:px-6 lg:px-8">
+    <span class="flex h-16 w-16 items-center justify-center rounded-full bg-accent-50 text-accent-600">
+      <Icon name="lucide:check" class="h-8 w-8" />
+    </span>
+    <h1 class="mt-6 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+      Thanks — we've got your message
+    </h1>
+    <p class="mt-4 text-slate-500">
+      We'll take a look and get back to you shortly with your free visibility audit. No obligation,
+      no jargon.
+    </p>
+    <a
+      href="/"
+      class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+    >
+      Back to homepage
+    </a>
+  </section>
+</BaseLayout>

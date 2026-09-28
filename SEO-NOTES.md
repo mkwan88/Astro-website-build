@@ -128,9 +128,11 @@ goes live:
       matches the live domain.
 - [ ] **Social links:** replace placeholder LinkedIn/Instagram URLs in `src/lib/site.ts`, or remove
       if not applicable.
-- [ ] **Contact form backend:** the form on `/contact/` is static HTML with no submission handler
-      wired up. Connect it to Netlify Forms (if hosting on Netlify), Formspree, or a serverless
-      function before launch — see the comment in `src/pages/contact.astro`.
+- [x] **Contact form backend:** wired to Netlify Forms (`data-netlify="true"` + honeypot on the
+      form in `src/pages/contact.astro`, redirects to `/thank-you/` on success). One manual step
+      remains: in the Netlify dashboard for this site, go to **Forms → Form notifications → Add
+      notification → Email notification** and set it to `mark@kwantum.net` — Netlify only stores
+      submissions in its own dashboard until an email notification is configured.
 - [ ] **Legal pages:** `/privacy-policy/` and `/terms/` are boilerplate structure only (currently
       `noindex`) — have them reviewed/drafted properly for the Privacy Act 1988 (APPs) and
       Australian Consumer Law, then remove the `noindex` flag.
