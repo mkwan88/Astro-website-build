@@ -23,6 +23,17 @@ const { title, description, image, noindex, schema = [] } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-G4NQ6873VK"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-G4NQ6873VK');
+    </script>
+
     <SeoHead title={title} description={description} image={image} noindex={noindex} />
     <Schema items={schema} />
   </head>
