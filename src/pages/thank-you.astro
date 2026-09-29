@@ -26,4 +26,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       Back to homepage
     </a>
   </section>
+
+  <!--
+    Fires once, only on a genuine successful contact-form submission (this page is only
+    reachable via the form's Netlify Forms redirect). Uses GA4's recommended "generate_lead"
+    event name. The base gtag() function is defined synchronously in BaseLayout.astro, so it's
+    safe to call here even before the external gtag.js script has finished loading.
+  -->
+  <script is:inline>
+    if (typeof gtag === 'function') {
+      gtag('event', 'generate_lead', {
+        event_category: 'contact_form',
+        event_label: 'free_audit_request',
+      });
+    }
+  </script>
 </BaseLayout>
