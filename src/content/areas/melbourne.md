@@ -35,12 +35,10 @@ faq:
     answer: "Melbourne is competitive, which is exactly why the fundamentals matter more here, not less. Most clients see Maps ranking movement within 6–8 weeks, building from there."
 metaTitle: "Local SEO & Website Design in Melbourne | Kwantum"
 metaDescription: "Kwantum builds websites and drives local SEO for businesses across Melbourne — from the CBD to Richmond, South Yarra and beyond. Based in Melbourne, working nationally."
-addressLocality: "Melbourne"
+addressLocality: "Ascot Vale"
 addressRegion: "VIC"
-postalCode: "3000"
+postalCode: "3032"
 addressCountry: "AU"
-latitude: -37.8136
-longitude: 144.9631
 ---
 
 Melbourne is a big, competitive market for local search — which means a half-finished website

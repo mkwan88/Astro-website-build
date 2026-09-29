@@ -19,28 +19,22 @@ export function organizationSchema() {
     priceRange: '$$',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: SITE.address.streetAddress,
       addressLocality: SITE.address.addressLocality,
       addressRegion: SITE.address.addressRegion,
       postalCode: SITE.address.postalCode,
       addressCountry: SITE.address.addressCountry,
     },
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: SITE.geo.latitude,
-      longitude: SITE.geo.longitude,
-    },
     areaServed: {
       '@type': 'Country',
       name: 'Australia',
     },
-    sameAs: [SITE.social.linkedin, SITE.social.instagram],
+    ...(SITE.sameAs.length ? { sameAs: SITE.sameAs } : {}),
   };
 }
 
 /**
  * LocalBusiness + Service schema for an area hub or location-service page.
- * `isHomeBase` includes the full address/geo; other (placeholder/template) areas
+ * `isHomeBase` includes the (street-less, service-area) postal address; other (placeholder/template) areas
  * only get areaServed, since they don't represent a real physical presence.
  */
 export function localBusinessSchema({
@@ -66,16 +60,10 @@ export function localBusinessSchema({
   if (isHomeBase) {
     base.address = {
       '@type': 'PostalAddress',
-      streetAddress: SITE.address.streetAddress,
       addressLocality: SITE.address.addressLocality,
       addressRegion: SITE.address.addressRegion,
       postalCode: SITE.address.postalCode,
       addressCountry: SITE.address.addressCountry,
-    };
-    base.geo = {
-      '@type': 'GeoCoordinates',
-      latitude: SITE.geo.latitude,
-      longitude: SITE.geo.longitude,
     };
   }
 

@@ -1,9 +1,8 @@
 // Central place for site-wide constants used across SEO, schema, and layout.
-// PLACEHOLDER VALUES are marked below — replace before launch. See SEO-NOTES.md.
 
 export const SITE = {
   name: 'Kwantum',
-  legalName: 'Kwantum Digital Pty Ltd', // PLACEHOLDER — confirm registered entity name
+  legalName: 'Kwantum Digital Pty Ltd',
   url: 'https://kwantum.net',
   tagline: 'Local SEO and websites that get your business found',
   description:
@@ -11,21 +10,16 @@ export const SITE = {
   email: 'mark@kwantum.net',
   phone: '+61 423 952 441',
   phoneDisplay: '0423 952 441',
+  // Service-area business: the street address is deliberately not published (matches the
+  // Google Business Profile, which hides it). Keep these fields identical to the GBP.
   address: {
-    streetAddress: 'Level 2, 123 Example Street', // PLACEHOLDER
-    addressLocality: 'Melbourne',
+    addressLocality: 'Ascot Vale',
     addressRegion: 'VIC',
-    postalCode: '3000', // PLACEHOLDER
+    postalCode: '3032',
     addressCountry: 'AU',
   },
-  geo: {
-    latitude: -37.8136,
-    longitude: 144.9631,
-  },
-  social: {
-    linkedin: 'https://www.linkedin.com/company/kwantum', // PLACEHOLDER
-    instagram: 'https://www.instagram.com/kwantum.digital', // PLACEHOLDER
-  },
+  // Real, live profile URLs only (LinkedIn, Instagram, GBP share link…). Used for schema `sameAs`.
+  sameAs: [] as string[],
   ogImage: '/og-default.png',
 } as const;
 

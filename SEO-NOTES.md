@@ -54,8 +54,8 @@ auto-truncated from body copy, so every one is deliberately written for CTR.
 
 Builders live in [src/lib/schema.ts](src/lib/schema.ts). Applied per page type:
 
-- **Home / About:** `organizationSchema()` — `ProfessionalService`, includes Melbourne address
-  (placeholder — see checklist) and `areaServed: Australia`.
+- **Home / About:** `organizationSchema()` — `ProfessionalService`, includes the Ascot Vale service-area
+  address (no street) and `areaServed: Australia`.
 - **Core service pages:** `serviceSchema()` — `Service`, national `areaServed`.
 - **Area hubs & location-service pages:** `localBusinessSchema()` — `ProfessionalService` with
   `areaServed` set to that area's suburb list. Only an area with real `addressLocality` etc. in its
@@ -121,13 +121,14 @@ goes live:
       it), deployed via Netlify with a Let's Encrypt certificate. `site` in
       [astro.config.mjs](astro.config.mjs) and `SITE.url` in [src/lib/site.ts](src/lib/site.ts)
       both updated to match.
-- [ ] **Legal entity name:** confirm `SITE.legalName` in `src/lib/site.ts`.
-- [ ] **Address:** replace the placeholder street address / postcode in `src/lib/site.ts` and
-      `src/content/areas/melbourne.md` with Kwantum's real registered address.
+- [x] **Legal entity name:** confirmed as Kwantum Digital Pty Ltd (`SITE.legalName`).
+- [x] **Address:** service-area business — street hidden, published as Ascot Vale VIC 3032 in
+      `src/lib/site.ts` and `src/content/areas/melbourne.md`. No geo coordinates. Keep identical to
+      the Google Business Profile.
 - [x] **Phone & email:** set to `mark@kwantum.net` / `0423 952 441` in `src/lib/site.ts` —
       matches the live domain.
-- [ ] **Social links:** replace placeholder LinkedIn/Instagram URLs in `src/lib/site.ts`, or remove
-      if not applicable.
+- [x] **Social links:** placeholders removed. Add real profile URLs to `SITE.sameAs` in
+      `src/lib/site.ts` once they exist (schema `sameAs` is omitted while the list is empty).
 - [x] **Contact form backend:** wired to Netlify Forms (`data-netlify="true"` + honeypot on the
       form in `src/pages/contact.astro`, redirects to `/thank-you/` on success). One manual step
       remains: in the Netlify dashboard for this site, go to **Forms → Form notifications → Add
