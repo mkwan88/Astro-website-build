@@ -94,6 +94,14 @@ marketing style) rather than an icon-based illustration. This is a deliberate, i
 (`home-hero-beacon` in `generate-images.mjs`); don't extend the 3D-render style to other pages
 without the same client sign-off, and don't use it for anything implying a real photo of a person.
 
+The live homepage hero has since evolved that beacon into motion: a dark indigo hero band with a
+real-time WebGL glass orb (indigo core, teal/violet iridescent rim, pulse rings) rising from the
+bottom, plus floating glass UI cards ([HeroSignal.astro](src/components/HeroSignal.astro)). The
+cards are illustrative "Your Business" mockups only — never Kwantum performance claims. The static
+beacon render remains the default social-share (OG) image. Motion rules: the headline must never
+wait on the animation, it pauses off-screen, and visitors with reduced-motion settings get a static
+version.
+
 ## Applying This System Elsewhere
 
 If Kwantum produces slide decks, social graphics, or printed materials later, reuse:

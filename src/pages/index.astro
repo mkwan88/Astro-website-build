@@ -2,13 +2,15 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSignal from '../components/HeroSignal.astro';
 import ServicesGrid from '../components/ServicesGrid.astro';
 import VisibilityChannels from '../components/VisibilityChannels.astro';
 import PricingTable from '../components/PricingTable.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { SITE } from '../lib/site';
 import { organizationSchema } from '../lib/schema';
-import heroImage from '../assets/generated/home-hero-beacon.png';
+import collaborationImage from '../assets/generated/about-collaboration-hands.png';
+import markPortrait from '../assets/team/mark-kwan-portrait.jpg';
 
 const painPoints = [
   "My website is fine, but it isn't bringing in any new customers.",
@@ -22,55 +24,9 @@ const painPoints = [
   title="Kwantum — Local SEO & Websites That Get You Found"
   description={SITE.description}
   schema={[organizationSchema()]}
+  transparentHeader
 >
-  <!-- Hero -->
-  <section class="overflow-hidden bg-gradient-to-b from-brand-50/60 to-white">
-    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8 lg:py-24">
-      <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">
-          Website Design &middot; Local SEO &middot; AI Search Visibility
-        </p>
-        <h1 class="mt-3 font-display text-4xl font-extrabold leading-tight text-slate-900 sm:text-5xl">
-          Get found <span class="text-brand-600">on Google</span>, and recommended{' '}
-          <span class="text-brand-600">by AI</span>
-        </h1>
-        <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
-          We build fast, modern websites and make sure your customers actually find you — in
-          local search, Google Maps, and increasingly, in AI-generated answers. Based in Melbourne,
-          working with businesses across Australia.
-        </p>
-        <div class="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href="/contact/"
-            class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition-transform hover:scale-[1.02] hover:bg-brand-700"
-          >
-            Get My Free Audit
-            <Icon name="lucide:arrow-right" class="h-4 w-4" />
-          </a>
-        </div>
-        <p class="mt-4 text-xs text-slate-400">Free & no-obligation — a straight, honest read on what's working and what isn't.</p>
-
-        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-slate-100 pt-8">
-          <div>
-            <dt class="text-xs font-medium uppercase tracking-wide text-slate-400">Based in</dt>
-            <dd class="mt-1 font-display font-bold text-slate-900">Melbourne</dd>
-          </div>
-          <div>
-            <dt class="text-xs font-medium uppercase tracking-wide text-slate-400">Serving</dt>
-            <dd class="mt-1 font-display font-bold text-slate-900">All of Australia</dd>
-          </div>
-          <div>
-            <dt class="text-xs font-medium uppercase tracking-wide text-slate-400">Audit</dt>
-            <dd class="mt-1 font-display font-bold text-slate-900">Free, no strings</dd>
-          </div>
-        </dl>
-      </div>
-
-      <div class="rounded-3xl border border-slate-100 bg-white p-4 shadow-xl">
-        <Image src={heroImage} alt="A glowing indigo and teal location beacon, representing precise local visibility" width={900} height={675} class="w-full rounded-2xl" />
-      </div>
-    </div>
-  </section>
+  <HeroSignal />
 
   <!-- Pain points -->
   <section class="bg-white py-20">
@@ -81,9 +37,19 @@ const painPoints = [
       <div class="mt-10 grid gap-5 sm:grid-cols-2">
         {
           painPoints.map((point) => (
-            <blockquote class="rounded-2xl border border-slate-100 bg-slate-50 p-6 text-left text-sm leading-relaxed text-slate-600">
-              <Icon name="lucide:quote" class="mb-2 h-5 w-5 text-brand-300" />
-              {point}
+            <blockquote
+              data-spotlight
+              class="group relative overflow-hidden rounded-2xl border border-slate-100 bg-slate-50 p-6 text-left text-sm leading-relaxed text-slate-600 transition duration-300 ease-out hover:border-brand-200 hover:bg-white hover:shadow-xl hover:shadow-brand-600/10 hover:ring-1 hover:ring-brand-300/50 motion-safe:hover:-translate-y-1 motion-safe:hover:scale-[1.03] motion-safe:active:scale-[0.98]"
+            >
+              <span
+                aria-hidden="true"
+                class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style="background: radial-gradient(260px circle at var(--mx, 50%) var(--my, 50%), rgb(79 70 229 / 0.1), transparent 70%);"
+              ></span>
+              <span class="relative block">
+                <Icon name="lucide:quote" class="mb-2 h-5 w-5 text-brand-300 transition-colors duration-300 group-hover:text-accent-500" />
+                <span class="transition-colors duration-300 group-hover:text-slate-800">{point}</span>
+              </span>
             </blockquote>
           ))
         }
@@ -123,13 +89,32 @@ const painPoints = [
           dread: no ticket queues, no account manager who's never heard of you. You get a website
           and search strategy built properly, and a team that's still there after launch.
         </p>
+        <div class="mt-6 flex items-center gap-3">
+          <Image
+            src={markPortrait}
+            alt="Mark Kwan, founder of Kwantum"
+            width={144}
+            height={144}
+            class="h-[70px] w-[70px] rounded-full object-cover ring-2 ring-white shadow-md"
+          />
+          <div>
+            <p class="font-display text-sm font-semibold text-slate-900">Mark Kwan</p>
+            <p class="text-xs text-slate-500">Founder, Kwantum</p>
+          </div>
+        </div>
         <a href="/about/" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:gap-2 transition-all">
           More about Kwantum
           <Icon name="lucide:arrow-right" class="h-4 w-4" />
         </a>
       </div>
-      <div class="flex items-center justify-center">
-        <Icon name="lucide:users" class="h-32 w-32 text-brand-200" />
+      <div class="overflow-hidden rounded-2xl shadow-xl shadow-brand-900/10">
+        <Image
+          src={collaborationImage}
+          alt="Two people working together at a laptop, one pointing at an analytics dashboard while the other sketches a website plan"
+          width={900}
+          height={675}
+          class="h-full w-full object-cover"
+        />
       </div>
     </div>
   </section>
@@ -162,3 +147,13 @@ const painPoints = [
     body="You'll get an honest, no-obligation read on what's working, what's costing you enquiries, and exactly what to do next."
   />
 </BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-spotlight]').forEach((tile) => {
+    tile.addEventListener('pointermove', (event) => {
+      const rect = tile.getBoundingClientRect();
+      tile.style.setProperty('--mx', `${event.clientX - rect.left}px`);
+      tile.style.setProperty('--my', `${event.clientY - rect.top}px`);
+    });
+  });
+</script>

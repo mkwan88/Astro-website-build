@@ -11,9 +11,10 @@ interface Props {
   image?: string;
   noindex?: boolean;
   schema?: Array<Record<string, unknown> | null | undefined>;
+  transparentHeader?: boolean;
 }
 
-const { title, description, image, noindex, schema = [] } = Astro.props;
+const { title, description, image, noindex, schema = [], transparentHeader = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -38,7 +39,7 @@ const { title, description, image, noindex, schema = [] } = Astro.props;
     <Schema items={schema} />
   </head>
   <body class="flex min-h-screen flex-col">
-    <Header />
+    <Header transparent={transparentHeader} />
     <main class="flex-1">
       <slot />
     </main>
