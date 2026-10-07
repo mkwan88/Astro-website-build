@@ -10,6 +10,6 @@ faq:
     answer: "Yes — site structure, page copy and internal linking are built around the suburb and service searches your Melbourne customers actually use, not generic city-wide phrasing."
   - question: "I already have a website but it's outdated — can you rebuild it?"
     answer: "Yes, this is one of the most common projects we take on. We migrate your existing content where it's worth keeping and rebuild the rest around a faster, better-structured foundation."
-metaTitle: "Website Design in Melbourne | Kwantum"
-metaDescription: "Kwantum designs and builds fast, modern websites for Melbourne businesses — mobile-first, SEO-ready, and priced without the capital-city agency premium."
+metaTitle: "Affordable Web Design Melbourne | Small Business Websites"
+metaDescription: "Affordable web design in Melbourne for small businesses and tradies. Fast, SEO-ready websites built in Ascot Vale, live in as little as 7 days."
 ---

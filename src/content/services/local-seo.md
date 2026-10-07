@@ -5,8 +5,8 @@ icon: "seo"
 heroImage: "../../assets/generated/service-local-seo-hero.png"
 heroImageAlt: "Abstract illustration of a glowing map pin at the centre of a local search radius, representing local SEO"
 order: 1
-metaTitle: "Local SEO & Google Business Profile Services | Kwantum"
-metaDescription: "Kwantum's local SEO service gets your business found in Google Maps, local search results, and AI answers. Google Business Profile setup, keyword research, and ongoing optimisation."
+metaTitle: "Local SEO Services & Google Business Profile Optimisation"
+metaDescription: "Local SEO services from an Australian local SEO agency: Google Business Profile optimisation, keyword research and ongoing work to rank you in Google Maps."
 benefits:
   - title: "Rank where it counts"
     description: "We target the map pack and local organic results — the spots your customers actually click, not vanity keywords no one searches."

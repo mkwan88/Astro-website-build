@@ -5,8 +5,8 @@ icon: "website"
 heroImage: "../../assets/generated/service-website-design-hero.png"
 heroImageAlt: "Abstract illustration of a browser window with layout blocks and design tool icons, representing website design and build"
 order: 2
-metaTitle: "Website Design & Build Services | Kwantum"
-metaDescription: "Kwantum designs and builds fast, modern, mobile-first websites for Australian businesses — SEO-ready from day one, with copywriting included."
+metaTitle: "Small Business Website Design & Build | Kwantum"
+metaDescription: "Websites for small businesses and tradies across Australia: fast, mobile-first and SEO-ready from day one, with copywriting included."
 benefits:
   - title: "Built for speed, not just looks"
     description: "Every site is built with performance and Core Web Vitals in mind — slow sites lose customers and rankings."

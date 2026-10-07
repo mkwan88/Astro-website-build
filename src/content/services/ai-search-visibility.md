@@ -5,8 +5,8 @@ icon: "ai-visibility"
 heroImage: "../../assets/generated/service-ai-visibility-hero.png"
 heroImageAlt: "Abstract illustration of a chat assistant bubble connected to a storefront icon, representing AI search visibility"
 order: 3
-metaTitle: "AI Search Visibility & GEO Services | Kwantum"
-metaDescription: "Kwantum optimises your business to be recommended by AI assistants like ChatGPT and Gemini, and to appear in Google's AI-generated answers — Generative Engine Optimisation (GEO)."
+metaTitle: "AI Search Optimisation & GEO Services | Kwantum"
+metaDescription: "AI search optimisation (GEO) that gets your business recommended by ChatGPT, Gemini and Google's AI answers, not just listed in search results."
 benefits:
   - title: "Get recommended, not just ranked"
     description: "When a customer asks an AI assistant for a recommendation, we work to make sure your business is the one it names."

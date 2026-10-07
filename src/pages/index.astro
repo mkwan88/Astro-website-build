@@ -7,7 +7,6 @@ import ServicesGrid from '../components/ServicesGrid.astro';
 import VisibilityChannels from '../components/VisibilityChannels.astro';
 import PricingTable from '../components/PricingTable.astro';
 import CtaSection from '../components/CtaSection.astro';
-import { SITE } from '../lib/site';
 import { organizationSchema } from '../lib/schema';
 import collaborationImage from '../assets/generated/about-collaboration-hands.png';
 import markPortrait from '../assets/team/mark-kwan-portrait.jpg';
@@ -21,8 +20,8 @@ const painPoints = [
 ---
 
 <BaseLayout
-  title="Kwantum — Local SEO & Websites That Get You Found"
-  description={SITE.description}
+  title="SEO Agency Melbourne | Local SEO & Web Design — Kwantum"
+  description="Melbourne SEO consultant in Ascot Vale. Local SEO, Google Business Profile and fast websites that get small businesses found on Google, Maps & AI. Free audit."
   schema={[organizationSchema()]}
   transparentHeader
 >
