@@ -4,8 +4,10 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import CtaSection from '../../components/CtaSection.astro';
+import Faq from '../../components/Faq.astro';
 import { SITE } from '../../lib/site';
-import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+import { articleSchema, breadcrumbSchema, faqSchema } from '../../lib/schema';
+import markPortrait from '../../assets/team/mark-kwan-portrait.jpg';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -39,9 +41,11 @@ const pageUrl = `${SITE.url}/blog/${entry.id}/`;
       url: pageUrl,
       image: new URL(entry.data.heroImage.src, SITE.url).toString(),
       publishDate: entry.data.publishDate,
+      updatedDate: entry.data.updatedDate,
       author: entry.data.author,
     }),
     breadcrumbSchema(crumbs.map((c) => ({ name: c.name, url: `${SITE.url}${c.href}` }))),
+    faqSchema(entry.data.faq),
   ]}
 >
   <Breadcrumbs items={crumbs} />
@@ -54,7 +58,8 @@ const pageUrl = `${SITE.url}/blog/${entry.id}/`;
     </div>
     <h1 class="mt-4 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">{entry.data.title}</h1>
     <p class="mt-4 text-sm text-slate-400">
-      {dateFormatter.format(entry.data.publishDate)} &middot; {entry.data.author}
+      By {entry.data.author} &middot; {dateFormatter.format(entry.data.publishDate)}
+      {entry.data.updatedDate && <> &middot; Updated {dateFormatter.format(entry.data.updatedDate)}</>}
     </p>
 
     <Image src={entry.data.heroImage} alt={entry.data.heroImageAlt} width={900} height={506} class="mt-8 w-full rounded-2xl" />
@@ -62,6 +67,30 @@ const pageUrl = `${SITE.url}/blog/${entry.id}/`;
     <div class="prose prose-slate prose-p:leading-relaxed prose-headings:font-display mt-10 max-w-none">
       <Content />
     </div>
+
+    {
+      entry.data.author === 'Mark Kwan' && (
+        <aside class="mt-12 flex items-start gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-6">
+          <Image
+            src={markPortrait}
+            alt="Mark Kwan, founder of Kwantum"
+            width={128}
+            height={128}
+            class="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-white shadow-md"
+          />
+          <div>
+            <p class="font-display text-sm font-semibold text-slate-900">Written by Mark Kwan</p>
+            <p class="mt-1 text-sm leading-relaxed text-slate-600">
+              Mark is the founder of Kwantum, a Melbourne-based local SEO and website studio. He helps
+              Australian businesses get found in Google Maps, local search and AI-generated answers.
+            </p>
+            <a href="/about/" class="mt-2 inline-block text-sm font-semibold text-brand-600 hover:underline">
+              More about Kwantum
+            </a>
+          </div>
+        </aside>
+      )
+    }
 
     {
       (relatedService || relatedArea) && (
@@ -80,6 +109,8 @@ const pageUrl = `${SITE.url}/blog/${entry.id}/`;
       )
     }
   </article>
+
+  <Faq items={entry.data.faq} title="Common questions" />
 
   <CtaSection />
 </BaseLayout>

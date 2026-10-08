@@ -130,6 +130,7 @@ export function articleSchema({
   url,
   image,
   publishDate,
+  updatedDate,
   author,
 }: {
   title: string;
@@ -137,6 +138,7 @@ export function articleSchema({
   url: string;
   image: string;
   publishDate: Date;
+  updatedDate?: Date;
   author: string;
 }) {
   return {
@@ -147,9 +149,12 @@ export function articleSchema({
     url,
     image,
     datePublished: publishDate.toISOString(),
+    dateModified: (updatedDate ?? publishDate).toISOString(),
     author: {
-      '@type': 'Organization',
+      '@type': 'Person',
       name: author,
+      url: `${SITE.url}/about/`,
+      worksFor: { '@id': `${SITE.url}/#organization` },
     },
     publisher: { '@id': `${SITE.url}/#organization` },
   };
