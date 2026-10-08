@@ -16,6 +16,8 @@ suburbs:
   - "Brunswick"
   - "North Melbourne"
   - "Yarraville"
+  - "Sunshine"
+  - "Airport West"
 whyLocalPoints:
   - title: "A city of small businesses, not just towers"
     description: "Beyond the CBD skyline, Melbourne runs on independent trades, clinics, hospitality venues and studios — most of them excellent at what they do and still hard to find online."
