@@ -1,0 +1,21 @@
+// Cloudflare Workers config for kwantum.net.
+// Cloudflare builds with `npm run build` and deploys with `npx wrangler deploy`.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kwantum",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/api/*"]
+  },
+  // CONTACT_TO, CONTACT_FROM and the RESEND_API_KEY secret are set in the Cloudflare
+  // dashboard (Worker -> Settings -> Variables and Secrets) so each site can have its own
+  // recipient without a code change. keep_vars stops deploys from wiping them.
+  "keep_vars": true,
+  "observability": {
+    "enabled": true
+  }
+}

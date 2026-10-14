@@ -1,0 +1,4 @@
+# Copy to .dev.vars (git-ignored) for local testing with `npx wrangler dev`.
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxx
+CONTACT_TO=mark@kwantum.net
+CONTACT_FROM=Kwantum Website <forms@kwantum.net>

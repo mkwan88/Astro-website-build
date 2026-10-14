@@ -9,7 +9,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "cf:dev": "astro build && wrangler dev",
+    "cf:types": "wrangler types worker/worker-configuration.d.ts"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.4.1",
@@ -25,9 +27,11 @@
     "tailwindcss": "^4.3.3"
   },
   "allowScripts": {
-    "esbuild": true
+    "esbuild": true,
+    "workerd": true
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.20"
+    "@tailwindcss/typography": "^0.5.20",
+    "wrangler": "^4.150.0"
   }
 }

@@ -13,5 +13,10 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap(), mdx(), icon()]
+  integrations: [
+    // thank-you and form-error are noindex, so keep them out of the sitemap too
+    sitemap({ filter: (page) => !/\/(thank-you|form-error)\/$/.test(page) }),
+    mdx(),
+    icon(),
+  ]
 });

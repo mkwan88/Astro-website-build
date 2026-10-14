@@ -28,3 +28,7 @@ pnpm-debug.log*
 
 # original source photos (only cropped versions in src/assets/team are published)
 Mark Kwan photo.jpg
+
+# Cloudflare local secrets
+.dev.vars
+.wrangler/
