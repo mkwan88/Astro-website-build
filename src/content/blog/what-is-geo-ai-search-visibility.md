@@ -4,8 +4,8 @@ excerpt: "Generative Engine Optimisation, or GEO, is what SEO becomes when custo
 publishDate: 2026-09-23
 updatedDate: 2026-10-08
 author: "Mark Kwan"
-heroImage: "../../assets/generated/blog-ai-search-guide-hero.png"
-heroImageAlt: "Abstract illustration of a chat assistant bubble connected to several small app icons, representing AI search visibility"
+heroImage: "../../assets/covers/what-is-geo-ai-search-visibility.png"
+heroImageAlt: "Kwantum blog cover: What Is GEO? AI Search Visibility Explained"
 tags: ["AI Search", "GEO"]
 relatedService: "ai-search-visibility"
 faq:

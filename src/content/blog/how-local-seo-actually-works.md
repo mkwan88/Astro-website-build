@@ -4,8 +4,8 @@ excerpt: "A plain-English walkthrough of what actually moves the needle for loca
 publishDate: 2026-09-23
 updatedDate: 2026-10-08
 author: "Mark Kwan"
-heroImage: "../../assets/generated/blog-local-seo-guide-hero.png"
-heroImageAlt: "Abstract illustration of a magnifying glass hovering over a map with a highlighted pin, representing local SEO"
+heroImage: "../../assets/covers/how-local-seo-actually-works.png"
+heroImageAlt: "Kwantum blog cover: How Local SEO Actually Works (No Jargon)"
 tags: ["Local SEO", "Google Business Profile"]
 relatedService: "local-seo"
 relatedArea: "melbourne"

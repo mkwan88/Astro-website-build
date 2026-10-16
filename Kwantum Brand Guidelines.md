@@ -102,6 +102,16 @@ beacon render remains the default social-share (OG) image. Motion rules: the hea
 wait on the animation, it pauses off-screen, and visitors with reduced-motion settings get a static
 version.
 
+**Blog imagery — no AI images.** AI-generated blog heroes read as generic "AI slop" (client
+feedback, October 2026), so blog posts no longer use them:
+- **Covers:** every post's `heroImage` is a branded cover generated from its title by
+  [scripts/generate-covers.mjs](scripts/generate-covers.mjs) (indigo gradient, Manrope title, teal
+  "signal" rings, logo). Run `node scripts/generate-covers.mjs --only=<slug>` for a new post.
+- **Inside posts:** use real evidence of the work — screenshots of dashboards, before/after pages,
+  charts built from real numbers — stored in `src/assets/blog/<post>/`. Blur anything account- or
+  client-specific (emails, IDs, private values) before adding them, and only show client work with
+  permission.
+
 ## Applying This System Elsewhere
 
 If Kwantum produces slide decks, social graphics, or printed materials later, reuse:

@@ -31,7 +31,11 @@
     "workerd": true
   },
   "devDependencies": {
+    "@fontsource/inter": "^5.2.8",
+    "@fontsource/manrope": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.20",
+    "satori": "^0.18.3",
     "wrangler": "^4.150.0"
   }
 }
