@@ -28,6 +28,7 @@ const FIELDS = [
   { name: 'business', label: 'Business', required: false, max: 200 },
   { name: 'email', label: 'Email', required: true, max: 320 },
   { name: 'website', label: 'Website', required: false, max: 500 },
+  { name: 'source', label: 'Found us via', required: false, max: 100 },
   { name: 'message', label: 'Message', required: true, max: 5000 },
 ] as const;
 

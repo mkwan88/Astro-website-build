@@ -72,6 +72,20 @@ const crumbs = [{ name: 'Contact', href: '/contact/' }];
             <input id="website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com.au" class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
           </div>
           <div class="sm:col-span-2">
+            <label for="source" class="text-sm font-medium text-slate-700">How did you find us? <span class="font-normal text-slate-400">(optional)</span></label>
+            <select id="source" name="source" class="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500">
+              <option value="">Choose one</option>
+              <option>Google search</option>
+              <option>Google Maps</option>
+              <option>ChatGPT or another AI assistant</option>
+              <option>A Kwantum blog post</option>
+              <option>LinkedIn</option>
+              <option>Facebook</option>
+              <option>Referral (friend, accountant, colleague)</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
             <label for="message" class="text-sm font-medium text-slate-700">What's going on?</label>
             <textarea id="message" name="message" rows="5" required class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"></textarea>
           </div>
