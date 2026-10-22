@@ -1,0 +1,134 @@
+---
+import IndustryPage from '../../components/IndustryPage.astro';
+
+const crumbs = [
+  { name: 'SEO for Tradies', href: '/industries/seo-for-tradies/' },
+  { name: 'SEO for Plumbers', href: '/industries/seo-for-plumbers/' },
+];
+
+const faq = [
+  {
+    question: 'Should my licence number be on my site and profile?',
+    answer:
+      'Yes. It isn’t a ranking factor, but customers look for it and it builds trust quickly. Showing your licence number where customers can see it is worth doing, and we’ll help you place it.',
+  },
+  {
+    question: 'Can I rank for emergency callouts and planned jobs?',
+    answer:
+      'Yes, but they need different pages and a profile set up for both. We build each on purpose, not one catch-all page.',
+  },
+  {
+    question: 'Does it matter if I work after hours?',
+    answer:
+      'A lot. Set your profile hours to match how you actually work. If you take after-hours calls, say so clearly. If you don’t, don’t claim it. A wrong claim leads to bad reviews.',
+  },
+  {
+    question: 'Do I need a shopfront?',
+    answer:
+      'No. Most plumbers work from a van and a home base. Google lets you set up a service-area business that shows the suburbs you cover instead of a street address, and we set that up properly.',
+  },
+  {
+    question: 'How long until I see results?',
+    answer:
+      'Rankings move over weeks and months depending on your area and competitors. That’s why we record where you rank at the start and report on it every month.',
+  },
+  {
+    question: 'What do you need from me?',
+    answer:
+      'Manager access to your Google Business Profile (we show you how in two minutes), a 20-minute kick-off call and 10 to 20 recent photos of your team, van and completed jobs.',
+  },
+  {
+    question: 'Can you build my website too?',
+    answer: 'Yes. We build fast, modern websites and link them properly to your profile. See our website design service.',
+  },
+];
+---
+
+<IndustryPage
+  metaTitle="SEO for Plumbers Melbourne | More Local Jobs | Kwantum"
+  metaDescription="SEO and Google Business Profile for Melbourne plumbers. Get found for burst pipes, hot water and blocked drains, and win more local jobs. Free audit."
+  path="/industries/seo-for-plumbers/"
+  serviceName="SEO for Plumbers"
+  crumbs={crumbs}
+  h1="SEO for plumbers: be the one customers find first"
+  intro={[
+    'A pipe has burst. The hot water has died on the coldest morning of the year. A drain is backing up on a Friday night. Nobody researches plumbers in a situation like this. They search, scan the first few results, and call.',
+    'Kwantum helps Melbourne plumbers show up in Google Maps and local search for those moments, and for the planned jobs that pay well too.',
+  ]}
+  demand={{
+    heading: 'Plumbing is one of the most expensive trades to advertise',
+    paragraphs: [
+      'Each month in Australia, roughly 4,400 people search “plumber melbourne” and about 320 search “plumber essendon” (Google search data). Google Ads estimates put those clicks at around $33 and $41 each. Businesses pay that every time someone clicks, whether or not they ring.',
+      'Ranking in Maps and organic results is how you get a share of that demand without paying for every click.',
+    ],
+  }}
+  problems={{
+    heading: 'Where plumbers lose jobs on Google',
+    items: [
+      'Urgent searches go to whoever looks available. If your profile hours are wrong, your phone number is hard to find or you look closed, the customer moves on in seconds.',
+      'Trust is the real barrier. People worry about being overcharged by a cowboy. A business with few reviews, no photos and no licence information looks risky.',
+      'One page tries to cover everything. A single “Services” page can’t rank for “blocked drains”, “hot water repairs” and “bathroom plumbing” all at once.',
+      'Callout fees are a mystery. Customers search for a price before they ring. If your site says nothing about how you charge, a competitor’s will.',
+      'Coverage is vague. “Servicing Melbourne” doesn’t tell Google or the customer that you cover their suburb.',
+    ],
+  }}
+  whatWeDo={{
+    heading: 'What we do',
+    items: [
+      {
+        title: 'Set up your Google Business Profile properly',
+        description:
+          'The right primary category, secondary categories for your specialities, a full service list with real descriptions, hours that match how you work, service areas by suburb and photos of real jobs.',
+      },
+      {
+        title: 'Build a page for each type of job',
+        description:
+          'Separate pages for the work you want more of, such as emergency plumbing, blocked drains, hot water systems, burst pipes and leak detection, gas fitting, and bathroom and renovation plumbing.',
+      },
+      {
+        title: 'Put your trust signals first',
+        description:
+          'Your licence number, insurance, how long you’ve been trading, photos of your work and your best reviews, visible on the first screen.',
+      },
+      {
+        title: 'Explain how you charge',
+        description:
+          'A plain statement about callout fees, quotes and what’s included, so customers don’t have to guess or call a competitor to find out. We help you word it.',
+      },
+      {
+        title: 'Make review requests automatic',
+        description:
+          'A short review link, a QR code for the van or invoice, and ready-to-send SMS and email requests, plus reply templates for good and bad reviews. Plumbers get a lot of single-job customers, so a steady stream of reviews matters more than a big pile from one year.',
+      },
+      {
+        title: 'Clean up listings and show the result',
+        description:
+          'We check your name, address and phone across the main Australian directories, then report on where you rank on Maps over time.',
+      },
+    ],
+  }}
+  split={{
+    heading: 'Emergency jobs and planned jobs need different handling',
+    intro: 'We set up both on purpose, so you don’t depend on emergencies alone.',
+    items: [
+      {
+        title: 'Emergencies',
+        description:
+          '“Emergency plumber” and “plumber near me” are won by proximity, reviews and looking open and ready. Your hours, phone number and a “24/7” claim (only if it’s true) matter most.',
+      },
+      {
+        title: 'Planned work',
+        description:
+          '“Hot water system replacement” and “bathroom plumbing melbourne” are won by your website. Customers compare, read and then call, so those pages need photos, honest price guidance and clear next steps.',
+      },
+    ],
+  }}
+  faq={faq}
+  related={[
+    { label: 'SEO for tradies', href: '/industries/seo-for-tradies/' },
+    { label: 'SEO for electricians', href: '/industries/seo-for-electricians/' },
+    { label: 'Google Business Profile optimisation', href: '/services/google-business-profile-optimization/' },
+    { label: 'Local SEO', href: '/services/local-seo/' },
+    { label: 'Website design', href: '/services/website-design/' },
+  ]}
+/>

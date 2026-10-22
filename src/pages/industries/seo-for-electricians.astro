@@ -1,0 +1,124 @@
+---
+import IndustryPage from '../../components/IndustryPage.astro';
+
+const crumbs = [
+  { name: 'SEO for Tradies', href: '/industries/seo-for-tradies/' },
+  { name: 'SEO for Electricians', href: '/industries/seo-for-electricians/' },
+];
+
+const faq = [
+  {
+    question: 'Should my licence number be on my website?',
+    answer:
+      'It isn’t a ranking factor, but customers look for it, and it builds trust fast. Showing your licence or registration number where customers can see it is worth doing, and we’ll help you place it.',
+  },
+  {
+    question: 'Can I rank for both emergency callouts and bigger installs?',
+    answer:
+      'Yes, but they need different pages and a profile set up for both. We set each one up on purpose instead of one catch-all page.',
+  },
+  {
+    question: 'I work alone. Is this worth it?',
+    answer:
+      'Often more than for big firms. A one-person business can’t absorb slow weeks, and a single extra switchboard or EV charger job can cover a good part of a month’s cost. We’ll show you the numbers in your audit.',
+  },
+  {
+    question: 'How long until I see results?',
+    answer:
+      'Rankings move over weeks and months depending on your area and competitors. That’s why we record where you rank at the start and report on it every month.',
+  },
+  {
+    question: 'What do you need from me?',
+    answer:
+      'Manager access to your Google Business Profile (we show you how in two minutes), a 20-minute kick-off call and 10 to 20 recent photos of your team, van and completed jobs.',
+  },
+  {
+    question: 'Can you build my website too?',
+    answer: 'Yes. We build fast, modern websites and link them properly to your profile. See our website design service.',
+  },
+];
+---
+
+<IndustryPage
+  metaTitle="SEO for Electricians Melbourne | More Local Jobs | Kwantum"
+  metaDescription="SEO and Google Business Profile for Melbourne electricians. Get found for callouts and bigger jobs like switchboards and EV chargers. Free audit."
+  path="/industries/seo-for-electricians/"
+  serviceName="SEO for Electricians"
+  crumbs={crumbs}
+  h1="SEO for electricians: get found for the jobs you want"
+  intro={[
+    'Someone’s power has tripped and the safety switch won’t reset. Someone else is about to buy an EV and needs a charger installed. Both are searching for an electrician right now, and both will call one of the first few businesses they see on Google.',
+    'Kwantum helps Melbourne electricians show up in Google Maps and local search, for both the emergency callouts and the bigger, better-paying jobs.',
+  ]}
+  demand={{
+    heading: 'The search demand is already there',
+    paragraphs: [
+      'Each month in Australia, roughly 40,500 people search “electrician near me” and about 1,900 search “electrician melbourne” (Google search data). Electricians are also among the most expensive trades to advertise: Google Ads estimates put “electrician melbourne” at roughly $23 per click.',
+      'Showing up in Maps and organic results is how you get those customers without paying for every click.',
+    ],
+  }}
+  problems={{
+    heading: 'Where electricians lose jobs on Google',
+    items: [
+      'Everything looks like a callout. Your profile and site say “electrician”, but nothing tells Google you also do switchboard upgrades, EV chargers, solar, rewiring or commercial fit-outs. Those jobs are where the margin is.',
+      'There’s one page for everything. A single “Services” page can’t rank for “emergency electrician Essendon” and “switchboard upgrade Melbourne” at the same time.',
+      'Trust signals are buried. Customers are letting you into their home or workplace. They look for your licence, your reviews and photos of real work, and often can’t find them.',
+      'Reviews are thin. A competitor with 80 reviews outranks you with 12, whatever the quality of the work.',
+      'Suburb coverage is vague. “Servicing Melbourne” doesn’t tell Google or a customer you cover Essendon, Moonee Ponds or Tullamarine.',
+    ],
+  }}
+  whatWeDo={{
+    heading: 'What we do',
+    items: [
+      {
+        title: 'Set up your profile for the jobs you want',
+        description:
+          'The right primary category, secondary categories that match your services, a service list with real descriptions, service areas by suburb and photos of actual work.',
+      },
+      {
+        title: 'Build a page for each job type',
+        description:
+          'Separate pages for the work you want more of, such as emergency callouts, switchboard upgrades, safety switches and smoke alarms, EV charger installation, rewiring and lighting, and commercial electrical.',
+      },
+      {
+        title: 'Put your trust signals up front',
+        description:
+          'Your licence number, insurance, years in business, photos of your work and your best reviews, all visible on the first screen.',
+      },
+      {
+        title: 'Make asking for reviews automatic',
+        description:
+          'A short review link, a QR code for the van or invoice, and ready-to-send SMS and email requests, plus reply templates for good and bad reviews.',
+      },
+      {
+        title: 'Tidy your listings and show the result',
+        description:
+          'We check your name, address and phone across the main Australian directories, then report on where you rank on Maps over time.',
+      },
+    ],
+  }}
+  split={{
+    heading: 'Emergency callouts and planned jobs need different handling',
+    intro: 'We set up both, so you’re not relying on callouts alone.',
+    items: [
+      {
+        title: 'Emergency searches',
+        description:
+          '“Electrician near me” and “emergency electrician” are decided by proximity, reviews and whether you look open and answering. Your profile hours, phone number and a “24/7” claim (only if it’s true) matter most here.',
+      },
+      {
+        title: 'Planned jobs',
+        description:
+          '“Switchboard upgrade melbourne” and “EV charger installation” are decided by your website. Customers read, compare and then call, so those pages need photos, plain pricing guidance and clear next steps.',
+      },
+    ],
+  }}
+  faq={faq}
+  related={[
+    { label: 'SEO for tradies', href: '/industries/seo-for-tradies/' },
+    { label: 'SEO for plumbers', href: '/industries/seo-for-plumbers/' },
+    { label: 'Google Business Profile optimisation', href: '/services/google-business-profile-optimization/' },
+    { label: 'Local SEO', href: '/services/local-seo/' },
+    { label: 'Website design', href: '/services/website-design/' },
+  ]}
+/>

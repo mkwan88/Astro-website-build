@@ -1,0 +1,126 @@
+---
+import IndustryPage from '../../components/IndustryPage.astro';
+
+const crumbs = [{ name: 'SEO for Tradies', href: '/industries/seo-for-tradies/' }];
+
+const faq = [
+  {
+    question: 'Do I need a shopfront to show up on Google Maps?',
+    answer:
+      'No. Plenty of tradies work from home or a van. Google lets you set up a service-area business that shows the suburbs you cover instead of a street address. We set that up properly.',
+  },
+  {
+    question: 'How many reviews do I need?',
+    answer:
+      'There’s no magic number. What matters is that you have more recent, genuine reviews than the businesses ranking above you, and that you keep getting new ones. We’ll show you where you stand against your competitors in your audit.',
+  },
+  {
+    question: 'Will this get me emergency jobs?',
+    answer:
+      'A well-set-up profile and website make you easier to find when someone searches for an emergency tradie near them. We can’t promise the phone will ring, but you’ll be in the running when it matters.',
+  },
+  {
+    question: 'How long does it take to see results?',
+    answer:
+      'Rankings move over weeks and months and depend on your area and competition. That’s why we record where you rank at the start and report on it every month.',
+  },
+  {
+    question: 'What do you need from me?',
+    answer:
+      'Manager access to your Google Business Profile (we show you how in two minutes), a 20-minute kick-off call and 10 to 20 recent photos of your team, vehicles and jobs.',
+  },
+  {
+    question: 'Can you do my website too?',
+    answer: 'Yes. We build fast, modern websites for tradies and link them properly to your profile. See our website design service.',
+  },
+];
+---
+
+<IndustryPage
+  metaTitle="SEO for Tradies in Melbourne | Get More Local Jobs | Kwantum"
+  metaDescription="SEO and Google Business Profile for Melbourne tradies. Get found in Maps when customers search “near me”. No lock-in. Free audit."
+  path="/industries/seo-for-tradies/"
+  serviceName="SEO for Tradies"
+  crumbs={crumbs}
+  h1="SEO for tradies: show up when customers search “near me”"
+  intro={[
+    'You do great work. But when someone’s hot water system fails at 7pm, they don’t call the best plumber. They call whoever pops up first on Google.',
+    'Kwantum helps Melbourne tradies get found where those customers are looking: Google Maps, local search and, increasingly, AI answers. We handle the setup and the ongoing work, so you can get back to the job.',
+  ]}
+  demand={{
+    heading: 'Why local search matters for tradies',
+    paragraphs: [
+      'Every month, roughly 40,500 Australians search “electrician near me” and about 4,400 search “plumber melbourne” (Google search data, Australia). These people aren’t browsing. They have a problem and want someone to fix it today.',
+      'Customers like these usually call one of the first few businesses they see. If you’re not one of them, the job goes to a competitor, even when you’re the better tradie.',
+    ],
+  }}
+  problems={{
+    heading: 'What usually goes wrong',
+    items: [
+      'The website isn’t linked to the Google profile, so Google can’t connect the two.',
+      'The wrong categories are set. “Contractor” instead of the actual trade tells Google nothing useful.',
+      'Reviews lag behind a competitor’s. Not because you’re worse, but because nobody asked happy customers to leave one.',
+      'There’s no service-area setup. If you work from home or a van, Google may not know which suburbs you cover.',
+      'There’s no page for each service. Someone searching “blocked drain Essendon” lands on your homepage, or on someone else’s.',
+    ],
+  }}
+  whatWeDo={{
+    heading: 'What we do about it',
+    items: [
+      {
+        title: 'Fix your Google Business Profile',
+        description:
+          'Categories, services, service areas, description, hours and photos, all set up the way Google ranks local businesses.',
+      },
+      {
+        title: 'Build a review habit',
+        description:
+          'A short review link and a QR code for the van or invoice, plus ready-to-send SMS and email requests and reply templates for good and bad reviews. More reviews come from asking consistently, not from luck.',
+      },
+      {
+        title: 'Make your website pull its weight',
+        description:
+          'A page for each service and each area you cover, written for the searches customers actually type, with your phone number and hours front and centre.',
+      },
+      {
+        title: 'Clean up your listings',
+        description:
+          'We check your name, address and phone number across the main Australian directories and fix the mismatches. Google trusts consistent details.',
+      },
+      {
+        title: 'Show you what changed',
+        description:
+          'A plain-English report showing where you rank on Google Maps and what’s next, so you can see the result of the work.',
+      },
+    ],
+  }}
+  split={{
+    heading: 'Why tradies in particular',
+    items: [
+      {
+        title: 'Emergency jobs are decided in minutes',
+        description: 'There’s no time for the customer to compare five quotes. They search, scan and call.',
+      },
+      {
+        title: 'You may not have a shopfront',
+        description: 'We set up your profile properly as a service-area business, so you’re visible without a public address.',
+      },
+      {
+        title: 'Trust is everything',
+        description: 'Your reviews and photos do the selling before you answer the phone.',
+      },
+      {
+        title: 'You’re busy',
+        description: 'We don’t need hours of your week. You give us 20 minutes to start, and we do the rest.',
+      },
+    ],
+  }}
+  faq={faq}
+  related={[
+    { label: 'SEO for electricians', href: '/industries/seo-for-electricians/' },
+    { label: 'SEO for plumbers', href: '/industries/seo-for-plumbers/' },
+    { label: 'Google Business Profile optimisation', href: '/services/google-business-profile-optimization/' },
+    { label: 'Local SEO', href: '/services/local-seo/' },
+    { label: 'Website design', href: '/services/website-design/' },
+  ]}
+/>
