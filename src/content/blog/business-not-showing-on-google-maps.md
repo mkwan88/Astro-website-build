@@ -2,6 +2,7 @@
 title: "Why Isn't My Business Showing on Google Maps?"
 excerpt: "Business missing from Google Maps? A 60-second check tells you whether it's a visibility or ranking problem, then the fix for each cause."
 publishDate: 2026-10-21
+updatedDate: 2026-10-22
 author: "Mark Kwan"
 heroImage: "../../assets/covers/business-not-showing-on-google-maps.png"
 heroImageAlt: "Kwantum blog cover: Why Isn't My Business Showing on Google Maps?"
@@ -109,6 +110,8 @@ You can add up to 20 service areas, and Google recommends keeping your overall a
 
 The fix takes a minute: **Edit profile > Location**, then turn off **Show business address to customers**.
 
+Running a trade business? Here's [how we approach SEO for tradies](/industries/seo-for-tradies/).
+
 ### Your hours say you're closed
 
 "Business is open at time of search" is a top-five Maps factor in the survey. Missing or wrong hours can drop you out of results at exactly the moment someone needs you.
@@ -120,6 +123,8 @@ Set accurate hours. Add special hours for public holidays. If you do emergency c
 Google says businesses with complete and accurate information are more likely to show up. So go through every section: description, services, photos, attributes like parking and accessibility, and your booking link.
 
 Photos of your real team, van, clinic or office beat stock images. Every time.
+
+Short on time? Our [Google Business Profile optimization](/services/google-business-profile-optimization/) service sets your profile up properly, then manages it monthly.
 
 ### Competitors have more (and newer) reviews
 
