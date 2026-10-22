@@ -44,3 +44,6 @@ pack, in local organic results, and increasingly, in AI-generated answers.
 
 We don't chase rankings for keywords no one searches. We start with real local search data, build
 your site and profile around it, and keep refining month over month as your visibility grows.
+
+Your Google Business Profile is a big part of this. See how we set it up and keep it working in
+[Google Business Profile optimisation](/services/google-business-profile-optimization/).
