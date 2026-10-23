@@ -8,12 +8,11 @@ import VisibilityChannels from '../components/VisibilityChannels.astro';
 import PricingTable from '../components/PricingTable.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { organizationSchema } from '../lib/schema';
-import collaborationImage from '../assets/generated/about-collaboration-hands.png';
 import markPortrait from '../assets/team/mark-kwan-portrait.jpg';
 
 const painPoints = [
   "My website is fine, but it isn't bringing in any new customers.",
-  "I searched for my own business on Google and couldn't find it — my competitor was right at the top.",
+  "I searched for my own business on Google and couldn't find it. My competitor was right at the top.",
   "Whoever built my site years ago isn't answering their phone anymore.",
   "I just want someone who handles it properly and picks up when I call.",
 ];
@@ -55,17 +54,10 @@ const painPoints = [
       </div>
 
       <p class="mt-10 text-slate-600">
-        That's exactly why Kwantum exists: to put your business in the spotlight — found on
-        Google, AI and by customers already looking for you. A website is one way we help you get
-        there, but not the whole point. We work hand in hand with you the entire way, not just to
-        launch day.
+        Kwantum fixes that. We get local businesses found on Google, in Google Maps and in AI
+        answers, and we stay on after launch to keep it working. A new website is sometimes part of
+        the job, but the goal is more calls and enquiries.
       </p>
-      <a
-        href="/contact/"
-        class="mt-6 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-700"
-      >
-        Get My Free Audit
-      </a>
     </div>
   </section>
 
@@ -73,76 +65,36 @@ const painPoints = [
 
   <VisibilityChannels />
 
-  <CtaSection />
-
-  <!-- About teaser -->
+  <!-- Founder -->
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-    <div class="grid gap-10 rounded-3xl bg-slate-50 p-10 lg:grid-cols-2 lg:items-center lg:p-14">
+    <div class="grid gap-10 rounded-3xl bg-slate-50 p-10 md:grid-cols-[auto_1fr] md:items-center lg:p-14">
+      <Image
+        src={markPortrait}
+        alt="Mark Kwan, founder of Kwantum"
+        width={424}
+        height={424}
+        class="h-40 w-40 rounded-3xl object-cover shadow-md lg:h-52 lg:w-52"
+      />
       <div>
-        <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">Who's behind Kwantum</p>
-        <h2 class="mt-2 font-display text-3xl font-bold text-slate-900">
-          A small, hands-on team — not a call centre
-        </h2>
-        <p class="mt-4 text-sm leading-relaxed text-slate-600">
-          Kwantum is built to be the opposite of the agency experience most small businesses
-          dread: no ticket queues, no account manager who's never heard of you. You get a website
-          and search strategy built properly, and a team that's still there after launch.
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">Who you'll work with</p>
+        <h2 class="mt-2 font-display text-3xl font-bold text-slate-900">Hi, I'm Mark.</h2>
+        <p class="mt-4 max-w-2xl leading-relaxed text-slate-600">
+          I started Kwantum in Ascot Vale to give small businesses the kind of help I'd want myself:
+          someone who explains things in plain English, answers the phone, and is still around after
+          the website goes live. You'll deal with me from the first audit to every monthly report.
         </p>
-        <div class="mt-6 flex items-center gap-3">
-          <Image
-            src={markPortrait}
-            alt="Mark Kwan, founder of Kwantum"
-            width={144}
-            height={144}
-            class="h-[70px] w-[70px] rounded-full object-cover ring-2 ring-white shadow-md"
-          />
-          <div>
-            <p class="font-display text-sm font-semibold text-slate-900">Mark Kwan</p>
-            <p class="text-xs text-slate-500">Founder, Kwantum</p>
-          </div>
-        </div>
-        <a href="/about/" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:gap-2 transition-all">
+        <a href="/about/" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 transition-all hover:gap-2">
           More about Kwantum
           <Icon name="lucide:arrow-right" class="h-4 w-4" />
         </a>
-      </div>
-      <div class="overflow-hidden rounded-2xl shadow-xl shadow-brand-900/10">
-        <Image
-          src={collaborationImage}
-          alt="Two people working together at a laptop, one pointing at an analytics dashboard while the other sketches a website plan"
-          width={900}
-          height={675}
-          class="h-full w-full object-cover"
-        />
       </div>
     </div>
   </section>
 
   <PricingTable />
 
-  <!-- Areas teaser -->
-  <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-      <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">Areas we serve</p>
-      <h2 class="mt-2 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
-        Local everywhere we work
-      </h2>
-      <p class="mt-4 text-sm text-slate-500">
-        Based in Melbourne, expanding city by city — with a genuinely local approach for each one.
-      </p>
-    </div>
-    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
-      <a href="/areas/melbourne/" class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
-        Melbourne
-      </a>
-      <a href="/areas/" class="rounded-full bg-brand-50 px-5 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-100">
-        View all areas &rarr;
-      </a>
-    </div>
-  </section>
-
   <CtaSection
-    heading="Bring us your current site — or your idea"
+    heading="Bring us your current site, or just an idea"
     body="You'll get an honest, no-obligation read on what's working, what's costing you enquiries, and exactly what to do next."
   />
 </BaseLayout>

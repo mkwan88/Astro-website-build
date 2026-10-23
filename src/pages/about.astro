@@ -6,7 +6,7 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 import CtaSection from '../components/CtaSection.astro';
 import { SITE } from '../lib/site';
 import { organizationSchema, breadcrumbSchema } from '../lib/schema';
-import teamImage from '../assets/generated/about-team-illustration.png';
+import markPortrait from '../assets/team/mark-kwan-portrait.jpg';
 
 const values = [
   {
@@ -54,9 +54,12 @@ const crumbs = [{ name: 'About', href: '/about/' }];
           explanations, and no disappearing after launch.
         </p>
       </div>
-      <div class="flex items-center justify-center rounded-3xl border border-slate-100 bg-white p-4 shadow-xl">
-        <Image src={teamImage} alt="Abstract illustration of a small team collaborating around a table with a laptop and map pin icon" width={900} height={675} class="w-full rounded-2xl" />
-      </div>
+      <figure class="mx-auto w-full max-w-sm">
+        <Image src={markPortrait} alt="Mark Kwan, founder of Kwantum" width={424} height={424} class="w-full rounded-3xl object-cover shadow-xl" />
+        <figcaption class="mt-4 text-center text-sm text-slate-500">
+          <span class="font-display font-semibold text-slate-900">Mark Kwan</span>, founder. Based in Ascot Vale, Melbourne.
+        </figcaption>
+      </figure>
     </div>
   </section>
 

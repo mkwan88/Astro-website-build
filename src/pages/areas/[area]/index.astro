@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from 'astro:content';
-import { Image } from 'astro:assets';
+import HeroFacts from '../../../components/HeroFacts.astro';
 import { Icon } from 'astro-icon/components';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../../components/Breadcrumbs.astro';
@@ -70,9 +70,7 @@ const pageUrl = `${SITE.url}/areas/${entry.id}/`;
           <span class="text-sm text-slate-500">{entry.data.proofStat.label}</span>
         </div>
       </div>
-      <div class="rounded-3xl border border-slate-100 bg-white p-4 shadow-xl">
-        <Image src={entry.data.heroImage} alt={entry.data.heroImageAlt} width={900} height={675} class="w-full rounded-2xl" />
-      </div>
+      <HeroFacts heading={`Why it works in ${entry.data.cityName}`} items={entry.data.whyLocalPoints} />
     </div>
   </section>
 

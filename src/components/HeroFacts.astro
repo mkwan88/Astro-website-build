@@ -1,0 +1,31 @@
+---
+// Hero side panel listing what the page's service actually includes. Replaces the AI hero
+// illustrations, which read as generic (see "Kwantum Brand Guidelines.md" > Imagery Style).
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  heading: string;
+  items: { title: string; description: string }[];
+}
+
+const { heading, items } = Astro.props;
+---
+
+<div class="rounded-3xl border border-slate-100 bg-white p-8 shadow-xl shadow-brand-900/5 lg:p-10">
+  <p class="text-sm font-semibold text-slate-500">{heading}</p>
+  <ul class="mt-6 space-y-6">
+    {
+      items.slice(0, 4).map((item) => (
+        <li class="flex gap-4">
+          <span class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-50 text-accent-600">
+            <Icon name="lucide:check" class="h-4 w-4" />
+          </span>
+          <div>
+            <p class="font-display font-bold text-slate-900">{item.title}</p>
+            <p class="mt-1 text-sm leading-relaxed text-slate-500">{item.description}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
