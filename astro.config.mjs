@@ -31,7 +31,7 @@ export default defineConfig({
   integrations: [
     // thank-you and form-error are noindex, so keep them out of the sitemap too
     sitemap({
-      filter: (page) => !/\/(thank-you|form-error)\/$/.test(page),
+      filter: (page) => !/\/(thank-you|form-error)\/$/.test(page) && !page.includes('/mockups/'),
       serialize: (item) => {
         const date = blogLastmod[item.url];
         if (date) item.lastmod = new Date(date).toISOString();
