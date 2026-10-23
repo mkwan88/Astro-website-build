@@ -41,6 +41,9 @@ const services = [
   },
 ];
 
+const headline = 'Be the first call in your suburb.';
+const channels = ['Google', 'Google Maps', 'ChatGPT', 'Gemini', 'Perplexity', 'AI Overviews'];
+
 const auditItems = [
   'Your Google Business Profile, field by field',
   'Where you show up in Maps for your main suburbs',
@@ -94,75 +97,95 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
     <!-- Hero -->
     <section class="mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-6 sm:px-8 lg:grid-cols-[1.1fr_1fr] lg:pt-12">
       <div>
-        <p class="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold shadow-sm">
-          <span class="h-2.5 w-2.5 rounded-full bg-[#2DD4BF]"></span>
+        <p class="enter inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold shadow-sm" style="--d:0ms">
+          <span class="pulse-dot relative h-2.5 w-2.5 rounded-full bg-[#2DD4BF]"></span>
           Local SEO from Ascot Vale, Melbourne
         </p>
-        <h1 class="display mt-7 text-[3.25rem] font-extrabold leading-[0.98] tracking-tight sm:text-7xl">
-          Be the first call in your suburb.
+        <h1 class="display mt-7 text-[3.25rem] font-extrabold leading-[0.98] tracking-tight sm:text-7xl" aria-label={headline}>
+          {headline.split(' ').map((word, i) => (
+            <><span class="word" aria-hidden="true" style={`--d:${120 + i * 70}ms`}>{word}</span>{' '}</>
+          ))}
         </h1>
-        <p class="mt-7 max-w-xl text-lg leading-relaxed text-[#1E1B4B]/75">
+        <p class="enter mt-7 max-w-xl text-lg leading-relaxed text-[#1E1B4B]/75" style="--d:620ms">
           I help Melbourne small businesses show up on Google, in Google Maps and in AI answers, so
           the people already searching for what you do find you first.
         </p>
-        <div class="mt-9 flex flex-wrap items-center gap-4">
+        <div class="enter mt-9 flex flex-wrap items-center gap-4" style="--d:760ms">
           <a href="/contact/" class="pill pill-lg bg-[#1E1B4B] text-white">
             <span>Get a free audit</span>
-            <span class="pill-dot bg-[#FFCB47] text-[#1E1B4B]">→</span>
+            <span class="pill-dot nudge bg-[#FFCB47] text-[#1E1B4B]">→</span>
           </a>
-          <a href="#audit" class="text-[15px] font-semibold underline decoration-[#2DD4BF] decoration-4 underline-offset-[6px]">What’s in the audit?</a>
+          <a href="#audit" class="squiggle text-[15px] font-semibold">What’s in the audit?</a>
         </div>
       </div>
 
       <!-- Hero art: a stylised local map. Flat shapes, no fake results. -->
-      <div class="relative mx-auto aspect-square w-full max-w-[520px]" aria-hidden="true">
+      <div class="hero-art relative mx-auto aspect-square w-full max-w-[520px]" aria-hidden="true">
+        <svg viewBox="0 0 100 100" class="spin absolute -right-8 -top-8 h-28 w-28 text-[#FF8A65]">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="14 10" />
+        </svg>
         <div class="absolute inset-0 rounded-[3rem] bg-[#4F46E5]"></div>
-        <svg viewBox="0 0 520 520" class="absolute inset-0 h-full w-full">
+        <svg viewBox="0 0 520 520" class="absolute inset-0 h-full w-full overflow-hidden rounded-[3rem]">
           <g stroke="#6D66F0" stroke-width="18" stroke-linecap="round" fill="none">
-            <path d="M-20 150 C120 130 220 190 540 120" />
-            <path d="M-20 360 C150 330 300 400 540 330" />
-            <path d="M150 -20 C170 160 120 320 190 540" />
-            <path d="M360 -20 C330 170 400 330 350 540" />
+            <path class="road" style="--d:200ms" pathLength="1" d="M-20 150 C120 130 220 190 540 120" />
+            <path class="road" style="--d:350ms" pathLength="1" d="M-20 360 C150 330 300 400 540 330" />
+            <path class="road" style="--d:500ms" pathLength="1" d="M150 -20 C170 160 120 320 190 540" />
+            <path class="road" style="--d:650ms" pathLength="1" d="M360 -20 C330 170 400 330 350 540" />
           </g>
-          <circle cx="262" cy="250" r="150" fill="none" stroke="#FFCB47" stroke-width="10" opacity="0.9" />
-          <circle cx="262" cy="250" r="95" fill="none" stroke="#FFCB47" stroke-width="10" opacity="0.5" />
-          <!-- other pins -->
+          <!-- signal ripples from your pin -->
+          <g fill="none" stroke="#FFCB47" stroke-width="8">
+            <circle class="ripple" style="--d:0s" cx="262" cy="250" r="150" />
+            <circle class="ripple" style="--d:1.2s" cx="262" cy="250" r="150" />
+            <circle class="ripple" style="--d:2.4s" cx="262" cy="250" r="150" />
+          </g>
+          <!-- other businesses -->
           <g fill="#A5B4FC">
-            <circle cx="95" cy="95" r="14" />
-            <circle cx="430" cy="420" r="14" />
-            <circle cx="440" cy="90" r="14" />
-            <circle cx="90" cy="430" r="14" />
+            <circle class="pin-bob" style="--d:0s" cx="95" cy="95" r="14" />
+            <circle class="pin-bob" style="--d:.8s" cx="430" cy="420" r="14" />
+            <circle class="pin-bob" style="--d:1.6s" cx="440" cy="90" r="14" />
+            <circle class="pin-bob" style="--d:2.4s" cx="90" cy="430" r="14" />
           </g>
           <!-- your pin -->
-          <g class="bob">
+          <g class="your-pin" data-pin>
             <path d="M262 160 C222 160 192 190 192 230 C192 282 262 340 262 340 C262 340 332 282 332 230 C332 190 302 160 262 160 Z" fill="#2DD4BF" />
             <circle cx="262" cy="228" r="26" fill="#1E1B4B" />
           </g>
         </svg>
-        <span class="chip left-[6%] top-[58%] rotate-[-6deg] bg-[#FFCB47]">Moonee Ponds</span>
-        <span class="chip right-[4%] top-[14%] rotate-[5deg] bg-white">Ascot Vale</span>
-        <span class="chip bottom-[8%] right-[18%] rotate-[-3deg] bg-[#FF8A65]">Essendon</span>
-        <span class="chip left-[10%] top-[8%] rotate-[4deg] bg-[#2DD4BF]">“plumber near me”</span>
+        <span class="chip float left-[6%] top-[58%] bg-[#FFCB47]" style="--r:-6deg; --d:1.0s">Moonee Ponds</span>
+        <span class="chip float right-[4%] top-[14%] bg-white" style="--r:5deg; --d:1.2s">Ascot Vale</span>
+        <span class="chip float bottom-[8%] right-[18%] bg-[#FF8A65]" style="--r:-3deg; --d:1.4s">Essendon</span>
+        <span class="chip float left-[8%] top-[7%] bg-[#2DD4BF]" style="--r:4deg; --d:0.8s">
+          <span class="mr-1.5 opacity-60">🔍</span><span data-typer>plumber near me</span><span class="caret">|</span>
+        </span>
       </div>
     </section>
 
-    <!-- Suburb marquee -->
-    <div class="overflow-hidden border-y-2 border-[#1E1B4B] bg-[#FFCB47] py-4" aria-label="Suburbs I work in">
-      <div class="marquee flex w-max gap-10 whitespace-nowrap display text-2xl font-bold">
-        {[...suburbs, ...suburbs].map((s) => (
-          <span class="flex items-center gap-10">{s}<span class="h-3 w-3 rounded-full bg-[#1E1B4B]"></span></span>
-        ))}
+    <!-- Two marquees running in opposite directions -->
+    <div class="border-y-2 border-[#1E1B4B]">
+      <div class="overflow-hidden bg-[#FFCB47] py-4" aria-label="Suburbs I work in">
+        <div class="marquee flex w-max gap-10 whitespace-nowrap display text-2xl font-bold">
+          {[...suburbs, ...suburbs].map((s) => (
+            <span class="flex items-center gap-10">{s}<span class="h-3 w-3 rounded-full bg-[#1E1B4B]"></span></span>
+          ))}
+        </div>
+      </div>
+      <div class="overflow-hidden bg-[#1E1B4B] py-3 text-white" aria-label="Where customers find you">
+        <div class="marquee marquee-reverse flex w-max gap-8 whitespace-nowrap text-lg font-semibold">
+          {[...channels, ...channels, ...channels, ...channels].map((c) => (
+            <span class="flex items-center gap-8">Found on {c}<span class="text-[#2DD4BF]">✦</span></span>
+          ))}
+        </div>
       </div>
     </div>
 
     <!-- Services -->
     <section id="services" class="mx-auto max-w-7xl px-5 py-24 sm:px-8">
-      <h2 class="display max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+      <h2 data-reveal class="display max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
         Three places your next customer looks.
       </h2>
       <div class="mt-12 grid gap-6 lg:grid-cols-3">
         {services.map((s, i) => (
-          <a href={s.link} class={`card group flex min-h-[340px] flex-col justify-between rounded-[2rem] p-8 ${s.bg}`} style={`--tilt:${[-1.2, 0.8, -0.6][i]}deg`}>
+          <a href={s.link} data-reveal class={`card group flex min-h-[340px] flex-col justify-between rounded-[2rem] p-8 ${s.bg}`} style={`--tilt:${[-1.2, 0.8, -0.6][i]}deg; --d:${i * 140}ms`}>
             <div>
               <p class="text-sm font-bold uppercase tracking-wider">{s.label}</p>
               <h3 class="display mt-4 text-3xl font-extrabold leading-tight">{s.title}</h3>
@@ -176,11 +199,11 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
 
     <!-- Founder -->
     <section class="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
-      <div class="grid items-center gap-12 rounded-[2.5rem] bg-white p-8 sm:p-12 lg:grid-cols-[auto_1fr] lg:p-16">
+      <div data-reveal class="grid items-center gap-12 rounded-[2.5rem] bg-white p-8 sm:p-12 lg:grid-cols-[auto_1fr] lg:p-16">
         <div class="relative mx-auto w-56 sm:w-64">
-          <div class="absolute -inset-4 rotate-6 rounded-[2.5rem] bg-[#2DD4BF]"></div>
+          <div class="wobble absolute -inset-4 rounded-[2.5rem] bg-[#2DD4BF]"></div>
           <Image src={markPortrait} alt="Mark Kwan, founder of Kwantum" width={424} height={424} class="relative aspect-square w-full rounded-[2rem] object-cover" />
-          <span class="chip -bottom-5 -right-6 rotate-[-4deg] bg-[#FFCB47]">That’s me 👋</span>
+          <span class="chip float -bottom-5 -right-6 bg-[#FFCB47]" style="--r:-4deg; --d:0s">That’s me <span class="wave">👋</span></span>
         </div>
         <div>
           <h2 class="display text-4xl font-extrabold tracking-tight sm:text-5xl">Hi, I’m Mark.</h2>
@@ -202,7 +225,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
     <section id="audit" class="bg-[#4F46E5] py-24 text-white">
       <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
         <div>
-          <h2 class="display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
+          <h2 data-reveal class="display text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">
             The free audit, and what you actually get.
           </h2>
           <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/80">
@@ -215,12 +238,12 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
           </a>
         </div>
         <div class="relative">
-          <div class="absolute -right-3 -top-3 z-10 flex h-24 w-24 rotate-12 items-center justify-center rounded-full bg-[#FF8A65] display text-lg font-extrabold text-[#1E1B4B]">Free</div>
-          <div class="rotate-[-1.5deg] rounded-[2rem] bg-[#FBF6EC] p-8 text-[#1E1B4B] shadow-2xl sm:p-10">
+          <div class="spin-slow absolute -right-3 -top-3 z-10 flex h-24 w-24 items-center justify-center rounded-full bg-[#FF8A65] display text-lg font-extrabold text-[#1E1B4B]">Free</div>
+          <div data-reveal class="rotate-[-1.5deg] rounded-[2rem] bg-[#FBF6EC] p-8 text-[#1E1B4B] shadow-2xl sm:p-10">
             <p class="text-sm font-bold uppercase tracking-wider text-[#4F46E5]">Visibility audit · what’s covered</p>
             <ul class="mt-6 space-y-4">
               {auditItems.map((item, i) => (
-                <li class="flex items-start gap-4">
+                <li class="tick flex items-start gap-4" style={`--d:${300 + i * 160}ms`}>
                   <span class="display flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#2DD4BF] text-sm font-extrabold">{i + 1}</span>
                   <span class="pt-1 font-medium">{item}</span>
                 </li>
@@ -233,15 +256,15 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
 
     <!-- Pricing strip -->
     <section class="mx-auto max-w-7xl px-5 py-24 sm:px-8">
-      <div class="grid gap-6 md:grid-cols-2">
+      <div data-reveal class="grid gap-6 md:grid-cols-2">
         <div class="rounded-[2rem] border-2 border-[#1E1B4B] p-8 sm:p-10">
           <p class="text-sm font-bold uppercase tracking-wider">Ongoing SEO</p>
-          <p class="display mt-3 text-5xl font-extrabold">From $1,000<span class="text-2xl">/month</span></p>
+          <p class="display mt-3 text-5xl font-extrabold">From $<span data-count="1000">1,000</span><span class="text-2xl">/month</span></p>
           <p class="mt-3 text-[#1E1B4B]/70">Month to month. No lock-in. Prices exclude GST.</p>
         </div>
         <div class="rounded-[2rem] border-2 border-[#1E1B4B] p-8 sm:p-10">
           <p class="text-sm font-bold uppercase tracking-wider">New website</p>
-          <p class="display mt-3 text-5xl font-extrabold">From $1,490</p>
+          <p class="display mt-3 text-5xl font-extrabold">From $<span data-count="1490">1,490</span></p>
           <p class="mt-3 text-[#1E1B4B]/70">One-off. Copywriting included. Yours once it launches.</p>
         </div>
       </div>
@@ -250,10 +273,10 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
 
     <!-- Blog -->
     <section id="blog" class="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
-      <h2 class="display text-4xl font-extrabold tracking-tight sm:text-5xl">Straight answers, written down.</h2>
+      <h2 data-reveal class="display text-4xl font-extrabold tracking-tight sm:text-5xl">Straight answers, written down.</h2>
       <div class="mt-10 grid gap-6 md:grid-cols-3">
-        {posts.map((p) => (
-          <a href={`/blog/${p.id}/`} class="group overflow-hidden rounded-[2rem] bg-white transition-transform hover:-translate-y-1">
+        {posts.map((p, i) => (
+          <a data-reveal style={`--d:${i * 120}ms`} href={`/blog/${p.id}/`} class="group overflow-hidden rounded-[2rem] bg-white transition-transform hover:-translate-y-1">
             <Image src={p.data.heroImage} alt={p.data.heroImageAlt} width={800} height={450} class="aspect-video w-full object-cover" />
             <div class="p-7">
               <p class="text-xs font-semibold uppercase tracking-wider text-[#1E1B4B]/50">{dateFormatter.format(p.data.publishDate)}</p>
@@ -267,9 +290,10 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
     <!-- Final CTA -->
     <section class="px-5 pb-10 sm:px-8">
       <div class="relative mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-[#FFCB47] px-8 py-20 text-center sm:px-16">
-        <div class="absolute -left-16 -top-16 h-56 w-56 rounded-full border-[14px] border-[#1E1B4B]/10"></div>
-        <div class="absolute -bottom-20 -right-10 h-72 w-72 rounded-full bg-[#2DD4BF]/40"></div>
-        <h2 class="display relative text-4xl font-extrabold tracking-tight sm:text-6xl">Let’s see where you stand.</h2>
+        <div class="drift absolute -left-16 -top-16 h-56 w-56 rounded-full border-[14px] border-[#1E1B4B]/10"></div>
+        <div class="drift absolute -bottom-20 -right-10 h-72 w-72 rounded-full bg-[#2DD4BF]/40" style="--d:-4s"></div>
+        <div class="drift absolute left-[12%] bottom-8 h-10 w-10 rotate-12 rounded-lg bg-[#FF8A65]" style="--d:-2s"></div>
+        <h2 data-reveal class="display relative text-4xl font-extrabold tracking-tight sm:text-6xl">Let’s see where you stand.</h2>
         <p class="relative mx-auto mt-5 max-w-xl text-lg">Send me your website or business name. I’ll come back with what’s working, what isn’t, and what I’d fix first.</p>
         <a href="/contact/" class="pill pill-lg relative mt-9 bg-[#1E1B4B] text-white">
           <span>Get a free audit</span>
@@ -286,35 +310,147 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
     <style>
       body { font-family: 'Inter Variable', system-ui, sans-serif; }
       h1, h2, h3 { color: inherit; }
+      html { scroll-behavior: smooth; }
       .display { font-family: 'Bricolage Grotesque Variable', 'Inter Variable', sans-serif; }
+
+      /* Buttons */
       .pill {
         display: inline-flex; align-items: center; gap: 0.9rem;
         border-radius: 999px; padding: 0.4rem 0.45rem 0.4rem 1.25rem;
         font-weight: 600; font-size: 15px; box-shadow: 0 1px 2px rgb(30 27 75 / 0.08);
-        transition: transform 0.2s ease;
+        transition: transform 0.25s cubic-bezier(.34,1.56,.64,1);
       }
-      .pill:hover { transform: translateY(-2px); }
+      .pill:hover { transform: translateY(-3px) rotate(-1deg); }
       .pill-lg { padding: 0.55rem 0.55rem 0.55rem 1.6rem; font-size: 16px; }
       .pill-dot {
         display: inline-flex; height: 2.4rem; width: 2.4rem; align-items: center; justify-content: center;
-        border-radius: 999px; font-weight: 700; transition: transform 0.2s ease;
+        border-radius: 999px; font-weight: 700; transition: transform 0.25s ease;
       }
-      .pill:hover .pill-dot { transform: translateX(3px); }
+      .pill:hover .pill-dot { transform: translateX(3px) rotate(-45deg); }
+      .nudge { animation: nudge 2.6s ease-in-out 2s infinite; }
+      .squiggle {
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='6' viewBox='0 0 20 6'%3E%3Cpath d='M0 3 Q5 0 10 3 T20 3' fill='none' stroke='%232DD4BF' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x 0 100% / 20px 6px;
+        padding-bottom: 6px;
+      }
+      .squiggle:hover { animation: squiggle 0.5s linear infinite; }
+
+      /* Chips */
       .chip {
         position: absolute; border-radius: 999px; padding: 0.55rem 1rem;
         font-weight: 700; font-size: 14px; color: #1E1B4B; box-shadow: 0 6px 0 rgb(30 27 75 / 0.18);
-        white-space: nowrap;
+        white-space: nowrap; transform: rotate(var(--r, 0deg));
       }
-      .card { transform: rotate(var(--tilt)); transition: transform 0.25s ease; }
-      .card:hover { transform: rotate(0deg) translateY(-4px); }
+      .float { animation: pop 0.6s cubic-bezier(.34,1.56,.64,1) var(--d, 0s) both, float 5s ease-in-out calc(var(--d, 0s) + 0.6s) infinite; }
+      .caret { margin-left: 1px; animation: blink 1s steps(1) infinite; }
+
+      /* Hero entrance */
+      .word { display: inline-block; animation: rise 0.7s cubic-bezier(.22,1,.36,1) var(--d) both; }
+      .enter { animation: rise 0.7s cubic-bezier(.22,1,.36,1) var(--d) both; }
+      .pulse-dot::after {
+        content: ''; position: absolute; inset: 0; border-radius: 999px; background: #2DD4BF;
+        animation: pulse-ring 1.8s ease-out infinite;
+      }
+
+      /* Hero map */
+      .hero-art { animation: pop 0.8s cubic-bezier(.34,1.56,.64,1) 0.15s both; }
+      .road { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 1.1s ease-out var(--d) forwards; }
+      .ripple { transform-box: fill-box; transform-origin: center; opacity: 0; animation: ripple 3.6s ease-out var(--d) infinite; }
+      .pin-bob { transform-box: fill-box; transform-origin: center; animation: pin-bob 3.2s ease-in-out var(--d) infinite; }
+      .your-pin { transform-box: fill-box; transform-origin: 50% 100%; animation: drop 0.9s cubic-bezier(.34,1.56,.64,1) 0.6s both, bob 3.5s ease-in-out 1.5s infinite; }
+      .your-pin.found { animation: found 0.6s cubic-bezier(.34,1.56,.64,1), bob 3.5s ease-in-out 0.6s infinite; }
+      .spin { animation: spin 24s linear infinite; }
+      .spin-slow { animation: spin 18s linear infinite; }
+
+      /* Marquees */
       .marquee { animation: marquee 40s linear infinite; }
-      .bob { animation: bob 3.5s ease-in-out infinite; }
-      @keyframes marquee { to { transform: translateX(-50%); } }
+      .marquee-reverse { animation-direction: reverse; animation-duration: 55s; }
+      .marquee:hover { animation-play-state: paused; }
+
+      /* Cards and sections */
+      .card { transform: rotate(var(--tilt)); transition: transform 0.35s cubic-bezier(.34,1.56,.64,1); }
+      .card:hover { transform: rotate(0deg) translateY(-6px) scale(1.01); }
+      .wobble { animation: wobble 7s ease-in-out infinite; }
+      .wave { display: inline-block; transform-origin: 70% 70%; animation: wave 2.4s ease-in-out infinite; }
+      .drift { animation: drift 10s ease-in-out var(--d, 0s) infinite; }
+
+      /* Scroll reveals (only hidden once JS has marked the page ready) */
+      .js [data-reveal] { opacity: 0; translate: 0 28px; transition: opacity 0.7s ease var(--d, 0ms), translate 0.8s cubic-bezier(.22,1,.36,1) var(--d, 0ms); }
+      .js [data-reveal].in { opacity: 1; translate: 0 0; }
+      .js .tick { opacity: 0; translate: -14px 0; transition: opacity 0.5s ease var(--d), translate 0.6s cubic-bezier(.34,1.56,.64,1) var(--d); }
+      .js .in .tick { opacity: 1; translate: 0 0; }
+
+      @keyframes rise { from { opacity: 0; transform: translateY(0.6em); } }
+      @keyframes pop { from { opacity: 0; scale: 0.6; } }
+      @keyframes float { 50% { translate: 0 -8px; } }
+      @keyframes blink { 50% { opacity: 0; } }
+      @keyframes pulse-ring { to { transform: scale(3); opacity: 0; } }
+      @keyframes draw { to { stroke-dashoffset: 0; } }
+      @keyframes ripple { 0% { transform: scale(0.35); opacity: 0.9; } 100% { transform: scale(1.25); opacity: 0; } }
+      @keyframes pin-bob { 50% { transform: translateY(-8px) scale(1.15); } }
+      @keyframes drop { from { opacity: 0; transform: translateY(-160px); } }
       @keyframes bob { 50% { transform: translateY(-10px); } }
+      @keyframes found { 40% { transform: translateY(-26px) scale(1.12); } }
+      @keyframes spin { to { rotate: 360deg; } }
+      @keyframes marquee { to { transform: translateX(-50%); } }
+      @keyframes wobble { 0%, 100% { rotate: 6deg; border-radius: 2.5rem; } 50% { rotate: -3deg; border-radius: 3.5rem 2rem 3rem 2.2rem; } }
+      @keyframes wave { 0%, 60%, 100% { rotate: 0deg; } 10%, 30% { rotate: 16deg; } 20%, 40% { rotate: -8deg; } }
+      @keyframes drift { 50% { translate: 18px -14px; rotate: 20deg; } }
+      @keyframes nudge { 0%, 80%, 100% { transform: translateX(0); } 88% { transform: translateX(4px); } 94% { transform: translateX(-1px); } }
+      @keyframes squiggle { to { background-position-x: 20px; } }
+
       @media (prefers-reduced-motion: reduce) {
-        .marquee, .bob { animation: none; }
-        .card, .card:hover { transform: none; }
+        *, *::before, *::after { animation: none !important; transition: none !important; }
+        .road { stroke-dashoffset: 0; }
+        .ripple { opacity: 0.5; }
+        .js [data-reveal], .js .tick { opacity: 1; translate: none; }
       }
     </style>
+
+    <script>
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.documentElement.classList.add('js');
+
+      // Scroll reveals, plus count-ups for any numbers inside the revealed block.
+      const countUp = (el: HTMLElement) => {
+        const target = Number(el.dataset.count);
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / 1100, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3))).toLocaleString('en-AU');
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
+          if (!reduced) e.target.querySelectorAll<HTMLElement>('[data-count]').forEach(countUp);
+          io.unobserve(e.target);
+        }),
+        { threshold: 0.2 }
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+      // The search chip types local searches; the pin hops each time one "finds" you.
+      const typer = document.querySelector<HTMLElement>('[data-typer]');
+      const pin = document.querySelector<SVGGElement>('[data-pin]');
+      const queries = ['plumber near me', 'cafe Moonee Ponds', 'electrician Essendon', 'dentist Ascot Vale', 'accountant near me'];
+      if (typer && !reduced) {
+        let q = 0;
+        const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+        (async () => {
+          await sleep(2200);
+          for (;;) {
+            const text = queries[q];
+            for (let i = typer.textContent!.length; i >= 0; i--) { typer.textContent = typer.textContent!.slice(0, i); await sleep(35); }
+            for (let i = 1; i <= text.length; i++) { typer.textContent = text.slice(0, i); await sleep(70); }
+            if (pin) { pin.classList.remove('found'); void pin.getBoundingClientRect(); pin.classList.add('found'); }
+            await sleep(2400);
+            q = (q + 1) % queries.length;
+          }
+        })();
+      }
+    </script>
   </body>
 </html>
