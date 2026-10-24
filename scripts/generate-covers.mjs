@@ -6,6 +6,10 @@
  * Covers are 1600x900 PNGs saved to src/assets/covers/<slug>.png. Point a post's `heroImage`
  * at "../../assets/covers/<slug>.png" to use one. Astro converts them to WebP at build time.
  *
+ * Style follows the "playful local" direction: warm flat colours, Bricolage Grotesque headlines,
+ * a teal map pin with signal rings, no gradients. Colour schemes rotate in publish order (oldest
+ * first), so neighbouring posts differ and adding a new post never changes an older cover.
+ *
  * Title split: a trailing "(…)" or the text after a "?" becomes the smaller second line, e.g.
  * "How Much Does SEO Cost in Australia? (Honest Numbers)" -> headline + "Honest Numbers".
  */
@@ -23,29 +27,52 @@ const OUT_DIR = path.join(ROOT, 'src', 'assets', 'covers');
 const WIDTH = 1600;
 const HEIGHT = 900;
 
-// Brand tokens, mirrored from src/styles/global.css.
+// Palette from the playful-local mock-up (src/pages/mockups/playful.astro).
 const C = {
-  brand950: '#1e1b4b',
-  brand900: '#312e81',
-  brand800: '#3730a3',
-  brand600: '#4f46e5',
-  brand300: '#a5b4fc',
-  brand200: '#c7d2fe',
-  accent400: '#2dd4bf',
-  accent300: '#5eead4',
+  ink: '#1E1B4B',
+  indigo: '#4F46E5',
+  cream: '#FBF6EC',
+  yellow: '#FFCB47',
+  teal: '#2DD4BF',
+  coral: '#FF8A65',
+  lilac: '#A5B4FC',
 };
+
+// bg = card colour, text = headline colour, pin/ring = decoration colours, tag = kicker pill.
+const SCHEMES = [
+  { bg: C.yellow, text: C.ink, sub: C.ink, pin: C.ink, dot: C.yellow, ring: C.ink, tagBg: C.ink, tagText: C.yellow },
+  { bg: C.teal, text: C.ink, sub: C.ink, pin: C.ink, dot: C.teal, ring: C.ink, tagBg: C.cream, tagText: C.ink },
+  { bg: C.indigo, text: '#FFFFFF', sub: '#E0E7FF', pin: C.teal, dot: C.ink, ring: C.yellow, tagBg: C.yellow, tagText: C.ink },
+  { bg: C.coral, text: C.ink, sub: C.ink, pin: C.ink, dot: C.coral, ring: C.cream, tagBg: C.cream, tagText: C.ink },
+  { bg: C.cream, text: C.ink, sub: C.ink, pin: C.teal, dot: C.ink, ring: C.indigo, tagBg: C.teal, tagText: C.ink },
+];
 
 const font = (pkg, file) => readFile(path.join(ROOT, 'node_modules', '@fontsource', pkg, 'files', file));
 const fonts = [
-  { name: 'Manrope', weight: 800, style: 'normal', data: await font('manrope', 'manrope-latin-800-normal.woff') },
+  { name: 'Bricolage', weight: 800, style: 'normal', data: await font('bricolage-grotesque', 'bricolage-grotesque-latin-800-normal.woff') },
+  { name: 'Bricolage', weight: 700, style: 'normal', data: await font('bricolage-grotesque', 'bricolage-grotesque-latin-700-normal.woff') },
   { name: 'Inter', weight: 500, style: 'normal', data: await font('inter', 'inter-latin-500-normal.woff') },
   { name: 'Inter', weight: 600, style: 'normal', data: await font('inter', 'inter-latin-600-normal.woff') },
 ];
 
+const svgUri = (svg) => `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+
 // Same mark as src/components/Logo.astro.
-const LOGO_MARK = `data:image/svg+xml;utf8,${encodeURIComponent(
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="${C.brand600}"/><rect x="10" y="8" width="5" height="24" rx="1.5" fill="white"/><path d="M17 20 L30 8" stroke="white" stroke-width="5" stroke-linecap="round"/><path d="M17 20 L30 32" stroke="white" stroke-width="5" stroke-linecap="round"/><circle cx="33" cy="8" r="5" fill="${C.accent400}"/></svg>`
-)}`;
+const LOGO_MARK = svgUri(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="${C.ink}"/><rect x="10" y="8" width="5" height="24" rx="1.5" fill="white"/><path d="M17 20 L30 8" stroke="white" stroke-width="5" stroke-linecap="round"/><path d="M17 20 L30 32" stroke="white" stroke-width="5" stroke-linecap="round"/><circle cx="33" cy="8" r="5" fill="${C.teal}"/></svg>`
+);
+
+// Map pin with signal rings, drawn flat. Sits in the bottom-right corner, partly off the edge.
+const pinArt = (s) =>
+  svgUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+    <g fill="none" stroke="${s.ring}" stroke-width="14">
+      <circle cx="300" cy="330" r="150" opacity="0.55"/>
+      <circle cx="300" cy="330" r="225" opacity="0.32"/>
+      <circle cx="300" cy="330" r="300" opacity="0.18"/>
+    </g>
+    <path d="M300 170 C245 170 205 210 205 265 C205 335 300 415 300 415 C300 415 395 335 395 265 C395 210 355 170 300 170 Z" fill="${s.pin}"/>
+    <circle cx="300" cy="262" r="36" fill="${s.dot}"/>
+  </svg>`);
 
 /** Minimal element helper so we don't need JSX. */
 const h = (type, style, ...children) => ({ type, props: { style: { display: 'flex', ...style }, children: children.flat() } });
@@ -63,95 +90,50 @@ function frontmatterValue(src, key) {
   return m ? m[1].trim() : '';
 }
 
-function cover({ headline, subline, kicker }) {
-  // Concentric "signal" rings, echoing the homepage beacon, bleeding off the right edge.
-  const rings = [260, 420, 580, 740].map((size, i) =>
-    h('div', {
-      position: 'absolute',
-      width: size,
-      height: size,
-      right: 160 - size / 2,
-      top: 300 - size / 2,
-      borderRadius: '50%',
-      border: `2px solid ${i === 0 ? C.accent400 : C.brand300}`,
-      opacity: i === 0 ? 0.55 : 0.18 - i * 0.03,
-    })
-  );
-
+function cover({ headline, subline, kicker, s }) {
   return h(
     'div',
-    {
-      width: WIDTH,
-      height: HEIGHT,
-      display: 'flex',
-      position: 'relative',
-      backgroundImage: `linear-gradient(135deg, ${C.brand950} 0%, ${C.brand900} 60%, ${C.brand800} 100%)`,
-      fontFamily: 'Inter',
-      overflow: 'hidden',
-    },
-    rings,
-    h('div', {
-      position: 'absolute',
-      width: 26,
-      height: 26,
-      right: 147,
-      top: 287,
-      borderRadius: '50%',
-      backgroundColor: C.accent400,
-    }),
+    { width: WIDTH, height: HEIGHT, position: 'relative', backgroundColor: s.bg, fontFamily: 'Inter', overflow: 'hidden' },
+    { type: 'img', props: { src: pinArt(s), width: 760, height: 760, style: { position: 'absolute', right: -170, bottom: -210 } } },
+    // small confetti shapes
+    h('div', { position: 'absolute', right: 520, top: 110, width: 34, height: 34, borderRadius: 999, backgroundColor: s.ring, opacity: 0.35 }),
+    h('div', { position: 'absolute', right: 120, top: 150, width: 46, height: 46, borderRadius: 12, backgroundColor: s.tagBg, transform: 'rotate(18deg)' }),
     h(
       'div',
-      {
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: '96px 110px 88px',
-        width: '100%',
-        height: '100%',
-      },
+      { flexDirection: 'column', justifyContent: 'space-between', padding: '90px 104px 84px', width: '100%', height: '100%' },
       h(
         'div',
-        { display: 'flex', flexDirection: 'column', maxWidth: 1080 },
+        { flexDirection: 'column', maxWidth: 1040 },
         h(
           'div',
-          {
-            display: 'flex',
-            fontSize: 28,
-            fontWeight: 600,
-            letterSpacing: 4,
-            textTransform: 'uppercase',
-            color: C.accent300,
-          },
+          { alignSelf: 'flex-start', padding: '12px 26px', borderRadius: 999, backgroundColor: s.tagBg, color: s.tagText, fontSize: 28, fontWeight: 600 },
           kicker
         ),
         h(
           'div',
           {
-            display: 'flex',
-            marginTop: 36,
-            fontFamily: 'Manrope',
+            marginTop: 40,
+            fontFamily: 'Bricolage',
             fontWeight: 800,
-            fontSize: headline.length > 34 ? 84 : 96,
-            lineHeight: 1.08,
-            letterSpacing: -1.5,
-            color: 'white',
+            fontSize: headline.length > 34 ? 92 : 104,
+            lineHeight: 1.0,
+            letterSpacing: -2,
+            color: s.text,
           },
           headline
         ),
         subline
-          ? h('div', { display: 'flex', marginTop: 28, fontSize: 40, fontWeight: 500, lineHeight: 1.3, color: C.brand200 }, subline)
+          ? h('div', { marginTop: 30, fontFamily: 'Bricolage', fontWeight: 700, fontSize: 44, lineHeight: 1.2, color: s.sub, opacity: 0.85 }, subline)
           : []
       ),
       h(
         'div',
-        { display: 'flex', alignItems: 'center' },
-        { type: 'img', props: { src: LOGO_MARK, width: 56, height: 56 } },
-        h('div', { display: 'flex', marginLeft: 18, fontFamily: 'Manrope', fontWeight: 800, fontSize: 34, color: 'white' }, 'Kwantum'),
-        h('div', { display: 'flex', marginLeft: 22, width: 2, height: 30, backgroundColor: C.brand300, opacity: 0.4 }),
-        h('div', { display: 'flex', marginLeft: 22, fontSize: 28, fontWeight: 500, color: C.brand300 }, 'Mark Kwan · Melbourne')
+        { alignItems: 'center' },
+        { type: 'img', props: { src: LOGO_MARK, width: 58, height: 58 } },
+        h('div', { marginLeft: 18, fontFamily: 'Bricolage', fontWeight: 800, fontSize: 36, color: s.text }, 'Kwantum'),
+        h('div', { marginLeft: 22, fontSize: 28, fontWeight: 500, color: s.sub, opacity: 0.75 }, 'Mark Kwan · Melbourne')
       )
-    ),
-    h('div', { position: 'absolute', left: 0, bottom: 0, width: WIDTH, height: 10, backgroundColor: C.accent400 })
+    )
   );
 }
 
@@ -161,16 +143,21 @@ async function main() {
   const only = onlyArg ? new Set(onlyArg.replace('--only=', '').split(',')) : null;
 
   const files = (await readdir(BLOG_DIR)).filter((f) => f.endsWith('.md'));
-  for (const file of files) {
-    const slug = file.replace(/\.md$/, '');
-    if (only && !only.has(slug)) continue;
+  const posts = await Promise.all(
+    files.map(async (file) => {
+      const src = await readFile(path.join(BLOG_DIR, file), 'utf8');
+      return { slug: file.replace(/\.md$/, ''), src, date: frontmatterValue(src, 'publishDate') };
+    })
+  );
+  posts.sort((a, b) => a.date.localeCompare(b.date) || a.slug.localeCompare(b.slug));
 
-    const src = await readFile(path.join(BLOG_DIR, file), 'utf8');
+  for (const [index, { slug, src }] of posts.entries()) {
+    if (only && !only.has(slug)) continue;
     const title = JSON.parse(frontmatterValue(src, 'title'));
     const tags = JSON.parse(frontmatterValue(src, 'tags') || '[]');
     const [headline, subline] = splitTitle(title);
 
-    const svg = await satori(cover({ headline, subline, kicker: `Kwantum Blog · ${tags[0] ?? 'Guide'}` }), {
+    const svg = await satori(cover({ headline, subline, kicker: tags[0] ?? 'Guide', s: SCHEMES[index % SCHEMES.length] }), {
       width: WIDTH,
       height: HEIGHT,
       fonts,
