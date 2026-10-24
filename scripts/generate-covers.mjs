@@ -18,6 +18,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import satori from 'satori';
 import { Resvg } from '@resvg/resvg-js';
+import { markBody } from './lib/logo-mark.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
@@ -57,10 +58,9 @@ const fonts = [
 
 const svgUri = (svg) => `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 
-// Same mark as src/components/Logo.astro.
-const LOGO_MARK = svgUri(
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><rect width="40" height="40" rx="10" fill="${C.ink}"/><rect x="10" y="8" width="5" height="24" rx="1.5" fill="white"/><path d="M17 20 L30 8" stroke="white" stroke-width="5" stroke-linecap="round"/><path d="M17 20 L30 32" stroke="white" stroke-width="5" stroke-linecap="round"/><circle cx="33" cy="8" r="5" fill="${C.teal}"/></svg>`
-);
+// The Kwantum mark (shared with generate-logo.mjs). The ring turns cream on the dark indigo cover.
+const logoMark = (s) =>
+  svgUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -8 48 54">${markBody({ ring: s.bg === C.indigo ? C.cream : C.ink })}</svg>`);
 
 // Map pin with signal rings, drawn flat. Sits in the bottom-right corner, partly off the edge.
 const pinArt = (s) =>
@@ -129,7 +129,7 @@ function cover({ headline, subline, kicker, s }) {
       h(
         'div',
         { alignItems: 'center' },
-        { type: 'img', props: { src: LOGO_MARK, width: 58, height: 58 } },
+        { type: 'img', props: { src: logoMark(s), width: 64, height: 72 } },
         h('div', { marginLeft: 18, fontFamily: 'Bricolage', fontWeight: 800, fontSize: 36, color: s.text }, 'Kwantum'),
         h('div', { marginLeft: 22, fontSize: 28, fontWeight: 500, color: s.sub, opacity: 0.75 }, 'Mark Kwan · Melbourne')
       )
