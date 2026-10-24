@@ -1,24 +1,23 @@
 ---
-// Two decorative strips scrolling in opposite directions: suburbs from around Australia (shuffled
-// on every visit), and the places customers find you. Hidden from screen readers and kept out of
-// crawlable text on purpose: these illustrate "wherever people search", they are not a service
-// area (see src/lib/au-suburbs.ts).
-import { AU_SUBURBS } from '../lib/au-suburbs';
+// Two strips scrolling in opposite directions: the suburbs Kwantum covers, and where customers
+// find you. Suburbs come from the Melbourne area entry so they stay in sync with that page.
+import { getEntry } from 'astro:content';
 
-const COUNT = 14;
-const initial = AU_SUBURBS.filter((_, i) => i % 2 === 0).slice(0, COUNT);
+const melbourne = await getEntry('areas', 'melbourne');
+const suburbs = melbourne?.data.suburbs ?? [];
 const channels = ['Google', 'Google Maps', 'ChatGPT', 'Gemini', 'Perplexity', 'AI Overviews'];
 ---
 
-<div class="border-y-2 border-ink" aria-hidden="true">
+<div class="border-y-2 border-ink">
   <div class="overflow-hidden bg-sun py-4">
-    <div data-suburb-strip class="marquee flex w-max gap-10 whitespace-nowrap font-display text-2xl font-bold text-ink">
-      {[...initial, ...initial].map((s) => (
-        <span class="flex items-center gap-10"><span data-suburb>{s}</span><span class="h-3 w-3 rounded-full bg-ink"></span></span>
+    <p class="sr-only">Suburbs I work in: {suburbs.join(', ')}.</p>
+    <div class="marquee flex w-max gap-10 whitespace-nowrap font-display text-2xl font-bold text-ink" aria-hidden="true">
+      {[...suburbs, ...suburbs].map((s) => (
+        <span class="flex items-center gap-10">{s}<span class="h-3 w-3 rounded-full bg-ink"></span></span>
       ))}
     </div>
   </div>
-  <div class="overflow-hidden bg-ink py-3 text-white">
+  <div class="overflow-hidden bg-ink py-3 text-white" aria-hidden="true">
     <div class="marquee marquee-reverse flex w-max gap-8 whitespace-nowrap text-lg font-semibold">
       {[...channels, ...channels, ...channels, ...channels].map((c) => (
         <span class="flex items-center gap-8">Found on {c}<span class="text-teal">✦</span></span>
@@ -26,15 +25,3 @@ const channels = ['Google', 'Google Maps', 'ChatGPT', 'Gemini', 'Perplexity', 'A
     </div>
   </div>
 </div>
-
-<script>
-  import { AU_SUBURBS } from '../lib/au-suburbs';
-
-  // A fresh random set each visit. Both halves get the same names so the loop stays seamless.
-  document.querySelectorAll<HTMLElement>('[data-suburb-strip]').forEach((strip) => {
-    const slots = strip.querySelectorAll<HTMLElement>('[data-suburb]');
-    const half = slots.length / 2;
-    const picks = [...AU_SUBURBS].sort(() => Math.random() - 0.5).slice(0, half);
-    slots.forEach((el, i) => (el.textContent = picks[i % half]));
-  });
-</script>

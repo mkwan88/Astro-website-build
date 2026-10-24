@@ -2,8 +2,9 @@
 // Animated "local map" hero art: roads draw in, signal ripples from your pin, other businesses
 // bob, suburb tags float, and a search bubble types local searches (your pin hops each time).
 // Flat shapes only, no fake results. Decorative, so hidden from screen readers. On each visit the
-// tags and searches are drawn at random from suburbs around Australia (src/lib/au-suburbs.ts); the
-// props are only the first frame before the script runs.
+// tags and searches are drawn at random from the Melbourne service-area suburbs (the Melbourne
+// area entry); the props are only the first frame before the script runs.
+import { getEntry } from 'astro:content';
 interface Props {
   suburbs?: [string, string, string];
   queries?: string[];
@@ -13,9 +14,11 @@ const {
   suburbs = ['Moonee Ponds', 'Ascot Vale', 'Essendon'],
   queries = ['plumber near me', 'cafe Moonee Ponds', 'electrician Essendon', 'dentist Ascot Vale', 'accountant near me'],
 } = Astro.props;
+
+const pool = (await getEntry('areas', 'melbourne'))?.data.suburbs ?? suburbs;
 ---
 
-<div class="hero-art motion-pop relative mx-auto aspect-square w-full max-w-[520px]" style="--d:150ms" aria-hidden="true" data-queries={JSON.stringify(queries)}>
+<div class="hero-art motion-pop relative mx-auto aspect-square w-full max-w-[520px]" style="--d:150ms" aria-hidden="true" data-queries={JSON.stringify(queries)} data-suburbs={JSON.stringify(pool)}>
   <svg viewBox="0 0 100 100" class="motion-spin absolute -right-2 -top-4 h-20 w-20 text-coral sm:-right-8 sm:-top-8 sm:h-28 sm:w-28">
     <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="14 10" />
   </svg>
@@ -72,24 +75,27 @@ const {
 </style>
 
 <script>
-  import { AU_SUBURBS, SEARCH_TERMS } from '../lib/au-suburbs';
-
+  // Trades and shops people search for, paired with a suburb in the search bubble.
+  const SEARCH_TERMS = [
+    'plumber', 'electrician', 'cafe', 'dentist', 'accountant', 'physio', 'florist', 'mechanic',
+    'hairdresser', 'locksmith', 'bakery', 'vet', 'landscaper', 'builder', 'pet groomer',
+  ];
   const pick = <T,>(list: T[]) => list[Math.floor(Math.random() * list.length)];
-  const placeName = (s: string) => s.replace(/\s+[A-Z]{2,3}$/, ''); // "Fremantle WA" -> "Fremantle"
 
   document.querySelectorAll<HTMLElement>('.hero-art[data-queries]').forEach((art) => {
     const typer = art.querySelector<HTMLElement>('[data-typer]');
     const pin = art.querySelector<SVGGElement>('[data-pin]');
     const chips = [...art.querySelectorAll<HTMLElement>('[data-chip]')];
+    const suburbs: string[] = JSON.parse(art.dataset.suburbs || '[]');
 
-    // Random suburbs from around Australia for the floating tags.
-    const start = [...AU_SUBURBS].sort(() => Math.random() - 0.5);
-    chips.forEach((chip, i) => (chip.textContent = placeName(start[i])));
+    // Random Melbourne suburbs for the floating tags.
+    const start = [...suburbs].sort(() => Math.random() - 0.5);
+    chips.forEach((chip, i) => start[i] && (chip.textContent = start[i]));
 
-    if (!typer || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!typer || !suburbs.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const nextQuery = () => {
-      const suburb = placeName(pick(AU_SUBURBS));
+      const suburb = pick(suburbs);
       return { suburb, text: Math.random() < 0.2 ? `${pick(SEARCH_TERMS)} near me` : `${pick(SEARCH_TERMS)} ${suburb}` };
     };
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
