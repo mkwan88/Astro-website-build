@@ -121,7 +121,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
 
       <!-- Hero art: a stylised local map. Flat shapes, no fake results. -->
       <div class="hero-art relative mx-auto aspect-square w-full max-w-[520px]" aria-hidden="true">
-        <svg viewBox="0 0 100 100" class="spin absolute -right-8 -top-8 h-28 w-28 text-[#FF8A65]">
+        <svg viewBox="0 0 100 100" class="spin absolute -right-2 -top-4 h-20 w-20 sm:-right-8 sm:-top-8 sm:h-28 sm:w-28 text-[#FF8A65]">
           <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" stroke-width="8" stroke-dasharray="14 10" />
         </svg>
         <div class="absolute inset-0 rounded-[3rem] bg-[#4F46E5]"></div>
@@ -238,7 +238,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
           </a>
         </div>
         <div class="relative">
-          <div class="spin-slow absolute -right-3 -top-3 z-10 flex h-24 w-24 items-center justify-center rounded-full bg-[#FF8A65] display text-lg font-extrabold text-[#1E1B4B]">Free</div>
+          <div class="spin-slow absolute -top-3 right-0 z-10 flex h-20 w-20 sm:-right-3 sm:h-24 sm:w-24 items-center justify-center rounded-full bg-[#FF8A65] display text-lg font-extrabold text-[#1E1B4B]">Free</div>
           <div data-reveal class="rotate-[-1.5deg] rounded-[2rem] bg-[#FBF6EC] p-8 text-[#1E1B4B] shadow-2xl sm:p-10">
             <p class="text-sm font-bold uppercase tracking-wider text-[#4F46E5]">Visibility audit · what’s covered</p>
             <ul class="mt-6 space-y-4">
@@ -311,6 +311,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-AU', { day: 'numeric', month: 
       body { font-family: 'Inter Variable', system-ui, sans-serif; }
       h1, h2, h3 { color: inherit; }
       html { scroll-behavior: smooth; }
+      html, body { overflow-x: clip; }
       .display { font-family: 'Bricolage Grotesque Variable', 'Inter Variable', sans-serif; }
 
       /* Buttons */
