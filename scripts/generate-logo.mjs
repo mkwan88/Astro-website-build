@@ -167,7 +167,7 @@ async function ogImage() {
       el({ fontFamily: 'Bricolage', fontWeight: 800, fontSize: 44, color: C.ink }, 'Kwantum'),
     ]),
     el({ flexDirection: 'column', maxWidth: 760 }, [
-      el({ fontFamily: 'Bricolage', fontWeight: 800, fontSize: 84, lineHeight: 1.0, letterSpacing: -2, color: C.ink }, 'Be the first choice in your suburb.'),
+      el({ fontFamily: 'Bricolage', fontWeight: 800, fontSize: 84, lineHeight: 1.0, letterSpacing: -2, color: C.ink }, 'Be the first choice in your area.'),
       el({ marginTop: 26, fontSize: 30, color: C.ink, opacity: 0.8 }, 'Local SEO, websites and AI search · Ascot Vale, Melbourne'),
     ]),
   ]);

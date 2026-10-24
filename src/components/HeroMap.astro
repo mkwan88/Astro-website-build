@@ -1,7 +1,9 @@
 ---
 // Animated "local map" hero art: roads draw in, signal ripples from your pin, other businesses
 // bob, suburb tags float, and a search bubble types local searches (your pin hops each time).
-// Flat shapes only, no fake results. Decorative, so hidden from screen readers.
+// Flat shapes only, no fake results. Decorative, so hidden from screen readers. On each visit the
+// tags and searches are drawn at random from suburbs around Australia (src/lib/au-suburbs.ts); the
+// props are only the first frame before the script runs.
 interface Props {
   suburbs?: [string, string, string];
   queries?: string[];
@@ -41,9 +43,9 @@ const {
       <circle cx="262" cy="228" r="26" fill="#1E1B4B" />
     </g>
   </svg>
-  <span class="chip motion-float absolute left-[6%] top-[58%] bg-sun" style="--r:-6deg; --d:1.0s">{suburbs[0]}</span>
-  <span class="chip motion-float absolute right-[4%] top-[14%] bg-white" style="--r:5deg; --d:1.2s">{suburbs[1]}</span>
-  <span class="chip motion-float absolute bottom-[8%] right-[18%] bg-coral" style="--r:-3deg; --d:1.4s">{suburbs[2]}</span>
+  <span data-chip class="chip motion-float absolute left-[6%] top-[58%] bg-sun" style="--r:-6deg; --d:1.0s">{suburbs[0]}</span>
+  <span data-chip class="chip motion-float absolute right-[4%] top-[14%] bg-white" style="--r:5deg; --d:1.2s">{suburbs[1]}</span>
+  <span data-chip class="chip motion-float absolute bottom-[8%] right-[18%] bg-coral" style="--r:-3deg; --d:1.4s">{suburbs[2]}</span>
   <span class="chip motion-float absolute left-[8%] top-[7%] bg-teal" style="--r:4deg; --d:0.8s">
     <span class="mr-1.5 opacity-60">🔍</span><span data-typer>{queries[0]}</span><span class="caret">|</span>
   </span>
@@ -70,20 +72,42 @@ const {
 </style>
 
 <script>
+  import { AU_SUBURBS, SEARCH_TERMS } from '../lib/au-suburbs';
+
+  const pick = <T,>(list: T[]) => list[Math.floor(Math.random() * list.length)];
+  const placeName = (s: string) => s.replace(/\s+[A-Z]{2,3}$/, ''); // "Fremantle WA" -> "Fremantle"
+
   document.querySelectorAll<HTMLElement>('.hero-art[data-queries]').forEach((art) => {
     const typer = art.querySelector<HTMLElement>('[data-typer]');
     const pin = art.querySelector<SVGGElement>('[data-pin]');
-    const queries: string[] = JSON.parse(art.dataset.queries || '[]');
-    if (!typer || !queries.length || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const chips = [...art.querySelectorAll<HTMLElement>('[data-chip]')];
 
+    // Random suburbs from around Australia for the floating tags.
+    const start = [...AU_SUBURBS].sort(() => Math.random() - 0.5);
+    chips.forEach((chip, i) => (chip.textContent = placeName(start[i])));
+
+    if (!typer || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const nextQuery = () => {
+      const suburb = placeName(pick(AU_SUBURBS));
+      return { suburb, text: Math.random() < 0.2 ? `${pick(SEARCH_TERMS)} near me` : `${pick(SEARCH_TERMS)} ${suburb}` };
+    };
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const popIn = (el: HTMLElement) => el.animate([{ scale: '0.6', opacity: 0 }, { scale: '1', opacity: 1 }], { duration: 450, easing: 'cubic-bezier(.34,1.56,.64,1)' });
+
     (async () => {
       await sleep(2200);
-      for (let q = 1; ; q = (q + 1) % queries.length) {
-        const text = queries[q];
+      for (let n = 0; ; n++) {
+        const q = nextQuery();
         for (let i = typer.textContent!.length; i >= 0; i--) { typer.textContent = typer.textContent!.slice(0, i); await sleep(35); }
-        for (let i = 1; i <= text.length; i++) { typer.textContent = text.slice(0, i); await sleep(70); }
+        for (let i = 1; i <= q.text.length; i++) { typer.textContent = q.text.slice(0, i); await sleep(70); }
         if (pin) { pin.classList.remove('found'); void pin.getBoundingClientRect(); pin.classList.add('found'); }
+        // The suburb just searched pops onto the map as one of the tags.
+        if (!q.text.endsWith('near me') && chips.length) {
+          const chip = chips[n % chips.length];
+          chip.textContent = q.suburb;
+          popIn(chip);
+        }
         await sleep(2400);
       }
     })();
