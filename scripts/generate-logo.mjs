@@ -9,7 +9,8 @@
  *
  * Outputs
  *   brand/logo/   SVG + PNG marks and lockups, Google Business Profile squares
- *   public/       brand-mark.svg, favicon.svg, favicon.ico, apple-touch-icon.png, icon-192.png, icon-512.png
+ *   public/       brand-mark.svg, favicon.svg, favicon.ico, apple-touch-icon.png, icon-192.png, icon-512.png,
+ *                 og-default.png (1200x630 social share image)
  *
  * The wordmark is Bricolage Grotesque ExtraBold, converted to outlines so the SVGs don't depend
  * on the font being installed.
@@ -140,7 +141,37 @@ async function main() {
   await save(PUBLIC, 'icon-192.png', png(square(C.cream), 192));
   await save(PUBLIC, 'icon-512.png', png(square(C.cream), 512));
 
+  await save(PUBLIC, 'og-default.png', await ogImage());
+
   console.log(out.map((f) => `✓ ${f}`).join('\n'));
+}
+
+/** Default social share image: logo, headline and a map pin with signal rings. */
+async function ogImage() {
+  const read = (pkg, file) => readFile(path.join(ROOT, 'node_modules', '@fontsource', pkg, 'files', file));
+  const fonts = [
+    { name: 'Bricolage', weight: 800, style: 'normal', data: await read('bricolage-grotesque', 'bricolage-grotesque-latin-800-normal.woff') },
+    { name: 'Inter', weight: 500, style: 'normal', data: await read('inter', 'inter-latin-500-normal.woff') },
+  ];
+  const uri = (svg) => `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+  const markBox = tightBox(markBody(), 0);
+  const mark = uri(wrap(markBody(), markBox));
+  const pin = uri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+    <g fill="none" stroke="${C.ink}" stroke-width="14"><circle cx="300" cy="330" r="150" opacity="0.5"/><circle cx="300" cy="330" r="225" opacity="0.3"/><circle cx="300" cy="330" r="300" opacity="0.16"/></g>
+    <path d="M300 170 C245 170 205 210 205 265 C205 335 300 415 300 415 C300 415 395 335 395 265 C395 210 355 170 300 170 Z" fill="#2DD4BF"/><circle cx="300" cy="262" r="36" fill="${C.ink}"/></svg>`);
+  const el = (style, children) => ({ type: 'div', props: { style: { display: 'flex', ...style }, children } });
+  const tree = el({ width: 1200, height: 630, backgroundColor: C.yellow, position: 'relative', overflow: 'hidden', padding: '64px 72px', flexDirection: 'column', justifyContent: 'space-between', fontFamily: 'Inter' }, [
+    { type: 'img', props: { src: pin, width: 600, height: 600, style: { position: 'absolute', right: -130, bottom: -190 } } },
+    el({ alignItems: 'center', gap: 18 }, [
+      { type: 'img', props: { src: mark, width: 70, height: Math.round((70 * markBox.h) / markBox.w) } },
+      el({ fontFamily: 'Bricolage', fontWeight: 800, fontSize: 44, color: C.ink }, 'Kwantum'),
+    ]),
+    el({ flexDirection: 'column', maxWidth: 760 }, [
+      el({ fontFamily: 'Bricolage', fontWeight: 800, fontSize: 84, lineHeight: 1.0, letterSpacing: -2, color: C.ink }, 'Be the first call in your suburb.'),
+      el({ marginTop: 26, fontSize: 30, color: C.ink, opacity: 0.8 }, 'Local SEO, websites and AI search · Ascot Vale, Melbourne'),
+    ]),
+  ]);
+  return png(await satori(tree, { width: 1200, height: 630, fonts }), 1200);
 }
 
 /** Packs PNG images into a .ico container (PNG-compressed entries, supported by all modern browsers). */

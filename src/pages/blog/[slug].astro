@@ -50,41 +50,41 @@ const pageUrl = `${SITE.url}/blog/${entry.id}/`;
 >
   <Breadcrumbs items={crumbs} />
 
-  <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
+  <article class="mx-auto max-w-3xl px-5 py-12 sm:px-8">
     <div class="flex flex-wrap gap-2">
       {entry.data.tags.map((tag) => (
-        <span class="rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold text-brand-700">{tag}</span>
+        <span class="rounded-full bg-teal px-3 py-1 text-sm font-semibold text-ink">{tag}</span>
       ))}
     </div>
-    <h1 class="mt-4 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">{entry.data.title}</h1>
-    <p class="mt-4 text-sm text-slate-400">
+    <h1 class="mt-5 font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-ink sm:text-[3.4rem]">{entry.data.title}</h1>
+    <p class="mt-5 text-slate-500">
       By {entry.data.author} &middot; {dateFormatter.format(entry.data.publishDate)}
       {entry.data.updatedDate && <> &middot; Updated {dateFormatter.format(entry.data.updatedDate)}</>}
     </p>
 
-    <Image src={entry.data.heroImage} alt={entry.data.heroImageAlt} width={900} height={506} class="mt-8 w-full rounded-2xl" />
+    <Image src={entry.data.heroImage} alt={entry.data.heroImageAlt} width={900} height={506} class="sticker mt-10 w-full rounded-[2rem] border-2 border-ink" />
 
-    <div class="prose prose-slate prose-p:leading-relaxed prose-headings:font-display mt-10 max-w-none">
+    <div class="prose prose-lg prose-slate mt-12 max-w-none prose-headings:font-display prose-headings:font-extrabold prose-headings:tracking-tight prose-p:leading-relaxed prose-a:font-semibold prose-a:text-ink prose-a:decoration-teal prose-a:decoration-2 prose-a:underline-offset-4 hover:prose-a:decoration-4 prose-strong:text-ink prose-img:rounded-[1.5rem] prose-img:border-2 prose-img:border-ink prose-li:marker:text-coral">
       <Content />
     </div>
 
     {
       entry.data.author === 'Mark Kwan' && (
-        <aside class="mt-12 flex items-start gap-4 rounded-2xl border border-slate-100 bg-slate-50 p-6">
+        <aside class="mt-14 flex items-start gap-5 rounded-[2rem] bg-white p-7">
           <Image
             src={markPortrait}
             alt="Mark Kwan, founder of Kwantum"
             width={128}
             height={128}
-            class="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-white shadow-md"
+            class="h-20 w-20 shrink-0 rounded-[1.2rem] object-cover ring-4 ring-teal"
           />
           <div>
-            <p class="font-display text-sm font-semibold text-slate-900">Written by Mark Kwan</p>
-            <p class="mt-1 text-sm leading-relaxed text-slate-600">
+            <p class="font-display text-lg font-bold text-ink">Written by Mark Kwan</p>
+            <p class="mt-1 leading-relaxed text-slate-600">
               Mark is the founder of Kwantum, a Melbourne-based local SEO and website studio. He helps
               Australian businesses get found in Google Maps, local search and AI-generated answers.
             </p>
-            <a href="/about/" class="mt-2 inline-block text-sm font-semibold text-brand-600 hover:underline">
+            <a href="/about/" class="squiggle mt-3 inline-block font-semibold text-ink">
               More about Kwantum
             </a>
           </div>
@@ -94,14 +94,14 @@ const pageUrl = `${SITE.url}/blog/${entry.id}/`;
 
     {
       (relatedService || relatedArea) && (
-        <div class="mt-12 flex flex-wrap gap-3 border-t border-slate-100 pt-8">
+        <div class="mt-12 flex flex-wrap gap-3 border-t-2 border-slate-200 pt-8">
           {relatedService && (
-            <a href={`/services/${relatedService.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+            <a href={`/services/${relatedService.id}/`} class="rounded-full border-2 border-ink bg-white px-5 py-2.5 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-sun">
               Explore {relatedService.data.title}
             </a>
           )}
           {relatedArea && (
-            <a href={`/areas/${relatedArea.id}/`} class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
+            <a href={`/areas/${relatedArea.id}/`} class="rounded-full border-2 border-ink bg-white px-5 py-2.5 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-sun">
               Our work in {relatedArea.data.cityName}
             </a>
           )}

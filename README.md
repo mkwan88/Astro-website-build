@@ -36,6 +36,7 @@ See [Kwantum Brand Guidelines.md](Kwantum%20Brand%20Guidelines.md) for the brand
 | `npm run preview` | Preview the production build locally |
 | `node scripts/generate-images.mjs` | Regenerate all AI imagery (requires `GEMINI_API_KEY`) |
 | `node scripts/generate-covers.mjs` | Regenerate branded blog covers from post titles (`--only=slug` for one) |
+| `node scripts/generate-logo.mjs` | Regenerate logo files, favicons and the social share image from `scripts/lib/logo-mark.mjs` |
 
 ## Adding a New City
 

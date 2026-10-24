@@ -1,35 +1,60 @@
 @import "tailwindcss";
-@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/bricolage-grotesque";
 @import "@fontsource-variable/inter";
 @plugin "@tailwindcss/typography";
 
+/*
+ * "Playful local" design system (October 2026). See "Kwantum Brand Guidelines.md".
+ * Named colours (ink, cream, sun, coral, teal, indigo) are the palette. The older brand/accent/
+ * slate scales are kept but re-toned to it, so existing utility classes follow the new look:
+ * brand-* is now the ink family (buttons, links), slate-* is warm ink-tinted greys.
+ */
 @theme {
-  /* Brand: Indigo (primary) + Teal (accent) — distinct from wp-ok.de's blue/orange */
-  --color-brand-50: #eef2ff;
-  --color-brand-100: #e0e7ff;
-  --color-brand-200: #c7d2fe;
-  --color-brand-300: #a5b4fc;
-  --color-brand-400: #818cf8;
-  --color-brand-500: #6366f1;
-  --color-brand-600: #4f46e5;
-  --color-brand-700: #4338ca;
-  --color-brand-800: #3730a3;
-  --color-brand-900: #312e81;
-  --color-brand-950: #1e1b4b;
+  --color-ink: #1e1b4b;
+  --color-cream: #fbf6ec;
+  --color-sand: #f3ead9;
+  --color-sun: #ffcb47;
+  --color-coral: #ff8a65;
+  --color-teal: #2dd4bf;
+  --color-indigo: #4f46e5;
+  --color-lilac: #a5b4fc;
 
-  --color-accent-50: #f0fdfa;
-  --color-accent-100: #ccfbf1;
-  --color-accent-200: #99f6e4;
-  --color-accent-300: #5eead4;
+  --color-brand-50: #efeef7;
+  --color-brand-100: #e1dff0;
+  --color-brand-200: #c6c3e0;
+  --color-brand-300: #a29ec8;
+  --color-brand-400: #7b76aa;
+  --color-brand-500: #4f4a88;
+  --color-brand-600: #1e1b4b;
+  --color-brand-700: #2d2966;
+  --color-brand-800: #16133b;
+  --color-brand-900: #1e1b4b;
+  --color-brand-950: #110f2e;
+
+  --color-accent-50: #effcf9;
+  --color-accent-100: #cdf7ee;
+  --color-accent-200: #99efdd;
+  --color-accent-300: #5ee6cc;
   --color-accent-400: #2dd4bf;
   --color-accent-500: #14b8a6;
-  --color-accent-600: #0d9488;
+  --color-accent-600: #0b8a7c;
   --color-accent-700: #0f766e;
   --color-accent-800: #115e59;
   --color-accent-900: #134e4a;
 
+  --color-slate-50: #f7f2e8;
+  --color-slate-100: #efe7d8;
+  --color-slate-200: #e2d8c6;
+  --color-slate-300: #c9c1b4;
+  --color-slate-400: #716d8c;
+  --color-slate-500: #625e83;
+  --color-slate-600: #4b4870;
+  --color-slate-700: #36325e;
+  --color-slate-800: #27234f;
+  --color-slate-900: #1e1b4b;
+
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Bricolage Grotesque Variable", "Inter Variable", ui-sans-serif, sans-serif;
 
   --animate-float: float 7s ease-in-out infinite;
 
@@ -42,15 +67,133 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
     font-family: var(--font-sans);
-    @apply text-slate-700 bg-white;
+    @apply bg-cream text-slate-700;
+    overflow-x: clip;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    @apply text-slate-900;
+    @apply text-ink;
+    letter-spacing: -0.015em;
   }
+
+  ::selection {
+    @apply bg-sun text-ink;
+  }
+}
+
+@layer components {
+  /* Pill button with a round arrow "dot" on the right. Colour comes from utility classes. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.9rem;
+    border-radius: 999px;
+    padding: 0.45rem 0.45rem 0.45rem 1.4rem;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.2;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .btn:hover { transform: translateY(-3px) rotate(-1deg); }
+  .btn-lg { padding: 0.55rem 0.55rem 0.55rem 1.6rem; font-size: 16px; }
+  .btn-dot {
+    display: inline-flex;
+    height: 2.4rem;
+    width: 2.4rem;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: transform 0.25s ease;
+  }
+  .btn:hover .btn-dot { transform: translateX(3px) rotate(-45deg); }
+
+  /* Underline that wiggles on hover, for text links. */
+  .squiggle {
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='6' viewBox='0 0 20 6'%3E%3Cpath d='M0 3 Q5 0 10 3 T20 3' fill='none' stroke='%232DD4BF' stroke-width='2.5'/%3E%3C/svg%3E") repeat-x 0 100% / 20px 6px;
+    padding-bottom: 6px;
+  }
+  .squiggle:hover { animation: squiggle 0.5s linear infinite; }
+
+  /* Floating label chips (suburb tags etc). Set --r for the resting rotation. */
+  .chip {
+    border-radius: 999px;
+    padding: 0.55rem 1rem;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--color-ink);
+    box-shadow: 0 6px 0 rgb(30 27 75 / 0.18);
+    white-space: nowrap;
+    transform: rotate(var(--r, 0deg));
+  }
+
+  /* Hard "sticker" shadow for cards and panels. */
+  .sticker { box-shadow: 0 8px 0 rgb(30 27 75 / 0.9); }
+
+  /* Coloured cards that sit slightly tilted and straighten on hover. Set --tilt. */
+  .tilt-card { transform: rotate(var(--tilt, 0deg)); transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .tilt-card:hover { transform: rotate(0deg) translateY(-6px) scale(1.01); }
+}
+
+/* Motion. Everything here is switched off for visitors who ask for reduced motion. */
+@layer utilities {
+  .motion-float { animation: pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0s) both, bob 5s ease-in-out calc(var(--d, 0s) + 0.6s) infinite; }
+  .motion-rise { animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms) both; }
+  .motion-pop { animation: pop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 0ms) both; }
+  .motion-spin { animation: spin 24s linear infinite; }
+  .motion-spin-slow { animation: spin 18s linear infinite; }
+  .motion-wobble { animation: wobble 7s ease-in-out infinite; }
+  .motion-wave { display: inline-block; transform-origin: 70% 70%; animation: wave 2.4s ease-in-out infinite; }
+  .motion-drift { animation: drift 10s ease-in-out var(--d, 0s) infinite; }
+  .motion-nudge { animation: nudge 2.6s ease-in-out 2s infinite; }
+  .motion-pulse { position: relative; }
+  .motion-pulse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    background: inherit;
+    animation: pulse-ring 1.8s ease-out infinite;
+  }
+  .marquee { animation: marquee 40s linear infinite; }
+  .marquee-reverse { animation-direction: reverse; animation-duration: 55s; }
+  .marquee:hover { animation-play-state: paused; }
+
+  /* Scroll reveals: only hidden once the page script has added .js, so content never stays hidden. */
+  .js [data-reveal] {
+    opacity: 0;
+    translate: 0 28px;
+    transition: opacity 0.7s ease var(--d, 0ms), translate 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms);
+  }
+  .js [data-reveal].in { opacity: 1; translate: 0 0; }
+  .js [data-reveal] .tick {
+    opacity: 0;
+    translate: -14px 0;
+    transition: opacity 0.5s ease var(--d), translate 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d);
+  }
+  .js [data-reveal].in .tick { opacity: 1; translate: 0 0; }
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(0.6em); } }
+@keyframes pop { from { opacity: 0; scale: 0.6; } }
+@keyframes bob { 50% { translate: 0 -8px; } }
+@keyframes spin { to { rotate: 360deg; } }
+@keyframes wobble { 0%, 100% { rotate: 6deg; border-radius: 2.5rem; } 50% { rotate: -3deg; border-radius: 3.5rem 2rem 3rem 2.2rem; } }
+@keyframes wave { 0%, 60%, 100% { rotate: 0deg; } 10%, 30% { rotate: 16deg; } 20%, 40% { rotate: -8deg; } }
+@keyframes drift { 50% { translate: 18px -14px; rotate: 20deg; } }
+@keyframes nudge { 0%, 80%, 100% { transform: translateX(0); } 88% { transform: translateX(4px); } 94% { transform: translateX(-1px); } }
+@keyframes pulse-ring { to { transform: scale(3); opacity: 0; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes squiggle { to { background-position-x: 20px; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .js [data-reveal], .js [data-reveal] .tick { opacity: 1; translate: none; }
 }

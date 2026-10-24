@@ -36,11 +36,11 @@ const crumbs = [{ name: 'About', href: '/about/' }];
 >
   <Breadcrumbs items={crumbs} />
 
-  <section class="overflow-hidden bg-gradient-to-b from-brand-50/60 to-white">
+  <section class="overflow-hidden">
     <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
       <div>
         <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">About Kwantum</p>
-        <h1 class="mt-2 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">
+        <h1 class="mt-2 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-6xl">
           Built for businesses tired of being invisible online
         </h1>
         <p class="mt-6 text-lg leading-relaxed text-slate-600">
@@ -55,8 +55,12 @@ const crumbs = [{ name: 'About', href: '/about/' }];
         </p>
       </div>
       <figure class="mx-auto w-full max-w-sm">
-        <Image src={markPortrait} alt="Mark Kwan, founder of Kwantum" width={424} height={424} class="w-full rounded-3xl object-cover shadow-xl" />
-        <figcaption class="mt-4 text-center text-sm text-slate-500">
+        <div class="relative">
+          <div class="motion-wobble absolute -inset-4 rounded-[2.5rem] bg-teal" aria-hidden="true"></div>
+          <Image src={markPortrait} alt="Mark Kwan, founder of Kwantum" width={424} height={424} class="relative w-full rounded-[2rem] object-cover" />
+          <span class="chip motion-float absolute -bottom-5 -right-4 bg-sun" style="--r:-4deg; --d:0.4s">That’s me <span class="motion-wave">👋</span></span>
+        </div>
+        <figcaption class="mt-10 text-center text-sm text-slate-500">
           <span class="font-display font-semibold text-slate-900">Mark Kwan</span>, founder. Based in Ascot Vale, Melbourne.
         </figcaption>
       </figure>
@@ -64,11 +68,11 @@ const crumbs = [{ name: 'About', href: '/about/' }];
   </section>
 
   <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">How we work</h2>
+    <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">How we work</h2>
     <div class="mt-8 grid gap-6 md:grid-cols-3">
       {
         values.map((v) => (
-          <div class="rounded-2xl border border-slate-100 bg-white p-7 shadow-sm">
+          <div class="rounded-[1.75rem] bg-white p-7 shadow-sm">
             <Icon name={v.icon} class="h-8 w-8 text-brand-600" />
             <h3 class="mt-4 font-display font-semibold text-slate-900">{v.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-500">{v.description}</p>
@@ -79,16 +83,13 @@ const crumbs = [{ name: 'About', href: '/about/' }];
   </section>
 
   <section class="mx-auto max-w-3xl px-4 pb-20 text-center sm:px-6 lg:px-8">
-    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Based in Melbourne, working nationally</h2>
+    <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Based in Melbourne, working nationally</h2>
     <p class="mt-4 text-sm leading-relaxed text-slate-500">
       Our home base is Melbourne, but the local-SEO and website approach we've built works anywhere
       in Australia — we bring the same suburb-level, no-generic-templates thinking to every city
       we work in.
     </p>
-    <a href="/areas/" class="mt-6 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:gap-2 transition-all">
-      See areas we serve
-      <Icon name="lucide:arrow-right" class="h-4 w-4" />
-    </a>
+    <a href="/areas/" class="squiggle mt-6 inline-block font-semibold text-ink">See areas we serve</a>
   </section>
 
   <CtaSection />

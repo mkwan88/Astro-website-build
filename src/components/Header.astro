@@ -1,45 +1,30 @@
 ---
 import Logo from './Logo.astro';
-import { NAV_LINKS } from '../lib/site';
+import { NAV_LINKS, SITE } from '../lib/site';
 
-interface Props {
-  /** Overlay a dark hero: transparent with white text until the hero is scrolled past. */
-  transparent?: boolean;
-}
-
-const { transparent = false } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
 <header
   data-site-header
-  data-transparent={String(transparent)}
-  data-solid={String(!transparent)}
-  class:list={[
-    'group inset-x-0 top-0 z-50 border-b transition-colors duration-300',
-    'data-[solid=true]:border-slate-100 data-[solid=true]:bg-white/90 data-[solid=true]:backdrop-blur',
-    'data-[solid=false]:border-transparent data-[solid=false]:bg-transparent',
-    'data-[solid=false]:data-[scrolled=true]:border-white/10 data-[solid=false]:data-[scrolled=true]:bg-[#0b0a24]/70 data-[solid=false]:data-[scrolled=true]:backdrop-blur-md',
-    transparent ? 'fixed' : 'sticky',
-  ]}
+  class="group sticky inset-x-0 top-0 z-50 border-b border-transparent bg-cream/90 backdrop-blur transition-colors duration-300 data-[scrolled=true]:border-slate-200"
 >
-  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-    <a href="/" class="shrink-0">
-      <Logo wordmarkClass="transition-colors group-data-[solid=false]:text-white" />
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-8">
+    <a href="/" class="shrink-0" aria-label="Kwantum home">
+      <Logo />
     </a>
 
-    <nav class="hidden items-center gap-7 lg:flex" aria-label="Primary">
+    <nav class="hidden items-center gap-8 lg:flex" aria-label="Primary">
       {
         NAV_LINKS.map((link) => {
           const isActive = currentPath === link.href || currentPath.startsWith(link.href);
           return (
             <a
               href={link.href}
+              aria-current={isActive ? 'page' : undefined}
               class:list={[
-                'text-sm font-medium transition-colors hover:text-brand-600 group-data-[solid=false]:hover:text-white',
-                isActive
-                  ? 'text-brand-600 group-data-[solid=false]:text-white'
-                  : 'text-slate-600 group-data-[solid=false]:text-white/75',
+                'text-[15px] font-medium text-ink underline-offset-8 transition hover:underline hover:decoration-teal hover:decoration-4',
+                isActive && 'underline decoration-sun decoration-4',
               ]}
             >
               {link.label}
@@ -49,49 +34,48 @@ const currentPath = Astro.url.pathname;
       }
     </nav>
 
-    <div class="hidden lg:block">
-      <a
-        href="/contact/"
-        class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-brand-600/20 transition-colors hover:bg-brand-700 group-data-[solid=false]:bg-white group-data-[solid=false]:text-brand-900 group-data-[solid=false]:hover:bg-brand-50"
-      >
-        Get My Free Audit
+    <div class="hidden items-center gap-3 lg:flex">
+      <a href={`tel:${SITE.phone}`} class="text-[15px] font-semibold text-ink hover:text-slate-600">
+        {SITE.phoneDisplay}
+      </a>
+      <a href="/contact/" class="btn bg-ink text-white">
+        <span>Free audit</span>
+        <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
       </a>
     </div>
 
     <button
       id="menu-toggle"
       type="button"
-      class="inline-flex items-center justify-center rounded-lg p-2 text-slate-600 hover:bg-slate-100 group-data-[solid=false]:text-white group-data-[solid=false]:hover:bg-white/10 lg:hidden"
+      class="inline-flex items-center justify-center rounded-full bg-white p-2.5 text-ink shadow-sm lg:hidden"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Toggle navigation menu"
     >
-      <svg id="icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+      <svg id="icon-open" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 7.5h16.5M3.75 12h16.5M3.75 16.5h16.5" />
       </svg>
-      <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+      <svg id="icon-close" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
   </div>
 
-  <div id="mobile-menu" class="hidden border-t border-slate-100 bg-white lg:hidden">
-    <nav class="flex flex-col gap-1 px-4 py-4" aria-label="Mobile">
+  <div id="mobile-menu" class="hidden border-t border-slate-200 bg-cream lg:hidden">
+    <nav class="flex flex-col gap-1 px-5 py-5" aria-label="Mobile">
       {
         NAV_LINKS.map((link) => (
-          <a
-            href={link.href}
-            class="rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50"
-          >
+          <a href={link.href} class="rounded-2xl px-4 py-3 font-display text-xl font-bold text-ink hover:bg-white">
             {link.label}
           </a>
         ))
       }
-      <a
-        href="/contact/"
-        class="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-sm font-semibold text-white"
-      >
-        Get My Free Audit
+      <a href={`tel:${SITE.phone}`} class="rounded-2xl px-4 py-3 font-semibold text-ink hover:bg-white">
+        Call Mark: {SITE.phoneDisplay}
+      </a>
+      <a href="/contact/" class="btn btn-lg mt-3 justify-between bg-ink text-white">
+        <span>Get a free audit</span>
+        <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
       </a>
     </nav>
   </div>
@@ -104,41 +88,16 @@ const currentPath = Astro.url.pathname;
   const iconOpen = document.getElementById('icon-open');
   const iconClose = document.getElementById('icon-close');
 
-  const transparentMode = header?.dataset.transparent === 'true';
-  let pastHero = false;
-  let menuOpen = false;
-
-  const sync = () => {
-    if (header && transparentMode) header.dataset.solid = String(pastHero || menuOpen);
-  };
-
-  if (header && transparentMode) {
-    // Frosted dark glass once scrolling starts, so nav links never sit directly on hero text.
+  if (header) {
     const onScroll = () => (header.dataset.scrolled = String(window.scrollY > 8));
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    const hero = document.querySelector('[data-hero]');
-    if (hero) {
-      // Solid once the hero's bottom edge passes behind the header.
-      new IntersectionObserver(
-        ([entry]) => {
-          pastHero = !entry.isIntersecting;
-          sync();
-        },
-        { rootMargin: `-${header.offsetHeight}px 0px 0px 0px` }
-      ).observe(hero);
-    } else {
-      pastHero = true;
-      sync();
-    }
   }
 
   toggle?.addEventListener('click', () => {
-    menuOpen = menu?.classList.toggle('hidden') === false;
-    toggle.setAttribute('aria-expanded', String(menuOpen));
-    iconOpen?.classList.toggle('hidden', menuOpen);
-    iconClose?.classList.toggle('hidden', !menuOpen);
-    sync();
+    const open = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+    iconOpen?.classList.toggle('hidden', open);
+    iconClose?.classList.toggle('hidden', !open);
   });
 </script>

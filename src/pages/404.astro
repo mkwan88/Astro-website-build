@@ -1,5 +1,4 @@
 ---
-import { Icon } from 'astro-icon/components';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
@@ -8,20 +7,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="The page you're looking for doesn't exist."
   noindex={true}
 >
-  <section class="mx-auto flex max-w-2xl flex-col items-center px-4 py-32 text-center sm:px-6 lg:px-8">
-    <span class="font-display text-7xl font-extrabold text-brand-100">404</span>
-    <h1 class="mt-4 font-display text-3xl font-bold text-slate-900">We couldn't find that page</h1>
-    <p class="mt-4 text-slate-500">
-      It might have moved, or the link might be out of date. Let's get you back on track.
+  <section class="mx-auto flex max-w-2xl flex-col items-center px-5 py-24 text-center sm:px-8">
+    <div class="relative" aria-hidden="true">
+      <svg viewBox="0 0 120 150" class="motion-pop h-36 w-auto" style="--d:100ms">
+        <path class="lost-pin" d="M60 8 C33 8 14 28 14 54 C14 90 60 132 60 132 C60 132 106 90 106 54 C106 28 87 8 60 8 Z" fill="#2DD4BF" stroke="#1E1B4B" stroke-width="5" />
+        <circle cx="60" cy="54" r="17" fill="#1E1B4B" />
+      </svg>
+      <span class="chip motion-float absolute -right-24 top-4 bg-sun" style="--r:6deg; --d:0.5s">Hmm, not here</span>
+    </div>
+    <p class="mt-6 font-display text-8xl font-extrabold text-coral">404</p>
+    <h1 class="mt-2 font-display text-4xl font-extrabold tracking-tight">This page isn’t on the map.</h1>
+    <p class="mt-4 text-lg text-slate-600">
+      It might have moved, or the link might be out of date. Let’s get you back on track.
     </p>
-    <div class="mt-8 flex flex-wrap justify-center gap-4">
-      <a href="/" class="inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700">
-        Back to homepage
+    <div class="mt-9 flex flex-wrap items-center justify-center gap-5">
+      <a href="/" class="btn btn-lg bg-ink text-white">
+        <span>Back to the homepage</span>
+        <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
       </a>
-      <a href="/contact/" class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-6 py-3 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600">
-        Contact us
-        <Icon name="lucide:arrow-right" class="h-4 w-4" />
-      </a>
+      <a href="/contact/" class="squiggle font-semibold text-ink">Or get in touch</a>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .lost-pin { transform-box: fill-box; transform-origin: 50% 100%; animation: lost 3.2s ease-in-out infinite; }
+  @keyframes lost { 0%, 100% { rotate: -8deg; } 50% { rotate: 8deg; } }
+</style>

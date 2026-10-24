@@ -6,76 +6,63 @@ import { SITE } from '../lib/site';
 const services = (await getCollection('services')).sort((a, b) => a.data.order - b.data.order);
 const areas = await getCollection('areas');
 const year = new Date().getFullYear();
+
+const linkClass = 'text-[15px] text-white/70 transition-colors hover:text-sun';
 ---
 
-<footer class="border-t border-slate-100 bg-slate-50">
-  <div class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-2 gap-10 md:grid-cols-5">
-      <div class="col-span-2">
-        <Logo />
-        <p class="mt-4 max-w-xs text-sm leading-relaxed text-slate-500">
-          {SITE.description}
+<footer class="mt-auto bg-ink text-white">
+  <div class="mx-auto max-w-7xl px-5 pb-10 pt-16 sm:px-8">
+    <div class="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div>
+        <Logo dark />
+        <p class="mt-5 max-w-sm leading-relaxed text-white/70">
+          Local SEO, websites and AI search visibility for small businesses, run by Mark from
+          {` ${SITE.address.addressLocality}`}, Melbourne.
         </p>
-        <p class="mt-4 text-sm text-slate-500">
-          {SITE.address.addressLocality}, {SITE.address.addressRegion} · Australia
-        </p>
-        <a href={`mailto:${SITE.email}`} class="mt-1 block text-sm text-slate-500 hover:text-brand-600">
-          {SITE.email}
-        </a>
-        <a href={`tel:${SITE.phone}`} class="text-sm text-slate-500 hover:text-brand-600">
-          {SITE.phoneDisplay}
-        </a>
+        <div class="mt-6 flex flex-col gap-2">
+          <a href={`tel:${SITE.phone}`} class="font-display text-2xl font-bold text-white hover:text-sun">{SITE.phoneDisplay}</a>
+          <a href={`mailto:${SITE.email}`} class="text-white/70 hover:text-sun">{SITE.email}</a>
+        </div>
       </div>
 
       <div>
-        <h3 class="font-display text-sm font-semibold text-slate-900">Services</h3>
-        <ul class="mt-4 space-y-2.5">
-          {
-            services.map((s) => (
-              <li>
-                <a href={`/services/${s.id}/`} class="text-sm text-slate-500 hover:text-brand-600">
-                  {s.data.title}
-                </a>
-              </li>
-            ))
-          }
+        <h2 class="text-sm font-bold uppercase tracking-wider text-sun">Services</h2>
+        <ul class="mt-5 space-y-3">
+          {services.map((s) => (
+            <li><a href={`/services/${s.id}/`} class={linkClass}>{s.data.title}</a></li>
+          ))}
+          <li><a href="/services/google-business-profile-optimization/" class={linkClass}>Google Business Profile</a></li>
         </ul>
       </div>
 
       <div>
-        <h3 class="font-display text-sm font-semibold text-slate-900">Areas We Serve</h3>
-        <ul class="mt-4 space-y-2.5">
-          {
-            areas.map((a) => (
-              <li>
-                <a href={`/areas/${a.id}/`} class="text-sm text-slate-500 hover:text-brand-600">
-                  {a.data.cityName}
-                </a>
-              </li>
-            ))
-          }
-          <li>
-            <a href="/areas/" class="text-sm text-slate-500 hover:text-brand-600">View all areas</a>
-          </li>
+        <h2 class="text-sm font-bold uppercase tracking-wider text-sun">Who I help</h2>
+        <ul class="mt-5 space-y-3">
+          <li><a href="/industries/seo-for-tradies/" class={linkClass}>Tradies</a></li>
+          <li><a href="/industries/seo-for-electricians/" class={linkClass}>Electricians</a></li>
+          <li><a href="/industries/seo-for-plumbers/" class={linkClass}>Plumbers</a></li>
+          {areas.map((a) => (
+            <li><a href={`/areas/${a.id}/`} class={linkClass}>{a.data.cityName} businesses</a></li>
+          ))}
         </ul>
       </div>
 
       <div>
-        <h3 class="font-display text-sm font-semibold text-slate-900">Company</h3>
-        <ul class="mt-4 space-y-2.5">
-          <li><a href="/about/" class="text-sm text-slate-500 hover:text-brand-600">About</a></li>
-          <li><a href="/pricing/" class="text-sm text-slate-500 hover:text-brand-600">Pricing</a></li>
-          <li><a href="/blog/" class="text-sm text-slate-500 hover:text-brand-600">Blog</a></li>
-          <li><a href="/contact/" class="text-sm text-slate-500 hover:text-brand-600">Contact</a></li>
+        <h2 class="text-sm font-bold uppercase tracking-wider text-sun">Kwantum</h2>
+        <ul class="mt-5 space-y-3">
+          <li><a href="/about/" class={linkClass}>About</a></li>
+          <li><a href="/pricing/" class={linkClass}>Pricing</a></li>
+          <li><a href="/blog/" class={linkClass}>Blog</a></li>
+          <li><a href="/contact/" class={linkClass}>Contact</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200 pt-8 sm:flex-row">
-      <p class="text-xs text-slate-400">&copy; {year} {SITE.legalName}. All rights reserved.</p>
-      <div class="flex gap-6 text-xs text-slate-400">
-        <a href="/privacy-policy/" class="hover:text-brand-600">Privacy Policy</a>
-        <a href="/terms/" class="hover:text-brand-600">Terms</a>
+    <div class="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/15 pt-8 text-sm text-white/50 sm:flex-row">
+      <p>&copy; {year} {SITE.legalName}. {SITE.address.addressLocality}, {SITE.address.addressRegion}.</p>
+      <div class="flex gap-6">
+        <a href="/privacy-policy/" class="hover:text-sun">Privacy</a>
+        <a href="/terms/" class="hover:text-sun">Terms</a>
       </div>
     </div>
   </div>

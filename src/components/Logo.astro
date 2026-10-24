@@ -1,35 +1,34 @@
 ---
+// The "signal sticker" mark + wordmark. Shape mirrors scripts/lib/logo-mark.mjs (the source of
+// truth for the brand files); keep the two in sync.
 interface Props {
   variant?: 'full' | 'icon';
+  /** Use on dark backgrounds: cream ring and white wordmark. */
+  dark?: boolean;
   class?: string;
   markClass?: string;
   wordmarkClass?: string;
 }
 
-const { variant = 'full', class: className = '', markClass = '', wordmarkClass = '' } = Astro.props;
+const { variant = 'full', dark = false, class: className = '', markClass = '', wordmarkClass = '' } = Astro.props;
+const ring = dark ? '#FBF6EC' : '#1E1B4B';
 ---
 
 <span class:list={['inline-flex items-center gap-2.5', className]}>
-  <svg
-    viewBox="0 0 40 40"
-    class:list={['h-9 w-9 shrink-0', markClass]}
-    role="img"
-    aria-label="Kwantum icon mark"
-  >
-    <rect width="40" height="40" rx="10" class="fill-brand-600" />
-    <rect x="10" y="8" width="5" height="24" rx="1.5" fill="white" />
-    <path d="M17 20 L30 8" stroke="white" stroke-width="5" stroke-linecap="round" />
-    <path d="M17 20 L30 32" stroke="white" stroke-width="5" stroke-linecap="round" />
-    <circle cx="33" cy="8" r="5" class="fill-accent-400" />
+  <svg viewBox="-1.6 -7.6 45.4 52.2" class:list={['h-11 w-auto shrink-0', markClass]} role="img" aria-label="Kwantum">
+    <g transform="rotate(-7 20 20)">
+      <rect y="3" width="40" height="40" rx="11" fill="#1E1B4B" />
+      <rect width="40" height="40" rx="11" fill="#FFCB47" />
+      <rect x="10" y="8" width="5" height="24" rx="1.5" fill="#1E1B4B" />
+      <path d="M17 20 L25.3 12.6" stroke="#1E1B4B" stroke-width="5" stroke-linecap="round" />
+      <path d="M17 20 L30 32" stroke="#1E1B4B" stroke-width="5" stroke-linecap="round" />
+      <circle cx="36" cy="4" r="8" fill="none" stroke={ring} stroke-width="2.4" />
+      <circle cx="36" cy="4" r="4.6" fill="#FF8A65" />
+    </g>
   </svg>
   {
     variant === 'full' && (
-      <span
-        class:list={[
-          'font-display text-xl font-extrabold tracking-tight text-brand-900',
-          wordmarkClass,
-        ]}
-      >
+      <span class:list={['font-display text-2xl font-extrabold tracking-tight', dark ? 'text-white' : 'text-ink', wordmarkClass]}>
         Kwantum
       </span>
     )

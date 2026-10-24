@@ -49,24 +49,24 @@ const pageUrl = `${SITE.url}/areas/${entry.id}/`;
     )
   }
 
-  <section class="overflow-hidden bg-gradient-to-b from-brand-50/60 to-white">
+  <section class="overflow-hidden">
     <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center lg:px-8">
       <div>
         <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">{entry.data.region}</p>
-        <h1 class="mt-2 font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">
+        <h1 class="mt-2 font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-6xl">
           Local SEO & Websites in {entry.data.cityName}
         </h1>
         <p class="mt-5 text-lg leading-relaxed text-slate-600">{entry.data.tagline}</p>
         <a
           href="/contact/"
-          class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 hover:bg-brand-700"
+          class="btn btn-lg bg-ink text-white mt-8"
         >
-          Get My Free Audit
-          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          <span>Get a free audit</span>
+          <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
         </a>
 
         <div class="mt-10 flex items-center gap-4 border-t border-slate-100 pt-8">
-          <span class="font-display text-3xl font-extrabold text-brand-600">{entry.data.proofStat.value}</span>
+          <span class="font-display text-4xl font-extrabold text-coral">{entry.data.proofStat.value}</span>
           <span class="text-sm text-slate-500">{entry.data.proofStat.label}</span>
         </div>
       </div>
@@ -80,15 +80,15 @@ const pageUrl = `${SITE.url}/areas/${entry.id}/`;
   </section>
 
   <!-- Why local -->
-  <section class="bg-slate-50 py-16">
+  <section class="bg-sand py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">
+      <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">
         Why {entry.data.cityName} needs a different approach
       </h2>
       <div class="mt-8 grid gap-6 md:grid-cols-3">
         {
           entry.data.whyLocalPoints.map((point) => (
-            <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+            <div class="rounded-[1.75rem] bg-white p-6 shadow-sm">
               <h3 class="font-display font-semibold text-slate-900">{point.title}</h3>
               <p class="mt-2 text-sm leading-relaxed text-slate-500">{point.description}</p>
             </div>
@@ -120,7 +120,7 @@ const pageUrl = `${SITE.url}/areas/${entry.id}/`;
     isHomeBase && (
       <section class="mx-auto max-w-5xl px-4 pb-16 sm:px-6 lg:px-8">
         <h2 class="font-display text-xl font-bold text-slate-900">Find us</h2>
-        <div class="mt-5 overflow-hidden rounded-2xl border border-slate-100 shadow-sm">
+        <div class="mt-5 overflow-hidden rounded-[1.75rem] shadow-sm">
           <iframe
             title={`Map of ${entry.data.cityName}`}
             src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}

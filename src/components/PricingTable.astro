@@ -60,13 +60,13 @@ const tiers = [
 <section class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
   <div class="mx-auto max-w-2xl text-center">
     <p class="text-sm font-semibold uppercase tracking-wide text-accent-600">SEO Pricing</p>
-    <h2 class="mt-2 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+    <h2 class="mt-2 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
       Local SEO & AI search visibility, priced to compete
     </h2>
     <p class="mt-4 text-sm text-slate-500">
       A straight monthly retainer for ongoing SEO work, plus a one-off setup fee — no 12-month
       lock-in. Website design is priced separately as its own project; see{' '}
-      <a href="/pricing/#website-design" class="font-semibold text-brand-600 hover:underline">website design pricing below</a>.
+      <a href="/pricing/#website-design" class="squiggle font-semibold text-ink">website design pricing below</a>.
     </p>
   </div>
 
@@ -77,7 +77,7 @@ const tiers = [
         <div
           data-tier-card
           data-selected={String(tier.featured)}
-          class="group/tier flex cursor-pointer flex-col rounded-3xl border border-slate-100 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-lg data-[selected=true]:border-brand-600 data-[selected=true]:bg-brand-900 data-[selected=true]:shadow-xl"
+          class="group/tier flex cursor-pointer flex-col rounded-[2rem] border-2 border-ink bg-white p-8 transition-all duration-300 hover:-translate-y-1 data-[selected=true]:bg-ink data-[selected=true]:shadow-[0_10px_0_var(--color-sun)]"
         >
           {tier.featured && (
             <span class="mb-4 inline-flex w-fit items-center rounded-full bg-accent-400 px-3 py-1 text-xs font-semibold text-brand-950">
@@ -111,10 +111,11 @@ const tiers = [
 
           <a
             href="/contact/"
-            class="mt-8 inline-flex items-center justify-center rounded-full bg-brand-600 px-5 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-brand-700 group-data-[selected=true]/tier:bg-accent-400 group-data-[selected=true]/tier:text-brand-950 group-data-[selected=true]/tier:hover:bg-accent-300"
+            class="btn btn-lg bg-sun text-ink mt-8 justify-center"
           >
-            Get My Free Audit
-          </a>
+          <span>Get a free audit</span>
+          <span class="btn-dot bg-ink text-sun" aria-hidden="true">→</span>
+        </a>
         </div>
       ))
     }

@@ -11,10 +11,9 @@ interface Props {
   image?: string;
   noindex?: boolean;
   schema?: Array<Record<string, unknown> | null | undefined>;
-  transparentHeader?: boolean;
 }
 
-const { title, description, image, noindex, schema = [], transparentHeader = false } = Astro.props;
+const { title, description, image, noindex, schema = [] } = Astro.props;
 ---
 
 <!doctype html>
@@ -23,6 +22,9 @@ const { title, description, image, noindex, schema = [], transparentHeader = fal
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#FBF6EC" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google tag (gtag.js) -->
@@ -39,10 +41,41 @@ const { title, description, image, noindex, schema = [], transparentHeader = fal
     <Schema items={schema} />
   </head>
   <body class="flex min-h-screen flex-col">
-    <Header transparent={transparentHeader} />
+    <Header />
     <main class="flex-1">
       <slot />
     </main>
     <Footer />
+
+    <script>
+      // Scroll reveals for any [data-reveal] element, plus count-ups for [data-count] inside it.
+      // Content is only hidden once .js is on <html>, so it stays visible if scripts fail.
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.documentElement.classList.add('js');
+
+      const countUp = (el: HTMLElement) => {
+        const target = Number(el.dataset.count);
+        const start = performance.now();
+        const tick = (now: number) => {
+          const t = Math.min((now - start) / 1100, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - t, 3))).toLocaleString('en-AU');
+          if (t < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      };
+
+      const io = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((e) => {
+            // Reveal on entry, or if a fast scroll jumped straight past it.
+            if (!e.isIntersecting && e.boundingClientRect.top > 0) return;
+            e.target.classList.add('in');
+            if (!reduced) e.target.querySelectorAll<HTMLElement>('[data-count]').forEach(countUp);
+            io.unobserve(e.target);
+          }),
+        { threshold: 0.15 }
+      );
+      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+    </script>
   </body>
 </html>

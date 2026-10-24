@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import markPortrait from '../assets/team/mark-kwan-portrait.jpg';
+import { SITE } from '../lib/site';
+
+interface Props {
+  heading?: string;
+  link?: boolean;
+}
+
+const { heading = 'Hi, I’m Mark.', link = true } = Astro.props;
+---
+
+<section class="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
+  <div data-reveal class="grid items-center gap-12 rounded-[2.5rem] bg-white p-8 sm:p-12 lg:grid-cols-[auto_1fr] lg:p-16">
+    <div class="relative mx-auto w-56 sm:w-64">
+      <div class="motion-wobble absolute -inset-4 rounded-[2.5rem] bg-teal" aria-hidden="true"></div>
+      <Image src={markPortrait} alt="Mark Kwan, founder of Kwantum" width={424} height={424} class="relative aspect-square w-full rounded-[2rem] object-cover" />
+      <span class="chip motion-float absolute -bottom-5 -right-6 bg-sun" style="--r:-4deg; --d:0s">That’s me <span class="motion-wave">👋</span></span>
+    </div>
+    <div>
+      <h2 class="font-display text-4xl font-extrabold tracking-tight sm:text-5xl">{heading}</h2>
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600">
+        I started Kwantum in {SITE.address.addressLocality} to give local businesses the help I’d want
+        myself: plain English, a phone that gets answered, and someone who sticks around after the
+        website goes live. You deal with me from the first audit to every monthly report.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 text-sm font-semibold text-ink">
+        <span class="rounded-full border-2 border-ink px-4 py-2">Based in {SITE.address.addressLocality}</span>
+        <span class="rounded-full border-2 border-ink px-4 py-2">No lock-in contracts</span>
+        <a href={`tel:${SITE.phone}`} class="rounded-full border-2 border-ink px-4 py-2 hover:bg-sun">Call me: {SITE.phoneDisplay}</a>
+      </div>
+      {link && (
+        <a href="/about/" class="squiggle mt-8 inline-block font-semibold text-ink">More about Kwantum</a>
+      )}
+    </div>
+  </div>
+</section>

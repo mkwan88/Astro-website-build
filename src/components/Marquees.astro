@@ -1,0 +1,27 @@
+---
+// Two strips scrolling in opposite directions: the suburbs Kwantum covers, and where customers
+// find you. Suburbs come from the Melbourne area entry so they stay in sync with that page.
+import { getEntry } from 'astro:content';
+
+const melbourne = await getEntry('areas', 'melbourne');
+const suburbs = melbourne?.data.suburbs ?? [];
+const channels = ['Google', 'Google Maps', 'ChatGPT', 'Gemini', 'Perplexity', 'AI Overviews'];
+---
+
+<div class="border-y-2 border-ink">
+  <div class="overflow-hidden bg-sun py-4">
+    <p class="sr-only">Suburbs I work in: {suburbs.join(', ')}.</p>
+    <div class="marquee flex w-max gap-10 whitespace-nowrap font-display text-2xl font-bold text-ink" aria-hidden="true">
+      {[...suburbs, ...suburbs].map((s) => (
+        <span class="flex items-center gap-10">{s}<span class="h-3 w-3 rounded-full bg-ink"></span></span>
+      ))}
+    </div>
+  </div>
+  <div class="overflow-hidden bg-ink py-3 text-white" aria-hidden="true">
+    <div class="marquee marquee-reverse flex w-max gap-8 whitespace-nowrap text-lg font-semibold">
+      {[...channels, ...channels, ...channels, ...channels].map((c) => (
+        <span class="flex items-center gap-8">Found on {c}<span class="text-teal">✦</span></span>
+      ))}
+    </div>
+  </div>
+</div>

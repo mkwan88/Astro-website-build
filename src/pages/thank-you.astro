@@ -8,23 +8,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   description="Thanks for reaching out to Kwantum. We'll be in touch shortly."
   noindex={true}
 >
-  <section class="mx-auto flex max-w-2xl flex-col items-center px-4 py-32 text-center sm:px-6 lg:px-8">
-    <span class="flex h-16 w-16 items-center justify-center rounded-full bg-accent-50 text-accent-600">
-      <Icon name="lucide:check" class="h-8 w-8" />
+  <section class="mx-auto flex max-w-2xl flex-col items-center px-5 py-24 text-center sm:px-8">
+    <span class="motion-pop sticker flex h-24 w-24 rotate-[-6deg] items-center justify-center rounded-[1.75rem] border-2 border-ink bg-sun text-ink" style="--d:100ms">
+      <Icon name="lucide:check" class="h-12 w-12" stroke-width="3" />
     </span>
-    <h1 class="mt-6 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
-      Thanks — we've got your message
+    <h1 class="mt-6 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
+      Thanks, I’ve got your message.
     </h1>
-    <p class="mt-4 text-slate-500">
-      We'll take a look and get back to you shortly with your free visibility audit. No obligation,
-      no jargon.
+    <p class="mt-5 text-lg text-slate-600">
+      I’ll take a look at how your business shows up and get back to you with your free visibility
+      audit. No obligation, no jargon.
     </p>
     <a
       href="/"
-      class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+      class="btn btn-lg bg-ink text-white mt-8"
     >
-      Back to homepage
-    </a>
+          <span>Back to homepage</span>
+          <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
+        </a>
   </section>
 
   <!--

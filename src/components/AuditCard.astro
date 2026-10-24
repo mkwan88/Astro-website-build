@@ -1,0 +1,50 @@
+---
+// The free audit explained: what it is (left) and a checklist of what it covers (right).
+interface Props {
+  heading?: string;
+  cta?: boolean;
+}
+
+const { heading = 'The free audit, and what you actually get.', cta = true } = Astro.props;
+
+const items = [
+  'Your Google Business Profile, field by field',
+  'Where you show up in Maps for your main suburbs',
+  'How your website loads on a phone',
+  'Which searches send you customers, and which don’t',
+  'Whether AI assistants mention you',
+  'The three fixes that would make the biggest difference',
+];
+---
+
+<section id="audit" class="bg-indigo py-24 text-white">
+  <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 sm:px-8 lg:grid-cols-2">
+    <div>
+      <h2 data-reveal class="font-display text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl">{heading}</h2>
+      <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/80">
+        Not a sales call dressed up as a report. I look at how you show up today and send back a
+        plain-English write-up you can act on, whether or not you hire me.
+      </p>
+      {cta && (
+        <a href="/contact/" class="btn btn-lg mt-9 bg-sun text-ink">
+          <span>Request my audit</span>
+          <span class="btn-dot bg-ink text-sun" aria-hidden="true">→</span>
+        </a>
+      )}
+    </div>
+    <div class="relative">
+      <div class="motion-spin-slow absolute -top-3 right-0 z-10 flex h-20 w-20 items-center justify-center rounded-full bg-coral font-display text-lg font-extrabold text-ink sm:-right-3 sm:h-24 sm:w-24" aria-hidden="true">Free</div>
+      <div data-reveal class="rotate-[-1.5deg] rounded-[2rem] bg-cream p-8 text-ink shadow-2xl sm:p-10">
+        <p class="text-sm font-bold uppercase tracking-wider text-indigo">Visibility audit · what’s covered</p>
+        <ul class="mt-6 space-y-4">
+          {items.map((item, i) => (
+            <li class="tick flex items-start gap-4" style={`--d:${300 + i * 160}ms`}>
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal font-display text-sm font-extrabold">{i + 1}</span>
+              <span class="pt-1 font-medium">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

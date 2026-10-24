@@ -1,11 +1,16 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import markPortrait from '../assets/team/mark-kwan-portrait.jpg';
 import { SITE } from '../lib/site';
 import { breadcrumbSchema } from '../lib/schema';
 
 const crumbs = [{ name: 'Contact', href: '/contact/' }];
+
+const field =
+  'mt-2 w-full rounded-2xl border-2 border-slate-200 bg-cream px-4 py-3 text-ink placeholder:text-slate-400 transition focus:border-ink focus:bg-white focus:outline-none';
+const label = 'font-semibold text-ink';
 ---
 
 <BaseLayout
@@ -15,32 +20,46 @@ const crumbs = [{ name: 'Contact', href: '/contact/' }];
 >
   <Breadcrumbs items={crumbs} />
 
-  <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <div class="grid gap-12 lg:grid-cols-5">
-      <div class="lg:col-span-2">
-        <h1 class="font-display text-4xl font-extrabold text-slate-900">Let's get you found</h1>
-        <p class="mt-5 text-slate-600">
-          Send your current website (or just your idea) and you'll get a free, honest read on
-          what's working, what's costing you enquiries, and what to do next. No obligation.
+  <section class="mx-auto max-w-7xl px-5 pb-24 pt-10 sm:px-8">
+    <div class="grid gap-14 lg:grid-cols-[1fr_1.3fr]">
+      <div>
+        <h1 class="motion-rise font-display text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl">Let’s get you found.</h1>
+        <p class="motion-rise mt-6 text-lg leading-relaxed text-slate-600" style="--d:120ms">
+          Send your current website, or just your business name, and I’ll come back with a free,
+          honest read on what’s working, what’s costing you enquiries, and what I’d fix first. No
+          obligation.
         </p>
 
-        <div class="mt-10 space-y-5">
-          <a href={`mailto:${SITE.email}`} class="flex items-center gap-3 text-sm text-slate-600 hover:text-brand-600">
-            <Icon name="lucide:mail" class="h-5 w-5 text-brand-600" />
-            {SITE.email}
-          </a>
-          <a href={`tel:${SITE.phone}`} class="flex items-center gap-3 text-sm text-slate-600 hover:text-brand-600">
-            <Icon name="lucide:phone" class="h-5 w-5 text-brand-600" />
+        <div class="motion-rise mt-10 flex items-center gap-5 rounded-[2rem] bg-white p-5" style="--d:240ms">
+          <div class="relative shrink-0">
+            <div class="motion-wobble absolute -inset-1.5 rounded-[1.4rem] bg-teal" aria-hidden="true"></div>
+            <Image src={markPortrait} alt="Mark Kwan" width={160} height={160} class="relative h-20 w-20 rounded-[1.2rem] object-cover" />
+          </div>
+          <div>
+            <p class="font-display text-lg font-bold text-ink">You’ll hear back from me, Mark.</p>
+            <p class="text-slate-600">Not a sales team or a ticket queue.</p>
+          </div>
+        </div>
+
+        <div class="mt-8 space-y-4">
+          <a href={`tel:${SITE.phone}`} class="flex items-center gap-4 font-display text-2xl font-bold text-ink hover:text-slate-600">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-sun text-lg" aria-hidden="true">☎</span>
             {SITE.phoneDisplay}
           </a>
-          <p class="flex items-center gap-3 text-sm text-slate-600">
-            <Icon name="lucide:map-pin" class="h-5 w-5 text-brand-600" />
-            {SITE.address.addressLocality}, {SITE.address.addressRegion}, Australia
+          <a href={`mailto:${SITE.email}`} class="flex items-center gap-4 text-lg font-semibold text-ink hover:text-slate-600">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-teal text-lg" aria-hidden="true">@</span>
+            {SITE.email}
+          </a>
+          <p class="flex items-center gap-4 text-lg text-slate-600">
+            <span class="flex h-11 w-11 items-center justify-center rounded-full bg-coral" aria-hidden="true">
+              <span class="h-3 w-3 rounded-full bg-ink"></span>
+            </span>
+            {SITE.address.addressLocality}, {SITE.address.addressRegion}
           </p>
         </div>
       </div>
 
-      <div class="lg:col-span-3">
+      <div>
         <!--
           Posts to the Cloudflare Worker at /api/contact (worker/index.ts), which emails the
           submission via Resend and redirects to /thank-you/ or /form-error/. bot-field is a
@@ -50,30 +69,31 @@ const crumbs = [{ name: 'Contact', href: '/contact/' }];
           name="contact"
           method="POST"
           action="/api/contact"
-          class="grid gap-5 rounded-3xl border border-slate-100 bg-white p-8 shadow-sm sm:grid-cols-2"
+          class="motion-pop sticker grid gap-6 rounded-[2.25rem] border-2 border-ink bg-white p-7 sm:grid-cols-2 sm:p-10"
+          style="--d:200ms"
         >
           <p class="hidden">
             <label>Don't fill this out if you're human: <input name="bot-field" /></label>
           </p>
-          <div class="sm:col-span-1">
-            <label for="name" class="text-sm font-medium text-slate-700">Name</label>
-            <input id="name" name="name" type="text" required class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          <div>
+            <label for="name" class={label}>Name</label>
+            <input id="name" name="name" type="text" required autocomplete="name" class={field} />
           </div>
-          <div class="sm:col-span-1">
-            <label for="business" class="text-sm font-medium text-slate-700">Business name</label>
-            <input id="business" name="business" type="text" class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          <div>
+            <label for="business" class={label}>Business name</label>
+            <input id="business" name="business" type="text" autocomplete="organization" class={field} />
           </div>
-          <div class="sm:col-span-1">
-            <label for="email" class="text-sm font-medium text-slate-700">Email</label>
-            <input id="email" name="email" type="email" required class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          <div>
+            <label for="email" class={label}>Email</label>
+            <input id="email" name="email" type="email" required autocomplete="email" class={field} />
           </div>
-          <div class="sm:col-span-1">
-            <label for="website" class="text-sm font-medium text-slate-700">Current website (if any)</label>
-            <input id="website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com.au" class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500" />
+          <div>
+            <label for="website" class={label}>Current website <span class="font-normal text-slate-500">(if any)</span></label>
+            <input id="website" name="website" type="text" inputmode="url" autocomplete="url" placeholder="yourbusiness.com.au" class={field} />
           </div>
           <div class="sm:col-span-2">
-            <label for="source" class="text-sm font-medium text-slate-700">How did you find us? <span class="font-normal text-slate-400">(optional)</span></label>
-            <select id="source" name="source" class="mt-1.5 w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500">
+            <label for="source" class={label}>How did you find me? <span class="font-normal text-slate-500">(optional)</span></label>
+            <select id="source" name="source" class={field}>
               <option value="">Choose one</option>
               <option>Google search</option>
               <option>Google Maps</option>
@@ -86,17 +106,15 @@ const crumbs = [{ name: 'Contact', href: '/contact/' }];
             </select>
           </div>
           <div class="sm:col-span-2">
-            <label for="message" class="text-sm font-medium text-slate-700">What's going on?</label>
-            <textarea id="message" name="message" rows="5" required class="mt-1.5 w-full rounded-lg border border-slate-200 px-4 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"></textarea>
+            <label for="message" class={label}>What’s going on?</label>
+            <textarea id="message" name="message" rows="5" required class={field} placeholder="E.g. we don’t show up in Google Maps for our suburb"></textarea>
           </div>
-          <div class="sm:col-span-2">
-            <button
-              type="submit"
-              class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition-colors hover:bg-brand-700 sm:w-auto"
-            >
-              Get My Free Audit
-              <Icon name="lucide:arrow-right" class="h-4 w-4" />
+          <div class="flex flex-wrap items-center gap-4 sm:col-span-2">
+            <button type="submit" class="btn btn-lg bg-ink text-white">
+              <span>Get my free audit</span>
+              <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
             </button>
+            <p class="text-sm text-slate-500">Free and no obligation.</p>
           </div>
         </form>
       </div>

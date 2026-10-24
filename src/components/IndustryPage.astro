@@ -83,9 +83,9 @@ const needs = [
 >
   <Breadcrumbs items={crumbs} />
 
-  <section class="bg-gradient-to-b from-brand-50/60 to-white">
+  <section class="">
     <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 lg:px-8">
-      <h1 class="font-display text-4xl font-extrabold text-slate-900 sm:text-5xl">{h1}</h1>
+      <h1 class="font-display text-5xl font-extrabold leading-[1.02] tracking-tight text-ink sm:text-6xl">{h1}</h1>
       {
         intro.map((p) => (
           <p class="mt-5 text-lg leading-relaxed text-slate-600">{p}</p>
@@ -93,25 +93,25 @@ const needs = [
       }
       <a
         href="/contact/"
-        class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 hover:bg-brand-700"
+        class="btn btn-lg bg-ink text-white mt-8"
       >
-        Get My Free Audit
-        <Icon name="lucide:arrow-right" class="h-4 w-4" />
-      </a>
+          <span>Get a free audit</span>
+          <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
+        </a>
       <p class="mt-3 text-sm text-slate-500">Free, no obligation. A straight read on what’s working and what isn’t.</p>
     </div>
   </section>
 
   <!-- Demand -->
   <section class="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
-    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">{demand.heading}</h2>
+    <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{demand.heading}</h2>
     {demand.paragraphs.map((p) => <p class="mt-4 leading-relaxed text-slate-600">{p}</p>)}
   </section>
 
   <!-- Problems -->
-  <section class="bg-slate-50 py-14">
+  <section class="bg-sand py-14">
     <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-      <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">{problems.heading}</h2>
+      <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{problems.heading}</h2>
       <ul class="mt-6 space-y-3">
         {
           problems.items.map((item) => (
@@ -127,11 +127,11 @@ const needs = [
 
   <!-- What we do -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">{whatWeDo.heading}</h2>
+    <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{whatWeDo.heading}</h2>
     <div class="mt-8 grid gap-6 sm:grid-cols-2">
       {
         whatWeDo.items.map((item) => (
-          <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+          <div class="rounded-[1.75rem] bg-white p-6 shadow-sm">
             <Icon name="lucide:check-circle-2" class="h-6 w-6 text-accent-600" />
             <h3 class="mt-3 font-display font-semibold text-slate-900">{item.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-500">{item.description}</p>
@@ -142,14 +142,14 @@ const needs = [
   </section>
 
   <!-- Industry-specific split -->
-  <section class="bg-slate-50 py-16">
+  <section class="bg-sand py-16">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">{split.heading}</h2>
+      <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">{split.heading}</h2>
       {split.intro && <p class="mt-3 max-w-2xl text-slate-600">{split.intro}</p>}
       <div class="mt-8 grid gap-6 sm:grid-cols-2">
         {
           split.items.map((item) => (
-            <div class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
+            <div class="rounded-[1.75rem] bg-white p-6 shadow-sm">
               <h3 class="font-display font-semibold text-slate-900">{item.title}</h3>
               <p class="mt-2 text-sm leading-relaxed text-slate-500">{item.description}</p>
             </div>
@@ -161,13 +161,13 @@ const needs = [
 
   <!-- Phases -->
   <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-    <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">How we work together</h2>
+    <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">How we work together</h2>
     <p class="mt-3 max-w-2xl text-slate-600">We work in three phases. You always know what’s happening and what’s next.</p>
     <ol class="mt-8 grid gap-6 md:grid-cols-3">
       {
         phases.map((phase, i) => (
-          <li class="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm">
-            <span class="font-display text-3xl font-extrabold text-brand-100">{i + 1}</span>
+          <li class="rounded-[1.75rem] bg-white p-6 shadow-sm">
+            <span class="font-display text-4xl font-extrabold text-coral">{i + 1}</span>
             <h3 class="mt-2 font-display font-semibold text-slate-900">{phase.title}</h3>
             <p class="mt-2 text-sm leading-relaxed text-slate-500">{phase.description}</p>
           </li>
@@ -175,7 +175,7 @@ const needs = [
       }
     </ol>
 
-    <div class="mt-10 rounded-2xl border border-slate-100 bg-slate-50 p-6">
+    <div class="mt-10 rounded-[1.75rem] bg-sand p-6">
       <h3 class="font-display font-semibold text-slate-900">What you need to give us</h3>
       <ul class="mt-4 space-y-2">
         {
@@ -191,9 +191,9 @@ const needs = [
   </section>
 
   <!-- Plans -->
-  <section class="bg-slate-50 pt-4">
+  <section class="bg-sand pt-4">
     <div class="mx-auto max-w-3xl px-4 pt-12 text-center sm:px-6 lg:px-8">
-      <h2 class="font-display text-2xl font-bold text-slate-900 sm:text-3xl">Plans and pricing</h2>
+      <h2 data-reveal class="font-display text-3xl font-extrabold tracking-tight text-ink sm:text-4xl">Plans and pricing</h2>
       <p class="mt-3 text-slate-600">
         A straight monthly price, plus a one-off setup fee, with no lock-in contract. We guarantee the work, not
         rankings. Nobody can honestly promise a Google position, and you should be wary of anyone who does.
@@ -202,7 +202,7 @@ const needs = [
     <PricingTable />
     <p class="mx-auto max-w-3xl px-4 pb-16 text-center text-sm text-slate-600 sm:px-6 lg:px-8">
       Want to know more about the profile side?
-      <a href="/services/google-business-profile-optimization/" class="font-semibold text-brand-600 hover:underline">
+      <a href="/services/google-business-profile-optimization/" class="squiggle font-semibold text-ink">
         See Google Business Profile optimisation
       </a>.
     </p>
@@ -218,7 +218,7 @@ const needs = [
         related.map((r) => (
           <a
             href={r.href}
-            class="rounded-full border border-slate-200 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 hover:border-brand-300 hover:text-brand-600"
+            class="rounded-full border-2 border-ink bg-white px-5 py-2.5 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-sun"
           >
             {r.label}
           </a>

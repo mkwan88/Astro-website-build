@@ -9,22 +9,23 @@ import { SITE } from '../lib/site';
   description="Something went wrong sending your message to Kwantum."
   noindex={true}
 >
-  <section class="mx-auto flex max-w-2xl flex-col items-center px-4 py-32 text-center sm:px-6 lg:px-8">
-    <span class="flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-red-600">
-      <Icon name="lucide:alert-triangle" class="h-8 w-8" />
+  <section class="mx-auto flex max-w-2xl flex-col items-center px-5 py-24 text-center sm:px-8">
+    <span class="motion-pop sticker flex h-24 w-24 rotate-[5deg] items-center justify-center rounded-[1.75rem] border-2 border-ink bg-coral text-ink" style="--d:100ms">
+      <Icon name="lucide:alert-triangle" class="h-11 w-11" />
     </span>
-    <h1 class="mt-6 font-display text-3xl font-bold text-slate-900 sm:text-4xl">
+    <h1 class="mt-6 font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl">
       Sorry, your message didn't send
     </h1>
     <p class="mt-4 text-slate-500">
       Please check your name, email and message are filled in and try again, or email us directly
-      at <a href={`mailto:${SITE.email}`} class="font-medium text-brand-600 hover:text-brand-700">{SITE.email}</a>.
+      at <a href={`mailto:${SITE.email}`} class="font-medium text-ink underline decoration-teal decoration-2 underline-offset-4 hover:decoration-4">{SITE.email}</a>.
     </p>
     <a
       href="/contact/"
-      class="mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700"
+      class="btn btn-lg bg-ink text-white mt-8"
     >
-      Back to the contact form
-    </a>
+          <span>Back to the contact form</span>
+          <span class="btn-dot bg-sun text-ink" aria-hidden="true">→</span>
+        </a>
   </section>
 </BaseLayout>
